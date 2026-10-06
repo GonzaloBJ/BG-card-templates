@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "watermarkBack": "ADVANCED HEROQUEST",
+    "watermarkFront": "AHQ",
+    "adventureType": "Aventura en solitario",
+    "iconLeft": "☠",
+    "iconRight": "✦"
+  },
+  "backCard": {
+    "title": "La Maldición de Tobaro",
+    "loreTitle": "Historia",
+    "loreParagraphs": [
+      "La ciudad de Tobaro está bajo asedio. Los Padres de la Ciudad están desesperados y la comunidad entera está bajo el peligro de un inminente colapso. La razón de todos estos desastres es el reciente aumento del poder de un clan Skaven cercano, que actualmente tiene su gobierno en la ciudad.",
+      "Los Skaven han impuesto un involuntario toque de queda a los habitantes. Las criaturas se lanzan a miles desde las alcantarillas, con Camkerclaw Darkheart al frente.",
+      "Los Padres de la Ciudad han recurrido a su última alternativa: pedir ayuda al exterior y ofrecer recompensas a cualquier Héroe que pueda ayudarles."
+    ],
+    "loreImage": "../images/tobarosBane/loreImage.jpg",
+    "loreImageAlt": "Ilustración de la ciudad de Tobaro",
+    "loreImageFallback": "https://placehold.co/900x700/png?text=Ilustraci%C3%B3n+de+Tobaro"
+  },
+  "frontCard": {
+    "title": "La Maldición de Tobaro",
+    "objectiveTitle": "Objetivo",
+    "objectiveText": "Matar a Camkerclaw el Hechicero Skaven, el cerebro que dirige los ataques Skaven a Tobaro, y destruir su guarida de la ciudad.",
+    "difficultyLabel": "Dificultad",
+    "difficultyValue": "☠ Media",
+    "rewardLabel": "Recompensa",
+    "rewardValue": "● Puntos de Destino",
+    "heroesTitle": "Los Héroes",
+    "heroesText": "El grupo está compuesto por cuatro Héroes, cuatro Hombres de Armas y un Sargento proporcionados gratuitamente por los Padres de la Ciudad.",
+    "questTitle": "La Gesta",
+    "questText": "Tras explorar tres niveles de mazmorra, los Héroes se enfrentarán a Camkerclaw y deberán matarlo. Si lo consiguen y vuelven a la superficie, ganarán la partida. Sólo pueden emprender una expedición para encontrarlo; si tienen éxito, reciben automáticamente 2 Puntos de Destino.",
+    "deploymentTitle": "El Despliegue",
+    "deploymentParagraphs": [
+      "La mazmorra empieza por tres niveles. Cada uno se genera aleatoriamente mediante las reglas normales. Si una escalera conduce hacia abajo en un corredor, en realidad lleva hacia la superficie.",
+      "Las escaleras que llevan al nivel inferior sólo podrán encontrarse en las primeras Habitaciones de Gesta de los niveles 1 y 2."
+    ],
+    "monstersTitle": "Monstruos especiales",
+    "monstersTableHeaders": ["Nivel", "Monstruo especial", "Objeto mágico"],
+    "monstersTableRows": [
+      {
+        "level": "Uno",
+        "monster": "Asesino<br>Monje de Plaga<br>Tejedor de Disformidad",
+        "item": "Pergamino de Disformidad"
+      },
+      {
+        "level": "Dos",
+        "monster": "Portador del Incensario de las Plagas<br>Señor de la Guerra<br>Hechicero",
+        "item": "Ira de las Plagas<br>Espada Rúnica<br>Anillo de Protección Mágico"
+      }
+    ],
+    "monstersNote": "Si los Héroes matan a los Monstruos Especiales, podrán apropiarse de sus objetos mágicos. No podrán usar el Pergamino de Disformidad ni el Incensario de Plagas."
+  }
+}

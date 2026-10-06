@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "watermarkBack": "ADVANCED HEROQUEST",
+    "watermarkFront": "AHQ",
+    "iconLeft": "☠",
+    "iconRight": "✦"
+  },
+  "backCard": {
+    "title": "Seguimiento de Grupo Enemigo",
+    "subtitle": "6 unidades",
+    "backgroundCard": "images/white-parchment-paper2.jpg"
+  },
+  "frontCard": {
+    "title": "Seguimiento de Grupo Enemigo",
+    "subtitle": "6 unidades",
+    "backgroundCard": "images/white-parchment-paper2.jpg"
+  }
+}

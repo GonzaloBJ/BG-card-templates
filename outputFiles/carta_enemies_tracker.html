@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Advanced HeroQuest — Carta de Seguimiento Vertical (Tarot)</title>
+
+    <style>
+      :root {
+        --ink: #111;
+        --paper: #fff;
+        --font-title: 'Cinzel', 'Times New Roman', serif;
+        --font-body: 'Libre Baskerville', 'Times New Roman', serif;
+      }
+
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #eee;
+        color: var(--ink);
+        font-family: var(--font-body);
+      }
+
+      .sheet {
+        width: 210mm;
+        height: 297mm;
+        position: relative;
+        page-break-after: always;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+      }
+
+      /* 80 mm ancho × 120 mm alto (Tamaño Tarot Vertical) */
+      .card {
+        width: 80mm;
+        height: 120mm;
+        position: relative;
+        overflow: hidden;
+        background: var(--paper);
+
+        background-image: url('../images/white-parchment-paper2.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        /* transform: rotate(90deg);
+        transform-origin: center center; */
+
+        border: var(--border-card) solid gray;
+        padding: 3.5mm 3.5mm 1mm;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      /* Esquinas decorativas estilizadas */
+      .corner {
+        position: absolute;
+        width: 4mm;
+        height: 4mm;
+        z-index: 3;
+        pointer-events: none;
+      }
+      .corner.tl { top: 1mm; left: 1mm; border-top: 0.6mm solid var(--ink); border-left: 0.6mm solid var(--ink); }
+      .corner.tr { top: 1mm; right: 1mm; border-top: 0.6mm solid var(--ink); border-right: 0.6mm solid var(--ink); }
+      .corner.bl { bottom: 1mm; left: 1mm; border-bottom: 0.6mm solid var(--ink); border-left: 0.6mm solid var(--ink); }
+      .corner.br { bottom: 1mm; right: 1mm; border-bottom: 0.6mm solid var(--ink); border-right: 0.6mm solid var(--ink); }
+
+      .card-content {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2mm;
+      }
+
+      /* --- ESPACIO CALADO (Mitad inferior pegada al borde superior de la carta) --- */
+      .slot-cutout {
+        width: 68mm;
+        height: 22mm; /* Mitad de la altura original de 44mm */
+        margin: 0 auto;
+        border-left: 0.4mm dashed var(--ink);
+        border-right: 0.4mm dashed var(--ink);
+        border-bottom: 0.4mm dashed var(--ink);
+        border-top: none; /* Pegado al borde superior de la carta */
+        /* background: rgba(255, 255, 255, 0.6); */
+        border-radius: 0 0 1mm 1mm;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 1mm;
+        flex-shrink: 0;
+      }
+
+      .slot-cutout-text {
+        font-family: var(--font-title);
+        font-size: 1.9mm;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #555;
+        letter-spacing: 0.2mm;
+        line-height: 1.2;
+      }
+
+      /* --- CUADRÍCULA DE TRACKEO (Filas numeradas 1-6, Columnas de atributos con celdas exactamente de 8x8mm) --- */
+      .track-table {
+        display: grid;
+        grid-template-columns: 7mm repeat(6, 8mm); /* Columna de números (7mm) + 6 columnas de atributos de 8mm cada una */
+        gap: 0.5mm;
+        /* background: rgba(255, 255, 255, 0.85); */
+        padding: 1mm;
+        border: 0.25mm solid var(--ink);
+      }
+
+      .track-cell {
+        width: 8mm;
+        height: 8mm;
+        border: 0.2mm solid var(--ink);
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3.2mm;
+      }
+
+      .track-header-cell {
+        width: 8mm;
+        height: 8mm;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-title);
+        font-weight: 900;
+        font-size: 3mm;
+      }
+
+      .row-header-cell {
+        width: 7mm;
+        height: 8mm;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-title);
+        font-weight: 900;
+        font-size: 3mm;
+      }
+
+      .corner-empty {
+        width: 7mm;
+        height: 8mm;
+      }
+
+      @media screen {
+        .sheet { margin: 8mm auto; }
+      }
+
+      @media print {
+        html, body { background: #fff; }
+        .sheet { margin: 0; }
+      }
+    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  </head>
+
+  <body>
+    <section class="sheet">
+      <article class="card">
+        <div class="card-content">
+          <!-- ESPACIO CALADO SUPERIOR (Mitad inferior, pegado arriba) -->
+          <div class="slot-cutout">
+            <span class="slot-cutout-text">CALADO SUPERIOR (MITAD INFERIOR - MINI EUROPEAN)</span>
+          </div>
+        <div class="subtitle">6 unidades</div>
+          <!-- CUADRÍCULA DE TRACKEO (Atributos en columnas, Filas numeradas 1 a 6, Celdas de 8x8mm) -->
+          <div class="track-table">
+            <!-- Fila de Cabecera: Iconos de Atributos -->
+            <div class="corner-empty"></div>
+            <div class="track-header-cell">❤️</div>
+            <div class="track-header-cell">🛡️</div>
+            <div class="track-header-cell">⚔️</div>
+            <div class="track-header-cell">👤</div>
+            <div class="track-header-cell">💀</div>
+            <div class="track-header-cell">⭐</div>
+
+            <!-- Fila 1 -->
+            <div class="row-header-cell">1</div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+
+            <!-- Fila 2 -->
+            <div class="row-header-cell">2</div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+
+            <!-- Fila 3 -->
+            <div class="row-header-cell">3</div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+
+            <!-- Fila 4 -->
+            <div class="row-header-cell">4</div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+
+            <!-- Fila 5 -->
+            <div class="row-header-cell">5</div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+
+            <!-- Fila 6 -->
+            <div class="row-header-cell">6</div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+            <div class="track-cell"></div>
+          </div>
+        </div>
+      </article>
+    </section>
+  </body>
+</html>

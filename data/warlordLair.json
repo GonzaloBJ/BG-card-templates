@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "watermarkBack": "ADVANCED HEROQUEST",
+    "watermarkFront": "AHQ",
+    "adventureType": "Aventura en solitario",
+    "iconLeft": "☠",
+    "iconRight": "✦"
+  },
+  "backCard": {
+    "title": "La Guarida del Señor de la Guerra",
+    "subtitle": "El Amuleto Roto - I ACTO",
+    "loreTitle": "Historia",
+    "loreParagraphs": [
+      "En las profundidades de las <em>Montañas Grises</em>, un <em>Skaven Señor de la Guerra</em> del <em>Clan Rictus</em> planea una campaña para, literalmente, minar el subsuelo de la cercana ciudad de <em>Pavarron</em>. Es en su guarida donde se encuentra el <em>1er Fragmento del Amuleto Roto</em>.",
+      "En las paredes de esta mazmorra podeís ver colgados horribles trofeos que conmemoran pasadas victorias: escudos rotos yllenos de sangre que pertenecieron a enemogos derrotados: cabelleras y calaveras: armas melladas y oxidadas de una docena de razas diferentes y, grabada sobre las puertas y las losas del suelo, se puede ver la runa de tres brazos, simbolo del <em>Clan Rictus</em>."
+    ],
+    "loreImage": "../images/warlordLairLoreImage.png",
+    "loreImageAlt": "warlordLairLoreImage",
+    "loreImageFallback": "https://placehold.co/900x700/png?text=Ilustraci%C3%B3n+de+Tobaro"
+  },
+  "frontCard": {
+    "title": "La Guarida del Señor de la Guerra",
+    "subtitle": "El Amuleto Roto - I ACTO",
+    "objectiveTitle": "Objetivos",
+    "objectiveParagraphs": [
+      "&bull; Explorar el laberinto y encontrar el <em>Fragmento del Amuleto Roto</em>.",
+      "&bull; Regresar a la superficie."
+    ],
+    "rewardTitle": "Recompensas",
+    "rewardParagraphs": [
+      "&bull; +1 PD.",
+      "&bull; <em>2do Fragmento del Amuleto Roto</em>."
+    ],
+    "deploymentTitle": "Despliegue",
+    "deploymentParagraphs": [
+      "&bull; <em> -ver mapa 'El Laberinto Mágico'-</em>.",
+      "&bull; <strong>Bola de Fuego x2</strong>: Posición en mapa. El jugador cuando llegue a algun corredor -leer nota de la misión Nro.I-.",
+      "&bull; <strong>Asesino del Clan Eshin</strong>: Posición fuera de la visión de los héroes. Opcional en lugar de una <em>Bola de Fuego</em>. Bonificado con +1 HA al inicio de la fase de combate.",
+      "&bull; <strong>Zombis Skaven</strong>: Posición en mapa. El jugador cuando dañe a alguno de estos -leer nota de la misión Nro.II-."
+    ],
+    "monstersTitle": "Monstruos especiales",
+    "monstersTableHeaders": ["Und.", "Monstruo especial", "Objeto/Equipo"],
+    "monstersTableRows": [
+      {
+        "level": "1",
+        "monster": "Asesino del Clan Eshin",
+        "item": "habilidad de huir"
+      }
+    ],
+    "monstersNote": "Si los Héroes matan a los Monstruos Especiales, podrán apropiarse de sus objetos mágicos. No podrán usar el Pergamino de Disformidad ni el Incensario de Plagas."
+  }
+}
