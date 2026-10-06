@@ -57,7 +57,7 @@ def main():
     }
     
     # Selecciona el número de la carta que deseas generar
-    selected_card = 0
+    selected_card = 6
     card_path =  card_list[selected_card]
     
     # Validar que la carta seleccionada exista en la lista
