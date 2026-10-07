@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Plantilla Mini European Horizontal (67×44 mm) — 12 cartas por A4</title>
+    <style>
+      :root {
+        --ink: #2c1d11;
+        --font-title: 'Cinzel', 'Times New Roman', serif;
+        --font-body: 'Libre Baskerville', 'Times New Roman', serif;
+      }
+
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: #e0e0e0;
+        color: var(--ink);
+        font-family: var(--font-body);
+      }
+
+      /* Hoja A4: 210mm x 297mm */
+      .sheet {
+        width: 210mm;
+        height: 297mm;
+        position: relative;
+        page-break-after: always;
+        background: #ffffff;
+        display: grid;
+        /* 3 columnas (67mm c/u) x 4 filas (44mm c/u) = 12 cartas Mini European Horizontal por A4 */
+        /* Ancho total: 67 * 3 = 201mm. Margen horizontal sobrante: (210 - 201) / 2 = 4.5mm (1.5mm entre columnas) */
+        /* Alto total: 44 * 4 = 176mm. Margen vertical sobrante: (297 - 176) / 2 = 60.5mm / 5 espacios = ~12mm vertical */
+        grid-template-columns: repeat(3, 67mm);
+        grid-template-rows: repeat(4, 44mm);
+        justify-content: center;
+        align-content: center;
+        gap: 8mm 1.5mm; 
+      }
+
+      /* Estilo individual para cada carta Mini European en HORIZONTAL (67mm ancho × 44mm alto) */
+      .card {
+        width: 67mm;
+        height: 44mm;
+        position: relative;
+        overflow: hidden;
+        background-color: #f4ebd0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+        border: 0.25mm solid #4a3525;
+        padding: 1mm;
+        display: flex;
+        flex-direction: row;
+        gap: 1mm;
+      }
+
+      /* Columna Izquierda de la carta (Nombre + Ilustración) */
+      .card-left {
+        width: 21mm;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8mm;
+        flex-shrink: 0;
+      }
+
+      .card-header {
+        border: 0.2mm solid var(--ink);
+        background: rgba(255, 255, 255, 0.7);
+        padding: 0.6mm 0.4mm;
+        text-align: center;
+      }
+
+      .card-title {
+        font-family: var(--font-title);
+        font-size: 1.6mm;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.05mm;
+        line-height: 1.1;
+      }
+
+      .card-subtitle {
+        font-size: 1.2mm;
+        font-style: italic;
+        color: #4a3b32;
+        line-height: 1;
+        margin-top: 0.2mm;
+      }
+
+      .card-img-container {
+        flex-grow: 1;
+        border: 0.2mm solid var(--ink);
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card-img-placeholder {
+        font-size: 1.2mm;
+        color: #777;
+        text-align: center;
+        font-family: var(--font-title);
+      }
+
+      /* Columna Derecha de la carta (Atributos + Combate Cuerpo a Cuerpo + Combate a Distancia + Equipo / Notas) */
+      .card-right {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8mm;
+      }
+
+      /* Tabla superior de Atributos (HA, HP, F, D, V, B, H, VP) */
+      .stats-table {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        border: 0.2mm solid var(--ink);
+        background: rgba(255, 255, 255, 0.85);
+      }
+
+      .stat-cell {
+        border-right: 0.15mm solid var(--ink);
+        border-bottom: 0.15mm solid var(--ink);
+        text-align: center;
+        padding: 0.2mm 0;
+      }
+
+      .stat-cell:last-child {
+        border-right: none;
+      }
+
+      .stat-header {
+        font-family: var(--font-title);
+        font-size: 1.1mm;
+        font-weight: 700;
+        background: #e6dcbe;
+      }
+
+      .stat-value {
+        font-size: 1.4mm;
+        font-weight: 700;
+        height: 2.8mm;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Bloques estilo Advanced HeroQuest (Combate Cuerpo a Cuerpo, Distancia, Equipo) */
+      .section-block {
+        border: 0.2mm solid var(--ink);
+        background: rgba(255, 255, 255, 0.8);
+        padding: 0.4mm 0.6mm;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4mm;
+      }
+
+      .section-title {
+        font-family: var(--font-title);
+        font-size: 1.1mm;
+        font-weight: 700;
+        text-align: center;
+        text-transform: uppercase;
+        border-bottom: 0.15mm solid var(--ink);
+        padding-bottom: 0.2mm;
+        letter-spacing: 0.05mm;
+      }
+
+      /* Mini celdas numeradas estilo tabla de combate de la referencia */
+      .combat-grid {
+        display: grid;
+        grid-template-columns: 10mm repeat(12, 1fr) 9mm;
+        border: 0.15mm solid var(--ink);
+        background: #fff;
+        text-align: center;
+      }
+
+      .combat-grid-dist {
+        display: grid;
+        grid-template-columns: 10mm repeat(5, 1fr) 9mm 9mm;
+        border: 0.15mm solid var(--ink);
+        background: #fff;
+        text-align: center;
+      }
+
+      .cg-cell {
+        border-right: 0.1mm solid var(--ink);
+        border-bottom: 0.1mm solid var(--ink);
+        font-size: 0.9mm;
+        padding: 0.2mm 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cg-header {
+        font-family: var(--font-title);
+        font-size: 0.9mm;
+        font-weight: 700;
+        background: #f0e6cc;
+      }
+
+      .equipment-content {
+        font-size: 1.1mm;
+        line-height: 1.1;
+        padding: 0.2mm;
+      }
+
+      @media screen {
+        body { padding: 10mm 0; }
+        .sheet { margin: 0 auto; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
+      }
+
+      @media print {
+        body { background: #fff; }
+        .sheet { margin: 0; box-shadow: none; }
+      }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  </head>
+  <body>
+
+    <!-- HOJA 1: 12 Cartas Mini European Horizontal (67x44 mm) -->
+    <section class="sheet">
+
+      <!-- Carta 1: Guerrero Skaven -->
+      <article class="card">
+        <div class="card-left">
+          <div class="card-header">
+            <div class="card-title">Guerrero Skaven</div>
+            <div class="card-subtitle">Infantería</div>
+          </div>
+          <div class="card-img-container">
+            <span class="card-img-placeholder">[ Miniatura ]</span>
+          </div>
+        </div>
+        <div class="card-right">
+          <!-- Atributos -->
+          <div class="stats-table">
+            <div class="stat-cell stat-header">HA</div>
+            <div class="stat-cell stat-header">HP</div>
+            <div class="stat-cell stat-header">F</div>
+            <div class="stat-cell stat-header">D</div>
+            <div class="stat-cell stat-header">V</div>
+            <div class="stat-cell stat-header">B</div>
+            <div class="stat-cell stat-header">H</div>
+            <div class="stat-cell stat-header">VP</div>
+            
+            <div class="stat-cell stat-value">6</div>
+            <div class="stat-cell stat-value">5</div>
+            <div class="stat-cell stat-value">5</div>
+            <div class="stat-cell stat-value">7</div>
+            <div class="stat-cell stat-value">10</div>
+            <div class="stat-cell stat-value">6</div>
+            <div class="stat-cell stat-value">3</div>
+            <div class="stat-cell stat-value">1</div>
+          </div>
+
+          <!-- Combate Cuerpo a Cuerpo -->
+          <div class="section-block">
+            <div class="section-title">Combate Cuerpo a Cuerpo</div>
+            <div class="combat-grid">
+              <div class="cg-cell cg-header" style="font-size:0.8mm;">HA</div>
+              <div class="cg-cell cg-header">1</div><div class="cg-cell cg-header">2</div><div class="cg-cell cg-header">3</div><div class="cg-cell cg-header">4</div><div class="cg-cell cg-header">5</div><div class="cg-cell cg-header">6</div><div class="cg-cell cg-header">7</div><div class="cg-cell cg-header">8</div><div class="cg-cell cg-header">9</div><div class="cg-cell cg-header">10</div><div class="cg-cell cg-header">11</div><div class="cg-cell cg-header">12</div>
+              <div class="cg-cell cg-header" style="font-size:0.7mm;">D. Daño</div>
+              
+              <div class="cg-cell cg-header" style="font-size:0.7mm;">Tirada</div>
+              <div class="cg-cell">2</div><div class="cg-cell">2</div><div class="cg-cell">3</div><div class="cg-cell">4</div><div class="cg-cell">5</div><div class="cg-cell">6</div><div class="cg-cell">7</div><div class="cg-cell">8</div><div class="cg-cell">9</div><div class="cg-cell">10</div><div class="cg-cell">10</div><div class="cg-cell">10</div>
+              <div class="cg-cell" style="font-weight:700;">3</div>
+            </div>
+          </div>
+
+          <!-- Equipo / Notas -->
+          <div class="section-block" style="flex-grow:1;">
+            <div class="section-title">Equipo / Notas</div>
+            <div class="equipment-content">• Cota de Cuero<br>• Escudo<br>• Espada</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Carta 2: Campeón Skaven -->
+      <article class="card">
+        <div class="card-left">
+          <div class="card-header">
+            <div class="card-title">Campeón Skaven</div>
+            <div class="card-subtitle">Líder</div>
+          </div>
+          <div class="card-img-container">
+            <span class="card-img-placeholder">[ Miniatura ]</span>
+          </div>
+        </div>
+        <div class="card-right">
+          <div class="stats-table">
+            <div class="stat-cell stat-header">HA</div>
+            <div class="stat-cell stat-header">HP</div>
+            <div class="stat-cell stat-header">F</div>
+            <div class="stat-cell stat-header">D</div>
+            <div class="stat-cell stat-header">V</div>
+            <div class="stat-cell stat-header">B</div>
+            <div class="stat-cell stat-header">H</div>
+            <div class="stat-cell stat-header">VP</div>
+            
+            <div class="stat-cell stat-value">7</div>
+            <div class="stat-cell stat-value">5</div>
+            <div class="stat-cell stat-value">6</div>
+            <div class="stat-cell stat-value">8</div>
+            <div class="stat-cell stat-value">9</div>
+            <div class="stat-cell stat-value">8</div>
+            <div class="stat-cell stat-value">3</div>
+            <div class="stat-cell stat-value">2</div>
+          </div>
+
+          <div class="section-block">
+            <div class="section-title">Combate Cuerpo a Cuerpo</div>
+            <div class="combat-grid">
+              <div class="cg-cell cg-header" style="font-size:0.8mm;">HA</div>
+              <div class="cg-cell cg-header">1</div><div class="cg-cell cg-header">2</div><div class="cg-cell cg-header">3</div><div class="cg-cell cg-header">4</div><div class="cg-cell cg-header">5</div><div class="cg-cell cg-header">6</div><div class="cg-cell cg-header">7</div><div class="cg-cell cg-header">8</div><div class="cg-cell cg-header">9</div><div class="cg-cell cg-header">10</div><div class="cg-cell cg-header">11</div><div class="cg-cell cg-header">12</div>
+              <div class="cg-cell cg-header" style="font-size:0.7mm;">D. Daño</div>
+              
+              <div class="cg-cell cg-header" style="font-size:0.7mm;">Tirada</div>
+              <div class="cg-cell">2</div><div class="cg-cell">2</div><div class="cg-cell">3</div><div class="cg-cell">4</div><div class="cg-cell">5</div><div class="cg-cell">6</div><div class="cg-cell">7</div><div class="cg-cell">8</div><div class="cg-cell">9</div><div class="cg-cell">10</div><div class="cg-cell">10</div><div class="cg-cell">10</div>
+              <div class="cg-cell" style="font-weight:700;">4</div>
+            </div>
+          </div>
+
+          <div class="section-block" style="flex-grow:1;">
+            <div class="section-title">Equipo / Notas</div>
+            <div class="equipment-content">• Cota de Malla<br>• Escudo<br>• Espada</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Carta 3: Corredor de Alcantarillas Skaven -->
+      <article class="card">
+        <div class="card-left">
+          <div class="card-header">
+            <div class="card-title" style="font-size:1.4mm;">Corredor Alcantarillas</div>
+            <div class="card-subtitle">Infantería Ligera</div>
+          </div>
+          <div class="card-img-container">
+            <span class="card-img-placeholder">[ Miniatura ]</span>
+          </div>
+        </div>
+        <div class="card-right">
+          <div class="stats-table">
+            <div class="stat-cell stat-header">HA</div>
+            <div class="stat-cell stat-header">HP</div>
+            <div class="stat-cell stat-header">F</div>
+            <div class="stat-cell stat-header">D</div>
+            <div class="stat-cell stat-header">V</div>
+            <div class="stat-cell stat-header">B</div>
+            <div class="stat-cell stat-header">H</div>
+            <div class="stat-cell stat-header">VP</div>
+            
+            <div class="stat-cell stat-value">6</div>
+            <div class="stat-cell stat-value">6</div>
+            <div class="stat-cell stat-value">5</div>
+            <div class="stat-cell stat-value">5</div>
+            <div class="stat-cell stat-value">12</div>
+            <div class="stat-cell stat-value">6</div>
+            <div class="stat-cell stat-value">3</div>
+            <div class="stat-cell stat-value">2</div>
+          </div>
+
+          <div class="section-block">
+            <div class="section-title">Combate Cuerpo a Cuerpo</div>
+            <div class="combat-grid">
+              <div class="cg-cell cg-header" style="font-size:0.8mm;">HA</div>
+              <div class="cg-cell cg-header">1</div><div class="cg-cell cg-header">2</div><div class="cg-cell cg-header">3</div><div class="cg-cell cg-header">4</div><div class="cg-cell cg-header">5</div><div class="cg-cell cg-header">6</div><div class="cg-cell cg-header">7</div><div class="cg-cell cg-header">8</div><div class="cg-cell cg-header">9</div><div class="cg-cell cg-header">10</div><div class="cg-cell cg-header">11</div><div class="cg-cell cg-header">12</div>
+              <div class="cg-cell cg-header" style="font-size:0.7mm;">D. Daño</div>
+              
+              <div class="cg-cell cg-header" style="font-size:0.7mm;">Tirada</div>
+              <div class="cg-cell">2</div><div class="cg-cell">2</div><div class="cg-cell">3</div><div class="cg-cell">4</div><div class="cg-cell">5</div><div class="cg-cell">6</div><div class="cg-cell">7</div><div class="cg-cell">8</div><div class="cg-cell">9</div><div class="cg-cell">10</div><div class="cg-cell">10</div><div class="cg-cell">10</div>
+              <div class="cg-cell" style="font-weight:700;">3</div>
+            </div>
+          </div>
+
+          <div class="section-block" style="flex-grow:1;">
+            <div class="section-title">Equipo / Notas</div>
+            <div class="equipment-content">• Daga envenenada</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Carta 4 -->
+      <article class="card">
+        <div class="card-left">
+          <div class="card-header">
+            <div class="card-title">Guerrero Skaven</div>
+            <div class="card-subtitle">Infantería</div>
+          </div>
+          <div class="card-img-container"><span class="card-img-placeholder">[ Miniatura ]</span></div>
+        </div>
+        <div class="card-right">
+          <div class="stats-table">
+            <div class="stat-cell stat-header">HA</div><div class="stat-cell stat-header">HP</div><div class="stat-cell stat-header">F</div><div class="stat-cell stat-header">D</div><div class="stat-cell stat-header">V</div><div class="stat-cell stat-header">B</div><div class="stat-cell stat-header">H</div><div class="stat-cell stat-header">VP</div>
+            <div class="stat-cell stat-value">6</div><div class="stat-cell stat-value">5</div><div class="stat-cell stat-value">5</div><div class="stat-cell stat-value">7</div><div class="stat-cell stat-value">10</div><div class="stat-cell stat-value">6</div><div class="stat-cell stat-value">3</div><div class="stat-cell stat-value">1</div>
+          </div>
+          <div class="section-block">
+            <div class="section-title">Combate Cuerpo a Cuerpo</div>
+            <div class="combat-grid">
+              <div class="cg-cell cg-header" style="font-size:0.8mm;">HA</div><div class="cg-cell cg-header">1</div><div class="cg-cell cg-header">2</div><div class="cg-cell cg-header">3</div><div class="cg-cell cg-header">4</div><div class="cg-cell cg-header">5</div><div class="cg-cell cg-header">6</div><div class="cg-cell cg-header">7</div><div class="cg-cell cg-header">8</div><div class="cg-cell cg-header">9</div><div class="cg-cell cg-header">10</div><div class="cg-cell cg-header">11</div><div class="cg-cell cg-header">12</div><div class="cg-cell cg-header" style="font-size:0.7mm;">D. Daño</div>
+              <div class="cg-cell cg-header" style="font-size:0.7mm;">Tirada</div><div class="cg-cell">2</div><div class="cg-cell">2</div><div class="cg-cell">3</div><div class="cg-cell">4</div><div class="cg-cell">5</div><div class="cg-cell">6</div><div class="cg-cell">7</div><div class="cg-cell">8</div><div class="cg-cell">9</div><div class="cg-cell">10</div><div class="cg-cell">10</div><div class="cg-cell">10</div><div class="cg-cell" style="font-weight:700;">3</div>
+            </div>
+          </div>
+          <div class="section-block" style="flex-grow:1;"><div class="section-title">Equipo / Notas</div><div class="equipment-content">• Cota de Cuero<br>• Escudo</div></div>
+        </div>
+      </article>
+
+      <!-- Carta 5 -->
+      <article class="card">
+        <div class="card-left">
+          <div class="card-header"><div class="card-title">Campeón Skaven</div><div class="card-subtitle">Líder</div></div>
+          <div class="card-img-container"><span class="card-img-placeholder">[ Miniatura ]</span></div>
+        </div>
+        <div class="card-right">
+          <div class="stats-table">
+            <div class="stat-cell stat-header">HA</div><div class="stat-cell stat-header">HP</div><div class="stat-cell stat-header">F</div><div class="stat-cell stat-header">D</div><div class="stat-cell stat-header">V</div><div class="stat-cell stat-header">B</div><div class="stat-cell stat-header">H</div><div class="stat-cell stat-header">VP</div>
+            <div class="stat-cell stat-value">7</div><div class="stat-cell stat-value">5</div><div class="stat-cell stat-value">6</div><div class="stat-cell stat-value">8</div><div class="stat-cell stat-value">9</div><div class="stat-cell stat-value">8</div><div class="stat-cell stat-value">3</div><div class="stat-cell stat-value">2</div>
+          </div>
+          <div class="section-block">
+            <div class="section-title">Combate Cuerpo a Cuerpo</div>
+            <div class="combat-grid">
+              <div class="cg-cell cg-header" style="font-size:0.8mm;">HA</div><div class="cg-cell cg-header">1</div><div class="cg-cell cg-header">2</div><div class="cg-cell cg-header">3</div><div class="cg-cell cg-header">4</div><div class="cg-cell cg-header">5</div><div class="cg-cell cg-header">6</div><div class="cg-cell cg-header">7</div><div class="cg-cell cg-header">8</div><div class="cg-cell cg-header">9</div><div class="cg-cell cg-header">10</div><div class="cg-cell cg-header">11</div><div class="cg-cell cg-header">12</div><div class="cg-cell cg-header" style="font-size:0.7mm;">D. Daño</div>
+              <div class="cg-cell cg-header" style="font-size:0.7mm;">Tirada</div><div class="cg-cell">2</div><div class="cg-cell">2</div><div class="cg-cell">3</div><div class="cg-cell">4</div><div class="cg-cell">5</div><div class="cg-cell">6</div><div class="cg-cell">7</div><div class="cg-cell">8</div><div class="cg-cell">9</div><div class="cg-cell">10</div><div class="cg-cell">10</div><div class="cg-cell">10</div><div class="cg-cell" style="font-weight:700;">4</div>
+            </div>
+          </div>
+          <div class="section-block" style="flex-grow:1;"><div class="section-title">Equipo / Notas</div><div class="equipment-content">• Cota de Malla</div></div>
+        </div>
+      </article>
+
+      <!-- Carta 6 -->
+      <article class="card">
+        <div class="card-left">
+          <div class="card-header"><div class="card-title" style="font-size:1.4mm;">Corredor Alcantarillas</div><div class="card-subtitle">Ligera</div></div>
+          <div class="card-img-container"><span class="card-img-placeholder">[ Miniatura ]</span></div>
+        </div>
+        <div class="card-right">
+          <div class="stats-table">
+            <div class="stat-cell stat-header">HA</div><div class="stat-cell stat-header">HP</div><div class="stat-cell stat-header">F</div><div class="stat-cell stat-header">D</div><div class="stat-cell stat-header">V</div><div class="stat-cell stat-header">B</div><div class="stat-cell stat-header">H</div><div class="stat-cell stat-header">VP</div>
+            <div class="stat-cell stat-value">6</div><div class="stat-cell stat-value">6</div><div class="stat-cell stat-value">5</div><div class="stat-cell stat-value">5</div><div class="stat-cell stat-value">12</div><div class="stat-cell stat-value">6</div><div class="stat-cell stat-value">3</div><div class="stat-cell stat-value">2</div>
+          </div>
+          <div class="section-block">
+            <div class="section-title">Combate Cuerpo a Cuerpo</div>
+            <div class="combat-grid">
+              <div class="cg-cell cg-header" style="font-size:0.8mm;">HA</div><div class="cg-cell cg-header">1</div><div class="cg-cell cg-header">2</div><div class="cg-cell cg-header">3</div><div class="cg-cell cg-header">4</div><div class="cg-cell cg-header">5</div><div class="cg-cell cg-header">6</div><div class="cg-cell cg-header">7</div><div class="cg-cell cg-header">8</div><div class="cg-cell cg-header">9</div><div class="cg-cell cg-header">10</div><div class="cg-cell cg-header">11</div><div class="cg-cell cg-header">12</div><div class="cg-cell cg-header" style="font-size:0.7mm;">D. Daño</div>
+              <div class="cg-cell cg-header" style="font-size:0.7mm;">Tirada</div><div class="cg-cell">2</div><div class="cg-cell">2</div><div class="cg-cell">3</div><div class="cg-cell">4</div><div class="cg-cell">5</div><div class="cg-cell">6</div><div class="cg-cell">7</div><div class="cg-cell">8</div><div class="cg-cell">9</div><div class="cg-cell">10</div><div class="cg-cell">10</div><div class="cg-cell">10</div><div class="cg-cell" style="font-weight:700;">3</div>
+            </div>
+          </div>
+          <div class="section-block" style="flex-grow:1;"><div class="section-title">Equipo / Notas</div><div class="equipment-content">• Daga envenenada</div></div>
+        </div>
+      </article>
+
+      <!-- Carta 7 -->
+      <article class="card">
+        <div class="card-left">
+          <div class="card-header"><div class="card-title">Guerrero Skaven</div><div class="card-subtitle">Infantería</div></div>
+          <div class="card-img-container"><span class="card-img-placeholder">[ Miniatura ]</span></div>
+        </div>
+        <div class="card-right">
+          <div class="stats-table">
+            <div class="stat-cell stat-header">HA</div><div class="stat-cell stat-header">HP</div><div class="stat-cell stat-header">F</div><div class="stat-cell stat-header">D</div><div class="stat-cell stat-header">V</div><div class="stat-cell stat-header">B</div><div class="stat-cell stat-header">H</div><div class="stat-cell stat-header">VP</div>
+            <div class="stat-cell stat-value">6</div><div class="stat-cell stat-value">5</div><div class="stat-cell stat-value">5</div><div class="stat-cell stat-value">7</div><div class="stat-cell stat-value">10</div><div class="stat-cell stat-value">6</div><div class="stat-cell stat-value">3</div><div class="stat-cell stat-value">1</div>
+          </div>
+          <div class="section-block">
+            <div class="section-title">Combate Cuerpo a Cuerpo</div>
+            <div class="combat-grid">
+              <div class="cg-cell cg-header" style="font-size:0.8mm;">HA</div><div class="cg-cell cg-header">1</div><div class="cg-cell cg-header">2</div><div class="cg-cell cg-header">3</div><div class="cg-cell cg-header">4</div><div class="cg-cell cg-header">5</div><div class="cg-cell cg-header">6</div><div class="cg-cell cg-header">7</div><div class="cg-cell cg-header">8</div><div class="cg-cell cg-header">9</div><div class="cg-cell cg-header">10</div><div class="cg-cell cg-header">11</div><div class="cg-cell cg-header">12</div><div class="cg-cell cg-header" style="font-size:0.7mm;">D. Daño</div>
+              <div class="cg-cell cg-header" style="font-size:0.7mm;">Tirada</div><div class="cg-cell">2</div><div class="cg-cell">2</div><div class="cg-cell">3</div><div class="cg-cell">4</div><div class="cg-cell">5</div><div class="cg-cell">6</div><div class="cg-cell">7</div><div class="cg-cell">8</div><div class="cg-cell">9</div><div class="cg-cell">10</div><div class="cg-cell">10</div><div class="cg-cell">10</div><div class="cg-cell" style="font-weight:700;">3</div>
+            </div>
+          </div>
+          <div class="section-block" style="flex-grow:1;"><div class="section-title">Equipo / Notas</div><div class="equipment-content">• Espada</div></div>
+        </div>
+      </article>
+
+      <!-- Carta 8 -->
+      <article class="card">
+        <div class="card-left">
+          <div class="card-header"><div class="card-title">Campeón Skaven</div><div class="card-subtitle">Líder</div></div>
+          <div class="card-img-container"><span class="card-img-placeholder">[ Miniatura ]</span></div>
+        </div>
+        <div class="card-right">
+          <div class="stats-table">
+            <div class="stat-cell stat-header">HA</div><div class="stat-cell stat-header">HP</div><div class="stat-cell stat-header">F</div><div class="stat-cell stat-header">D</div><div class="stat-cell stat-header">V</div><div class="stat-cell stat-header">B</div><div class="stat-cell stat-header">H</div><div class="stat-cell stat-header">VP</div>
+            <div class="stat-cell stat-value">7</div><div class="stat-cell stat-value">5</div><div class="stat-cell stat-value">6</div><div class="stat-cell stat-value">8</div><div class="stat-cell stat-value">9</div><div class="stat-cell stat-value">8</div><div class="stat-cell stat-value">3</div><div class="stat-cell stat-value">2</div>
+          </div>
+          <div class="section-block">
+            <div class="section-title">Combate Cuerpo a Cuerpo</div>
+            <div class="combat-grid">
+              <div class="cg-cell cg-header" style="font-size:0.8mm;">HA</div><div class="cg-cell cg-header">1</div><div class="cg-cell cg-header">2</div><div class="cg-cell cg-header">3</div><div class="cg-cell cg-header">4</div><div class="cg-cell cg-header">5</div><div class="cg-cell cg-header">6</div><div class="cg-cell cg-header">7</div><div class="cg-cell cg-header">8</div><div class="cg-cell cg-header">9</div><div class="cg-cell cg-header">10</div><div class="cg-cell cg-header">11</div><div class="cg-cell cg-header">12</div><div class="cg-cell cg-header" style="font-size:0.7mm;">D. Daño</div>
+              <div class="cg-cell cg-header" style="font-size:0.7mm;">Tirada</div><div class="cg-cell">2</div><div class="cg-cell">2</div><div class="cg-cell">3</div><div class="cg-cell">4</div><div class="cg-cell">5</div><div class="cg-cell">6</div><div class="cg-cell">7</div><div class="cg-cell">8</div><div class="cg-cell">9</div><div class="cg-cell">10</div><div class="cg-cell">10</div><div class="cg-cell">10</div><div class="cg-cell" style="font-weight:700;">4</div>
+            </div>
+          </div>
+          <div class="section-block" style="flex-grow:1;"><div class="section-title">Equipo / Notas</div><div class="equipment-content">• Escudo</div></div>
+        </div>
+      </article>
+
+      <!-- Carta 9 -->
+      <article class="card">
+        <div class="card-left">
+          <div class="card-header"><div class="card-title" style="font-size:1.4mm;">Corredor Alcantarillas</div><div class="card-subtitle">Ligera</div></div>
+          <div class="card-img-container"><span class="card-img-placeholder">[ Miniatura ]</span></div>
+        </div>
+        <div class="card-right">
+          <div class="stats-table">
+            <div class="stat-cell stat-header">HA</div><div class="stat-cell stat-header">HP</div><div class="stat-cell stat-header">F</div><div class="stat-cell stat-header">D</div><div class="stat-cell stat-header">V</div><div class="stat-cell stat-header">B</div><div class="stat-cell stat-header">H</div><div class="stat-cell stat-header">VP</div>
+            <div class="stat-cell stat-value">6</div><div class="stat-cell stat-value">6</div><div class="stat-cell stat-value">5</div><div class="stat-cell stat-value">5</div><div class="stat-cell stat-value">12</div><div class="stat-cell stat-value">6</div><div class="stat-cell stat-value">3</div><div class="stat-cell stat-value">2</div>
+          </div>
+          <div class="section-block">
+            <div class="section-title">Combate Cuerpo a Cuerpo</div>
+            <div class="combat-grid">
+              <div class="cg-cell cg-header" style="font-size:0.8mm;">HA</div><div class="cg-cell cg-header">1</div><div class="cg-cell cg-header">2</div><div class="cg-cell cg-header">3</div><div class="cg-cell cg-header">4</div><div class="cg-cell cg-header">5</div><div class="cg-cell cg-header">6</div><div class="cg-cell cg-header">7</div><div class="cg-cell cg-header">8</div><div class="cg-cell cg-header">9</div><div class="cg-cell cg-header">10</div><div class="cg-cell cg-header">11</div><div class="cg-cell cg-header">12</div><div class="cg-cell cg-header" style="font-size:0.7mm;">D. Daño</div>
+              <div class="cg-cell cg-header" style="font-size:0.7mm;">Tirada</div><div class="cg-cell">2</div><div class="cg-cell">2</div><div class="cg-cell">3</div><div class="cg-cell">4</div><div class="cg-cell">5</div><div class="cg-cell">6</div><div class="cg-cell">7</div><div class="cg-cell">8</div><div class="cg-cell">9</div><div class="cg-cell">10</div><div class="cg-cell">10</div><div class="cg-cell">10</div><div class="cg-cell" style="font-weight:700;">3</div>
+            </div>
+          </div>
+          <div class="section-block" style="flex-grow:1;"><div class="section-title">Equipo / Notas</div><div class="equipment-content">• Sin armadura</div></div>
+        </div>
+      </article>
+
+      <!-- Carta 10 -->
+      <article class="card">
+        <div class="card-left">
+          <div class="card-header"><div class="card-title">Guerrero Skaven</div><div class="card-subtitle">Infantería</div></div>
+          <div class="card-img-container"><span class="card-img-placeholder">[ Miniatura ]</span></div>
+        </div>
+        <div class="card-right">
+          <div class="stats-table">
+            <div class="stat-cell stat-header">HA</div><div class="stat-cell stat-header">HP</div><div class="stat-cell stat-header">F</div><div class="stat-cell stat-header">D</div><div class="stat-cell stat-header">V</div><div class="stat-cell stat-header">B</div><div class="stat-cell stat-header">H</div><div class="stat-cell stat-header">VP</div>
+            <div class="stat-cell stat-value">6</div><div class="stat-cell stat-value">5</div><div class="stat-cell stat-value">5</div><div class="stat-cell stat-value">7</div><div class="stat-cell stat-value">10</div><div class="stat-cell stat-value">6</div><div class="stat-cell stat-value">3</div><div class="stat-cell stat-value">1</div>
+          </div>
+          <div class="section-block">
+            <div class="section-title">Combate Cuerpo a Cuerpo</div>
+            <div class="combat-grid">
+              <div class="cg-cell cg-header" style="font-size:0.8mm;">HA</div><div class="cg-cell cg-header">1</div><div class="cg-cell cg-header">2</div><div class="cg-cell cg-header">3</div><div class="cg-cell cg-header">4</div><div class="cg-cell cg-header">5</div><div class="cg-cell cg-header">6</div><div class="cg-cell cg-header">7</div><div class="cg-cell cg-header">8</div><div class="cg-cell cg-header">9</div><div class="cg-cell cg-header">10</div><div class="cg-cell cg-header">11</div><div class="cg-cell cg-header">12</div><div class="cg-cell cg-header" style="font-size:0.7mm;">D. Daño</div>
+              <div class="cg-cell cg-header" style="font-size:0.7mm;">Tirada</div><div class="cg-cell">2</div><div class="cg-cell">2</div><div class="cg-cell">3</div><div class="cg-cell">4</div><div class="cg-cell">5</div><div class="cg-cell">6</div><div class="cg-cell">7</div><div class="cg-cell">8</div><div class="cg-cell">9</div><div class="cg-cell">10</div><div class="cg-cell">10</div><div class="cg-cell">10</div><div class="cg-cell" style="font-weight:700;">3</div>
+            </div>
+          </div>
+          <div class="section-block" style="flex-grow:1;"><div class="section-title">Equipo / Notas</div><div class="equipment-content">• Cota de Cuero</div></div>
+        </div>
+      </article>
+
+      <!-- Carta 11 -->
+      <article class="card">
+        <div class="card-left">
+          <div class="card-header"><div class="card-title">Campeón Skaven</div><div class="card-subtitle">Líder</div></div>
+          <div class="card-img-container"><span class="card-img-placeholder">[ Miniatura ]</span></div>
+        </div>
+        <div class="card-right">
+          <div class="stats-table">
+            <div class="stat-cell stat-header">HA</div><div class="stat-cell stat-header">HP</div><div class="stat-cell stat-header">F</div><div class="stat-cell stat-header">D</div><div class="stat-cell stat-header">V</div><div class="stat-cell stat-header">B</div><div class="stat-cell stat-header">H</div><div class="stat-cell stat-header">VP</div>
+            <div class="stat-cell stat-value">7</div><div class="stat-cell stat-value">5</div><div class="stat-cell stat-value">6</div><div class="stat-cell stat-value">8</div><div class="stat-cell stat-value">9</div><div class="stat-cell stat-value">8</div><div class="stat-cell stat-value">3</div><div class="stat-cell stat-value">2</div>
+          </div>
+          <div class="section-block">
+            <div class="section-title">Combate Cuerpo a Cuerpo</div>
+            <div class="combat-grid">
+              <div class="cg-cell cg-header" style="font-size:0.8mm;">HA</div><div class="cg-cell cg-header">1</div><div class="cg-cell cg-header">2</div><div class="cg-cell cg-header">3</div><div class="cg-cell cg-header">4</div><div class="cg-cell cg-header">5</div><div class="cg-cell cg-header">6</div><div class="cg-cell cg-header">7</div><div class="cg-cell cg-header">8</div><div class="cg-cell cg-header">9</div><div class="cg-cell cg-header">10</div><div class="cg-cell cg-header">11</div><div class="cg-cell cg-header">12</div><div class="cg-cell cg-header" style="font-size:0.7mm;">D. Daño</div>
+              <div class="cg-cell cg-header" style="font-size:0.7mm;">Tirada</div><div class="cg-cell">2</div><div class="cg-cell">2</div><div class="cg-cell">3</div><div class="cg-cell">4</div><div class="cg-cell">5</div><div class="cg-cell">6</div><div class="cg-cell">7</div><div class="cg-cell">8</div><div class="cg-cell">9</div><div class="cg-cell">10</div><div class="cg-cell">10</div><div class="cg-cell">10</div><div class="cg-cell" style="font-weight:700;">4</div>
+            </div>
+          </div>
+          <div class="section-block" style="flex-grow:1;"><div class="section-title">Equipo / Notas</div><div class="equipment-content">• Espada</div></div>
+        </div>
+      </article>
+
+      <!-- Carta 12 -->
+      <article class="card">
+        <div class="card-left">
+          <div class="card-header"><div class="card-title" style="font-size:1.4mm;">Corredor Alcantarillas</div><div class="card-subtitle">Ligera</div></div>
+          <div class="card-img-container"><span class="card-img-placeholder">[ Miniatura ]</span></div>
+        </div>
+        <div class="card-right">
+          <div class="stats-table">
+            <div class="stat-cell stat-header">HA</div><div class="stat-cell stat-header">HP</div><div class="stat-cell stat-header">F</div><div class="stat-cell stat-header">D</div><div class="stat-cell stat-header">V</div><div class="stat-cell stat-header">B</div><div class="stat-cell stat-header">H</div><div class="stat-cell stat-header">VP</div>
+            <div class="stat-cell stat-value">6</div><div class="stat-cell stat-value">6</div><div class="stat-cell stat-value">5</div><div class="stat-cell stat-value">5</div><div class="stat-cell stat-value">12</div><div class="stat-cell stat-value">6</div><div class="stat-cell stat-value">3</div><div class="stat-cell stat-value">2</div>
+          </div>
+          <div class="section-block">
+            <div class="section-title">Combate Cuerpo a Cuerpo</div>
+            <div class="combat-grid">
+              <div class="cg-cell cg-header" style="font-size:0.8mm;">HA</div><div class="cg-cell cg-header">1</div><div class="cg-cell cg-header">2</div><div class="cg-cell cg-header">3</div><div class="cg-cell cg-header">4</div><div class="cg-cell cg-header">5</div><div class="cg-cell cg-header">6</div><div class="cg-cell cg-header">7</div><div class="cg-cell cg-header">8</div><div class="cg-cell cg-header">9</div><div class="cg-cell cg-header">10</div><div class="cg-cell cg-header">11</div><div class="cg-cell cg-header">12</div><div class="cg-cell cg-header" style="font-size:0.7mm;">D. Daño</div>
+              <div class="cg-cell cg-header" style="font-size:0.7mm;">Tirada</div><div class="cg-cell">2</div><div class="cg-cell">2</div><div class="cg-cell">3</div><div class="cg-cell">4</div><div class="cg-cell">5</div><div class="cg-cell">6</div><div class="cg-cell">7</div><div class="cg-cell">8</div><div class="cg-cell">9</div><div class="cg-cell">10</div><div class="cg-cell">10</div><div class="cg-cell">10</div><div class="cg-cell" style="font-weight:700;">3</div>
+            </div>
+          </div>
+          <div class="section-block" style="flex-grow:1;"><div class="section-title">Equipo / Notas</div><div class="equipment-content">• Daga envenenada</div></div>
+        </div>
+      </article>
+
+    </section>
+
+  </body>
+</html>
+
