@@ -9,10 +9,16 @@
       :root {
         --ink: #111;
         --paper: #fff;
-        --font-title: 'Cinzel', 'Times New Roman', serif;
-        --font-body: 'Libre Baskerville', 'Times New Roman', serif;
+        --font-title: 'Times New Roman', serif;
+        --font-body: 'Times New Roman', serif;
 
         --border-card: 0.3mm;
+
+        /* --- TAMAÑOS DE LETRA --- */
+        --size-title: 3.2mm;
+        
+        /* --- COLORES --- */
+        --track-cell-bg-color: white;
       }
 
       @page {
@@ -52,7 +58,7 @@
         overflow: hidden;
         background: var(--paper);
 
-        background-image: url('../images/white-parchment-paper2.jpg');
+        background-image: url('../images/bg-pergamino-blanco-vertical.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -60,7 +66,7 @@
         /* transform: rotate(90deg);
         transform-origin: center center; */
 
-        border: var(--border-card) solid gray;
+        border: var(--border-card) solid var(--border-card-color);
         padding: 3.5mm 3.5mm 1mm;
         display: flex;
         flex-direction: column;
@@ -132,8 +138,8 @@
       .track-cell {
         width: 8mm;
         height: 8mm;
-        border: 0.2mm solid var(--ink);
-        background: #fff;
+        border: var(--border-card) solid var(--border-card-color);
+        background: var(--track-cell-bg-color);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -166,6 +172,17 @@
         width: 7mm;
         height: 8mm;
       }
+      
+      .title {
+        font-family: var(--font-title);
+        font-weight: 900;
+        font-size: var(--size-title);
+        line-height: 1.02;
+        text-align: center;
+        letter-spacing: 0.15mm;
+        margin: 0;
+        text-transform: uppercase;
+      }
 
       @media screen {
         .sheet { margin: 8mm auto; }
@@ -188,9 +205,9 @@
         <div class="card-content">
           <!-- ESPACIO CALADO SUPERIOR (Mitad inferior, pegado arriba) -->
           <div class="slot-cutout">
-            <span class="slot-cutout-text">CALADO SUPERIOR (MITAD INFERIOR - MINI EUROPEAN)</span>
+            <span class="slot-cutout-text">{{ frontCard.enemySlot }}</span>
           </div>
-        <div class="subtitle">{{ frontCard.subtitle }}</div>
+        <div class="title">{{ frontCard.title }}</div>
           <!-- CUADRÍCULA DE TRACKEO (Atributos en columnas, Filas numeradas 1 a 6, Celdas de 8x8mm) -->
           <div class="track-table">
             <!-- Fila de Cabecera: Iconos de Atributos -->
@@ -202,59 +219,8 @@
             <div class="track-header-cell">💀</div>
             <div class="track-header-cell">⭐</div>
 
-            <!-- Fila 1 -->
-            <div class="row-header-cell">1</div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-
-            <!-- Fila 2 -->
-            <div class="row-header-cell">2</div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-
-            <!-- Fila 3 -->
-            <div class="row-header-cell">3</div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-
-            <!-- Fila 4 -->
-            <div class="row-header-cell">4</div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-
-            <!-- Fila 5 -->
-            <div class="row-header-cell">5</div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-
-            <!-- Fila 6 -->
-            <div class="row-header-cell">6</div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
-            <div class="track-cell"></div>
+            <!-- Filas de slots -->
+            {{ frontCard.unitSlotsRows }}
           </div>
         </div>
       </article>

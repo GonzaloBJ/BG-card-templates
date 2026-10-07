@@ -6,13 +6,13 @@
     "iconRight": "✦"
   },
   "backCard": {
-    "title": "Seguimiento de Grupo Enemigo",
-    "subtitle": "6 unidades",
-    "backgroundCard": "images/white-parchment-paper2.jpg"
+    "title": "Rastreador de Grupo Enemigo",
+    "subtitle": "6 unidades"
   },
   "frontCard": {
-    "title": "Seguimiento de Grupo Enemigo",
+    "title": "Rastreador de Grupo Enemigo",
     "subtitle": "6 unidades",
-    "backgroundCard": "images/white-parchment-paper2.jpg"
+    "enemySlot": "RANURA DE ENEMIGO",
+    "unitSlots": 8
   }
 }

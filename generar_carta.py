@@ -25,7 +25,7 @@ def main():
             "output": "carta_tobaros_bane.html"
         },
         1: {
-            "json": "warlordLair.json",
+            "json": "brokenAmulet1.json",
             "template": "template_quest_card.html",
             "output": "carta_warlord_lair.html"
         },
@@ -57,7 +57,7 @@ def main():
     }
     
     # Selecciona el número de la carta que deseas generar
-    selected_card = 6
+    selected_card = 1
     card_path =  card_list[selected_card]
     
     # Validar que la carta seleccionada exista en la lista
@@ -126,6 +126,20 @@ def main():
                 </tr>
             """
         data['frontCard']['monstersTableRows'] = filas_html
+
+    if 'frontCard' in data and 'unitSlots' in data['frontCard']:
+        ranuras_html = ""
+        for i in range(data['frontCard']['unitSlots']):
+            ranuras_html += f"""
+                <div class="row-header-cell">{i+1}</div>
+                <div class="track-cell"></div>
+                <div class="track-cell"></div>
+                <div class="track-cell"></div>
+                <div class="track-cell"></div>
+                <div class="track-cell"></div>
+                <div class="track-cell"></div>
+            """
+        data['frontCard']['unitSlotsRows'] = ranuras_html
 
     # ==========================================
     # REEMPLAZO DE VARIABLES EN EL HTML

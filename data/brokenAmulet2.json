@@ -14,7 +14,7 @@
       "El laberinto mágico que se encuentra en las profundidaes de esta mazmorra fue construido por <em>Gragoth Daemonmaster</em>, un poderoso <em>Hechicero del Caos</em> con el fin de porteger la segunda parte del <em>Amuleto Roto</em>. <em>Gragoth</em> pidió ayuda a los <em>Asesinos del Clan Eshin</em>, cuyos querreros custodian el fragmento del Amuleto.",
       "Pintado con sangre en la entrada de la mazmorra podeis ver un simbolo del <em>Clan Eshin</em>, el Clan de los Asessinos. En el aire flota el aroma del terror. Y ¿ese sonido que oyes es el de una puerta chirriando al cerrardose, o son los gemidos de una lejana tormenta?"
     ],
-    "loreImage": "../images/magicMazeLoreImage.png",
+    "loreImage": "../images/quests/quest-broken-amulet-2.png",
     "loreImageAlt": "magicMazeLoreImage",
     "loreImageFallback": "https://placehold.co/900x700/png?text=Ilustraci%C3%B3n+de+Tobaro"
   },
