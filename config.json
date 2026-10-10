@@ -1,0 +1,67 @@
+{
+    "templateCard": "template_card.html",
+    "cardSizeList": {
+        "tarot": {
+            "w": "80mm",
+            "h": "120mm"
+        },
+        "standardPerfect": {
+            "w": "64mm",
+            "h": "89mm"
+        },
+        "miniEuro": {
+            "w": "44mm",
+            "h": "67mm"
+        },
+        "euro": {
+            "w": "59mm",
+            "h": "92mm"
+        },
+        "boardGameCard": {
+            "w": "56mm",
+            "h": "87mm"
+        }
+    },
+    "cardTypeList": {
+        "0": {
+            "json": "tobarosBane.json",
+            "template": "template_quest_card.html",
+            "output": "carta_tobaros_bane.html"
+        },
+        "1": {
+            "json": "brokenAmulet1.json",
+            "template": "template_quest_card.html",
+            "output": "carta_warlord_lair.html"
+        },
+        "2": {
+            "json": "brokenAmulet2.json",
+            "template": "template_quest_card_content.html",
+            "output": "carta_magic_maze.html"
+        },
+        "3": {
+            "json": "plageTemple.json",
+            "template": "template_quest_card.html",
+            "output": "carta_plage_temple.html"
+        },
+        "4": {
+            "json": "ambarChamber.json",
+            "template": "template_quest_card.html",
+            "output": "carta_ambar_chamber.html"
+        },
+        "5": {
+            "json": "icePrison.json",
+            "template": "template_quest_card.html",
+            "output": "carta_ice_prison.html"
+        },
+        "6": {
+            "json": "enemiesTracker.json",
+            "template": "template_enemies_tracker_card.html",
+            "output": "carta_enemies_tracker.html"
+        },
+        "7": {
+            "json": "enemiesCard.json",
+            "template": "template_enemies_card.html",
+            "output": "cartas_enemigos.html"
+        }
+    }
+}

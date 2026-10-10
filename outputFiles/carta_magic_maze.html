@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{frontCard.title}}</title>
+    <title>El Laberinto Mágico</title>
 
     <!-- Google Fonts: EB Garamond -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -352,104 +352,150 @@
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
       rel="stylesheet"
     />
-  </head>
+  
+    <style>
+        @page {
+            size: letter;
+            margin: 10mm;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background: #fff;
+        }
+        .sheet {
+            width: 100%;
+            min-height: 297mm;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            page-break-after: always;
+        }
+        .print-matrix {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            grid-template-rows: repeat(1, auto);
+            background-color: black;
+            gap: 4mm;
+            justify-content: center;
+            align-content: center;
+        }
+        .card {
+            width: 120mm;
+            height: 80mm;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+    
+</head>
 
   <body>
-    <!-- REVERSO -->
-    <section class="sheet">
-      <div class="print-matrix">
-        <article class="card back">
-          <div class="card-content">
-            <header class="back-title">
-              <div class="subtitle">&bull;{{ backCard.subtitle }}&bull;</div>
-              <h1 class="title">
-                {{ backCard.title }}
-              </h1>
-            </header>
-
-            <div class="back-body">
-              <div class="section story">
-                {{ backCard.loreParagraphs }}
-              </div>
-
-              <div class="illustration-wrap">
-                <img
-                  class="illustration"
-                  src="{{ backCard.loreImage }}"
-                  alt="{{ backCard.loreImageAlt }}"
-                />
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- FRENTE -->
     <section class="sheet">
       <div class="print-matrix">
         <article class="card front">
-          <div class="card-content">
-            <div class="front-layout">
-              <div class="front-title">
-                <h1 class="title">
-                  {{ frontCard.title }}
-                </h1>
-              </div>
+    <div class="card-content">
+    <div class="front-layout">
+        <div class="front-title">
+        <h1 class="title">
+            El Laberinto Mágico
+        </h1>
+        </div>
 
-              <div class="front-main">
-                <div class="front-columns">
-                  <div class="left-column">
-                    <section class="section">
-                      <h2 class="section-title">
-                        {{ frontCard.objectiveTitle }}
-                      </h2>
-                      {{ frontCard.objectiveParagraphs }}
-                    </section>
+        <div class="front-main">
+        <div class="front-columns">
+            <div class="left-column">
+            <section class="section">
+                <h2 class="section-title">
+                Objetivos
+                </h2>
+                <p class="body">&bull; Explorar el laberinto y encontrar el <em>Fragmento del Amuleto Roto</em>.</p><p class="body">&bull; Regresar a la superficie.</p>
+            </section>
 
-                    <section class="section">
-                      <h2 class="section-title">
-                        {{ frontCard.rewardTitle }}
-                      </h2>
-                      {{ frontCard.rewardParagraphs }}
-                    </section>
+            <section class="section">
+                <h2 class="section-title">
+                Recompensas
+                </h2>
+                <p class="body">&bull; +1 PD.</p><p class="body">&bull; <em>2do Fragmento del Amuleto Roto</em>.</p>
+            </section>
 
-                    <section class="special-table-wrap">
-                      <h2 class="section-title">
-                        {{ frontCard.monstersTitle }}
-                      </h2>
+            <section class="special-table-wrap">
+                <h2 class="section-title">
+                Monstruos especiales
+                </h2>
 
-                      <table class="special-table">
-                        <thead>
-                          <tr>
-                            {{ frontCard.monstersTableHeaders }}
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {{ frontCard.monstersTableRows }}
-                        </tbody>
-                      </table>
+                <table class="special-table">
+                <thead>
+                    <tr>
+                    <th>Unidades</th><th>Monstruo especial</th><th>Objetos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                <tr>
+                  <td class="level">1</td>
+                  <td>Asesino del Clan Eshin</td>
+                  <td>habilidad de huir</td>
+                </tr>
+            
+                </tbody>
+                </table>
 
-                      <p class="note">
-                        {{ frontCard.monstersNote }}
-                      </p>
-                    </section>
-                  </div>
-
-                  <div class="right-column">
-                    <section class="section">
-                      <h2 class="section-title">
-                        {{ frontCard.deploymentTitle }}
-                      </h2>
-                      {{ frontCard.deploymentParagraphs }}
-                    </section>
-                  </div>
-                </div>
-              </div>
+                <p class="note">
+                
+                </p>
+            </section>
             </div>
-          </div>
-        </article>
+
+            <div class="right-column">
+            <section class="section">
+                <h2 class="section-title">
+                Despliegue
+                </h2>
+                <p class="body">&bull; <em> -ver mapa 'El Laberinto Mágico'-</em>.</p><p class="body">&bull; <strong>Bola de Fuego x2</strong>: Posición en mapa. El jugador cuando llegue a algun corredor -leer nota de la misión Nro.I-.</p><p class="body">&bull; <strong>Asesino del Clan Eshin</strong>: Posición fuera de la visión de los héroes. Opcional en lugar de una <em>Bola de Fuego</em>. Bonificado con +1 HA al inicio de la fase de combate.</p><p class="body">&bull; <strong>Zombis Skaven</strong>: Posición en mapa. El jugador cuando dañe a alguno de estos -leer nota de la misión Nro.II-.</p>
+            </section>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</article>
+
       </div>
     </section>
+
+  
+            <section class="sheet">
+                <div class="print-matrix">
+                    
+<article class="card back">
+    <div class="card-content">
+    <header class="back-title">
+        <div class="subtitle">&bull;El Amuleto Roto - II ACTO&bull;</div>
+        <h1 class="title">
+        El Laberinto Mágico
+        </h1>
+    </header>
+
+    <div class="back-body">
+        <div class="section story">
+        <p class="body">El laberinto mágico que se encuentra en las profundidaes de esta mazmorra fue construido por <em>Gragoth Daemonmaster</em>, un poderoso <em>Hechicero del Caos</em> con el fin de porteger la segunda parte del <em>Amuleto Roto</em>. <em>Gragoth</em> pidió ayuda a los <em>Asesinos del Clan Eshin</em>, cuyos querreros custodian el fragmento del Amuleto.</p><p class="body">Pintado con sangre en la entrada de la mazmorra podeis ver un simbolo del <em>Clan Eshin</em>, el Clan de los Asessinos. En el aire flota el aroma del terror. Y ¿ese sonido que oyes es el de una puerta chirriando al cerrardose, o son los gemidos de una lejana tormenta?</p>
+        </div>
+
+        <div class="illustration-wrap">
+        <img
+            class="illustration"
+            src="../images/quests/quest-broken-amulet-2.png"
+            alt="magicMazeLoreImage"
+        />
+        </div>
+    </div>
+    </div>
+</article>
+
+                </div>
+            </section>'
+        
   </body>
 </html>

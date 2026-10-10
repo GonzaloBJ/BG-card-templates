@@ -15,78 +15,12 @@ def obtener_valor_anidado(diccionario, ruta):
     return actual
 
 def main():
+    # CONFIG
+    with open('config.json', 'r', encoding='utf-8') as f:
+        CONFIG = json.load(f)
+    
     # ==========================================
-    # CONFIGURACIÓN DE HOJA E IMPRESION
-    # ==========================================
-    card_size_list = {
-        "tarot": {
-            "w": "80mm",
-            "h": "120mm"
-        },
-        "standardPerfect": {
-            "w": "64mm",
-            "h": "89mm"
-        },
-        "miniEuro": {
-            "w": "44mm",
-            "h": "67mm"
-        },
-        "euro": {
-            "w": "59mm",
-            "h": "92mm"
-        },
-        "boardGameCard": {
-            "w": "56mm",
-            "h": "87mm"
-        },
-    }
-
-    # ==========================================
-    # CONFIGURACIÓN DE CARTAS Y SELECCIÓN DESDE CLI
-    # ==========================================
-    card_list = {
-        0: {
-            "json": "tobarosBane.json",
-            "template": "template_quest_card.html",
-            "output": "carta_tobaros_bane.html"
-        },
-        1: {
-            "json": "brokenAmulet1.json",
-            "template": "template_quest_card.html",
-            "output": "carta_warlord_lair.html"
-        },
-        2: {
-            "json": "brokenAmulet2.json",
-            "template": "template_quest_card.html",
-            "output": "carta_magic_maze.html"
-        },
-        3: {
-            "json": "plageTemple.json",
-            "template": "template_quest_card.html",
-            "output": "carta_plage_temple.html"
-        },
-        4: {
-            "json": "ambarChamber.json",
-            "template": "template_quest_card.html",
-            "output": "carta_ambar_chamber.html"
-        },
-        5: {
-            "json": "icePrison.json",
-            "template": "template_quest_card.html",
-            "output": "carta_ice_prison.html"
-        },
-        6: {
-            "json": "enemiesTracker.json",
-            "template": "template_enemies_tracker_card.html",
-            "output": "carta_enemies_tracker.html"
-        },
-        7: {
-            "json": "enemiesCard.json",
-            "template": "template_enemies_card.html",
-            "output": "cartas_enemigos.html"
-        },
-    }
-
+ 
     if len(sys.argv) < 2:
         print("Error: Debes proporcionar el ID de la carta.")
         print("Uso: python generar_carta.py <ID_CARTA>")
@@ -98,14 +32,15 @@ def main():
         print("Error: El ID de la carta debe ser un número entero.")
         return
 
-    if selected_card not in card_list:
+    if str(selected_card) not in CONFIG.get('cardTypeList'):
         print(f"Error: La carta con ID {selected_card} no existe en la lista de configuración.")
         return
 
-    card_path = card_list[selected_card]
+    card_path = CONFIG.get('cardTypeList')[str(selected_card)]
 
     json_filename = os.path.join('data', card_path["json"])
-    html_template_filename = os.path.join('templates', card_path["template"])
+    html_template_filename = os.path.join('templates', 'template_card.html')
+    html_template_quest = os.path.join('templates', card_path["template"])
     html_output_filename = os.path.join('outputFiles', card_path["output"])
 
     if not os.path.exists(json_filename):
@@ -114,25 +49,45 @@ def main():
     if not os.path.exists(html_template_filename):
         print(f"Error: No se encuentra el archivo de plantilla: {html_template_filename}")
         return
+    if not os.path.exists(html_template_quest):
+        print(f"Error: No se encuentra el archivo de plantilla quest: {html_template_quest}")
+        return
 
     with open(json_filename, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
     with open(html_template_filename, 'r', encoding='utf-8') as f:
         html_content = f.read()
-
+        
+    with open(html_template_quest, 'r', encoding='utf-8') as f:
+        quest_content = f.read()
+        
     # ==========================================
     # LECTURA DE ATRIBUTOS DESDE EL BLOQUE 'meta'
     # ==========================================
     meta = data.get("meta", {})
-    card_size = meta.get("cardSize", "miniEuro")
+    card_size = meta.get("cardSize", "tarot")
     is_lanscape_card = meta.get("isLanscapeCard", "horizontal")
     two_sided = meta.get("twoSizedCard", False)
     matrix = meta.get("multipleCardPrintMatrix", "1x1")
     paper_size = meta.get("paperSize", "letter")
-
+    
+    front_content, back_content = quest_content.split('{{ TWO_SIDED }}')
+    html_content = html_content.replace('{{ FRONTCARD }}', front_content)
+    
+    back_card_content = data.get("backCard", {})
+    if back_card_content != {} and two_sided:
+        back_card_section = f"""
+            <section class="sheet">
+                <div class="print-matrix">
+                    {back_content}
+                </div>
+            </section>'
+        """
+        html_content = html_content.replace('{{ BACKCARD }}', back_card_section)
+        
     # Resolver dimensiones base según el tamaño de carta
-    base_dimensions = card_size_list.get(card_size, {"w": "44mm", "h": "67mm"})
+    base_dimensions = CONFIG.get('cardSizeList').get(card_size, {"w": "44mm", "h": "67mm"})
     
     # Ajustar ancho y alto según la orientación (horizontal invierte las dimensiones vertical por defecto)
     if is_lanscape_card:
@@ -224,6 +179,7 @@ def main():
             display: grid;
             grid-template-columns: repeat({cols}, 1fr);
             grid-template-rows: repeat({rows}, auto);
+            background-color: black;
             gap: 4mm;
             justify-content: center;
             align-content: center;

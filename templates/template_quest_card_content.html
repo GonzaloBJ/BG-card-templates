@@ -1,0 +1,86 @@
+<article class="card front">
+    <div class="card-content">
+    <div class="front-layout">
+        <div class="front-title">
+        <h1 class="title">
+            {{ frontCard.title }}
+        </h1>
+        </div>
+
+        <div class="front-main">
+        <div class="front-columns">
+            <div class="left-column">
+            <section class="section">
+                <h2 class="section-title">
+                {{ frontCard.objectiveTitle }}
+                </h2>
+                {{ frontCard.objectiveParagraphs }}
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">
+                {{ frontCard.rewardTitle }}
+                </h2>
+                {{ frontCard.rewardParagraphs }}
+            </section>
+
+            <section class="special-table-wrap">
+                <h2 class="section-title">
+                {{ frontCard.monstersTitle }}
+                </h2>
+
+                <table class="special-table">
+                <thead>
+                    <tr>
+                    {{ frontCard.monstersTableHeaders }}
+                    </tr>
+                </thead>
+                <tbody>
+                    {{ frontCard.monstersTableRows }}
+                </tbody>
+                </table>
+
+                <p class="note">
+                {{ frontCard.monstersNote }}
+                </p>
+            </section>
+            </div>
+
+            <div class="right-column">
+            <section class="section">
+                <h2 class="section-title">
+                {{ frontCard.deploymentTitle }}
+                </h2>
+                {{ frontCard.deploymentParagraphs }}
+            </section>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</article>
+{{ TWO_SIDED }}
+<article class="card back">
+    <div class="card-content">
+    <header class="back-title">
+        <div class="subtitle">&bull;{{ backCard.subtitle }}&bull;</div>
+        <h1 class="title">
+        {{ backCard.title }}
+        </h1>
+    </header>
+
+    <div class="back-body">
+        <div class="section story">
+        {{ backCard.loreParagraphs }}
+        </div>
+
+        <div class="illustration-wrap">
+        <img
+            class="illustration"
+            src="{{ backCard.loreImage }}"
+            alt="{{ backCard.loreImageAlt }}"
+        />
+        </div>
+    </div>
+    </div>
+</article>
