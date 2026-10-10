@@ -1,14 +1,17 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Advanced HeroQuest — Plantilla Tarot</title>
+    <title>Advanced HeroQuest — Plantilla de Cartas</title>
+
+    <!-- Google Fonts: EB Garamond -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
       :root {
-        /* --- COLORES --- */
         --ink: #111;
         --gray: #d8d8d8;
         --paper: #fff;
@@ -17,11 +20,9 @@
         --table-row-alt: var(--gray);
         --table-cell-bg: #fff;
 
-        /* --- FUENTES --- */
-        --font-title: 'Times New Roman';
-        --font-body: 'Times New Roman';
+        --font-title: 'EB Garamond', serif;
+        --font-body: 'EB Garamond', serif;
 
-        /* --- TAMAÑOS DE LETRA --- */
         --size-title: 3.2mm;
         --size-back-title: 4mm;
         --size-subtitle: 2.25mm;
@@ -31,11 +32,10 @@
         --size-stat-label: 2.15mm;
         --size-stat-value: 1.85mm;
         --size-table-th: 2mm;
-        --size-table-td:2mm;
+        --size-table-td: 2mm;
         --size-note: 1.4mm;
         --size-icon: 4.2mm;
 
-        /* --- BORDES Y GROSORES --- */
         --border-card: 0.3mm;
         --border-corner: 0.8mm;
         --border-icon: 0.5mm;
@@ -43,11 +43,6 @@
         --border-section-title: 0.45mm;
         --border-stat: 0.3mm;
         --border-table: 0.25mm;
-      }
-
-      @page {
-        size: A4 portrait;
-        margin: 0;
       }
 
       * {
@@ -64,42 +59,20 @@
       }
 
       .sheet {
-        width: 210mm;
-        height: 297mm;
         position: relative;
-        page-break-after: always;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         background: #fff;
       }
 
-      .sheet:last-child {
-        page-break-after: auto;
-      }
-
-      /* 120 mm ancho × 80 mm alto */
       .card {
-        width: 120mm;
-        height: 80mm;
         position: relative;
         overflow: hidden;
         background: var(--paper);
-
         background-image: url('../images/bg-pergamino-blanco-horizontal.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-
         border: var(--border-card) solid gray;
         padding: 3.5mm 3.5mm 1mm;
-      }
-
-      .card::before {
-        content: '';
-        position: absolute;
-        inset: 1.8mm;
-        pointer-events: none;
       }
 
       .corner {
@@ -146,23 +119,6 @@
         min-height: 0;
       }
 
-      .icon {
-        width: 7mm;
-        height: 7mm;
-        border: var(--border-icon) solid var(--ink);
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
-        font-family: var(--font-title);
-        font-weight: 900;
-        font-size: var(--size-icon);
-        flex: 0 0 auto;
-      }
-
-      /* =========================================================
-   TÍTULOS
-   ========================================================= */
-
       .header-row {
         display: flex;
         align-items: center;
@@ -192,10 +148,6 @@
         text-transform: uppercase;
         line-height: 1;
       }
-
-      /* =========================================================
-   CONTENIDO GENERAL
-   ========================================================= */
 
       .section-title {
         display: block;
@@ -227,30 +179,6 @@
         margin-top: 0.9mm;
       }
 
-      .stat-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2.5mm;
-        margin: 1.2mm 0 0;
-      }
-
-      .stat {
-        border-top: var(--border-stat) solid var(--ink);
-        padding-top: 0.7mm;
-      }
-
-      .stat-label {
-        font-family: var(--font-title);
-        font-weight: 900;
-        font-size: var(--size-stat-label);
-        text-transform: uppercase;
-      }
-
-      .stat-value {
-        font-size: var(--size-stat-value);
-        margin-top: 0.35mm;
-      }
-
       .special-table {
         width: 100%;
         border-collapse: collapse;
@@ -275,7 +203,7 @@
         vertical-align: top;
         border: var(--border-table) solid #222;
         background: var(--table-cell-bg);
-        font-size: var(--size-table-td) !important
+        font-size: var(--size-table-td) !important;
       }
 
       .special-table tbody tr:nth-child(even) td {
@@ -289,14 +217,6 @@
         width: 14%;
       }
 
-      .special-table th:nth-child(2) {
-        width: 47%;
-      }
-
-      .special-table th:nth-child(3) {
-        width: 39%;
-      }
-
       .illustration {
         width: 100%;
         height: 100%;
@@ -305,10 +225,7 @@
         mix-blend-mode: multiply;
       }
 
-      /* =========================================================
-   REVERSO
-   ========================================================= */
-
+      /* REVERSO */
       .back .card-content {
         justify-content: flex-start;
       }
@@ -354,27 +271,7 @@
         overflow: hidden;
       }
 
-      .back .illustration {
-        height: 100%;
-        width: 100%;
-      }
-
-      /* =========================================================
-   FRENTE
-   ========================================================= */
-
-      /*
-   Primera columna:
-   título vertical.
-
-   Segunda columna:
-   todo el contenido de la carta.
-*/
-
-      .front .card-content {
-        font-size: var(--size-stat-value);
-      }
-
+      /* FRENTE */
       .front-layout {
         display: grid;
         grid-template-columns: 12mm 1fr;
@@ -387,7 +284,6 @@
         position: relative;
         height: 100%;
         border-right: 0.35mm solid var(--ink);
-
         display: flex;
         align-items: center;
         justify-content: center;
@@ -399,7 +295,6 @@
       .front-title .title {
         margin: 0;
         padding: 0;
-
         font-family: var(--font-title);
         font-weight: 900;
         font-size: var(--size-title);
@@ -407,7 +302,6 @@
         letter-spacing: 0.15mm;
         text-transform: uppercase;
         white-space: nowrap;
-
         transform: rotate(-90deg);
       }
 
@@ -433,12 +327,9 @@
         min-height: 0;
       }
 
-      .front .left-column .section {
-        margin-bottom: 1.2mm;
-      }
-
+      .front .left-column .section,
       .front .right-column .section {
-        margin-bottom: 1.1mm;
+        margin-bottom: 1.2mm;
       }
 
       .front .special-table-wrap {
@@ -452,27 +343,6 @@
         margin-top: 0.7mm;
         font-style: italic;
       }
-
-      /* =========================================================
-   PANTALLA / IMPRESIÓN
-   ========================================================= */
-
-      @media screen {
-        .sheet {
-          margin: 8mm auto;
-        }
-      }
-
-      @media print {
-        html,
-        body {
-          background: #fff;
-        }
-
-        .sheet {
-          margin: 0;
-        }
-      }
     </style>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -481,129 +351,146 @@
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
       rel="stylesheet"
     />
-  </head>
+  
+    <style>
+        @page {
+            size: letter;
+            margin: 10mm;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background: #fff;
+        }
+        .sheet {
+            width: 100%;
+            min-height: 297mm;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            page-break-after: always;
+        }
+        .print-matrix {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            grid-template-rows: repeat(1, auto);
+            gap: 4mm;
+            justify-content: center;
+            align-content: center;
+        }
+        .card {
+            width: 120mm;
+            height: 80mm;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+    
+</head>
 
   <body>
-    <!-- =========================================================
-     PÁGINA A4 1 — REVERSO
-     ========================================================= -->
-
+    <!-- REVERSO -->
     <section class="sheet">
-      <article class="card back">
-        <div class="card-content">
-          <header class="back-title">
-            <div class="subtitle">&bull;El Amuleto Roto - I ACTO&bull;</div>
-            <h1 class="title">
-              La Guarida del Señor de la Guerra
-            </h1>
-          </header>
-
-          <div class="back-body">
-            <div class="section story">
-              <p class="body">En las profundidades de las <em>Montañas Grises</em>, un <em>Skaven Señor de la Guerra</em> del <em>Clan Rictus</em> planea una campaña para, literalmente, minar el subsuelo de la cercana ciudad de <em>Pavarron</em>. Es en su guarida donde se encuentra el <em>1er Fragmento del Amuleto Roto</em>.</p><p class="body">En las paredes de esta mazmorra podeís ver colgados horribles trofeos que conmemoran pasadas victorias: escudos rotos yllenos de sangre que pertenecieron a enemogos derrotados: cabelleras y calaveras: armas melladas y oxidadas de una docena de razas diferentes y, grabada sobre las puertas y las losas del suelo, se puede ver la runa de tres brazos, simbolo del <em>Clan Rictus</em>.</p>
-            </div>
-
-            <div class="illustration-wrap">
-              <img
-                class="illustration"
-                src="../images/quests/quest-broken-amulet-1.png"
-                alt="warlordLairLoreImage"
-              />
-            </div>
-          </div>
-        </div>
-      </article>
-    </section>
-
-    <!-- =========================================================
-     PÁGINA A4 2 — FRENTE
-     ========================================================= -->
-
-    <section class="sheet">
-      <article class="card front">
-        <div class="card-content">
-          <div class="front-layout">
-            <!-- COLUMNA IZQUIERDA: TÍTULO VERTICAL -->
-
-            <div class="front-title">
+      <div class="print-matrix">
+        <article class="card back">
+          <div class="card-content">
+            <header class="back-title">
+              <div class="subtitle">&bull;El Amuleto Roto - I ACTO&bull;</div>
               <h1 class="title">
                 La Guarida del Señor de la Guerra
               </h1>
+            </header>
+
+            <div class="back-body">
+              <div class="section story">
+                <p class="body">En las profundidades de las <em>Montañas Grises</em>, un <em>Skaven Señor de la Guerra</em> del <em>Clan Rictus</em> planea una campaña para, literalmente, minar el subsuelo de la cercana ciudad de <em>Pavarron</em>. Es en su guarida donde se encuentra el <em>1er Fragmento del Amuleto Roto</em>.</p><p class="body">En las paredes de esta mazmorra podeís ver colgados horribles trofeos que conmemoran pasadas victorias: escudos rotos yllenos de sangre que pertenecieron a enemogos derrotados: cabelleras y calaveras: armas melladas y oxidadas de una docena de razas diferentes y, grabada sobre las puertas y las losas del suelo, se puede ver la runa de tres brazos, simbolo del <em>Clan Rictus</em>.</p>
+              </div>
+
+              <div class="illustration-wrap">
+                <img
+                  class="illustration"
+                  src="../images/quests/quest-broken-amulet-1.png"
+                  alt="warlordLairLoreImage"
+                />
+              </div>
             </div>
+          </div>
+        </article>
+      </div>
+    </section>
 
-            <!-- COLUMNA DERECHA: CONTENIDO -->
+    <!-- FRENTE -->
+    <section class="sheet">
+      <div class="print-matrix">
+        <article class="card front">
+          <div class="card-content">
+            <div class="front-layout">
+              <div class="front-title">
+                <h1 class="title">
+                  La Guarida del Señor de la Guerra
+                </h1>
+              </div>
 
-            <div class="front-main">
-              <div class="front-columns">
-                <!-- COLUMNA INTERNA IZQUIERDA -->
+              <div class="front-main">
+                <div class="front-columns">
+                  <div class="left-column">
+                    <section class="section">
+                      <h2 class="section-title">
+                        Objetivos
+                      </h2>
+                      <p class="body">&bull; Explorar el laberinto y encontrar el <em>Fragmento del Amuleto Roto</em>.</p><p class="body">&bull; Regresar a la superficie.</p>
+                    </section>
 
-                <!-- OBJETIVO -->
-                <div class="left-column">
-                  <section class="section">
-                    <h2 class="section-title">
-                      Objetivos
-                    </h2>
+                    <section class="section">
+                      <h2 class="section-title">
+                        Recompensas
+                      </h2>
+                      <p class="body">&bull; +1 PD.</p><p class="body">&bull; <em>2do Fragmento del Amuleto Roto</em>.</p>
+                    </section>
 
-                    <p class="body">&bull; Explorar el laberinto y encontrar el <em>Fragmento del Amuleto Roto</em>.</p><p class="body">&bull; Regresar a la superficie.</p>
-                  </section>
+                    <section class="special-table-wrap">
+                      <h2 class="section-title">
+                        Monstruos especiales
+                      </h2>
 
-                  <!-- RECOMPENSA -->
-                  <section class="section">
-                    <h2 class="section-title">
-                      Recompensas
-                    </h2>
-
-                    <p class="body">&bull; +1 PD.</p><p class="body">&bull; <em>2do Fragmento del Amuleto Roto</em>.</p>
-                  </section>
-
-                  <!-- TABLA MONSTRUOS -->
-                  <section class="special-table-wrap">
-                    <h2 class="section-title">
-                      Monstruos especiales
-                    </h2>
-
-                    <table class="special-table">
-                      <thead>
-                        <tr>
-                          <th>Und.</th><th>Monstruo especial</th><th>Objeto/Equipo</th>
-                        </tr>
-                      </thead>
-
-                      <tbody>
-                        
+                      <table class="special-table">
+                        <thead>
+                          <tr>
+                            <th>Unidades</th><th>Monstruo especial</th><th>Objetos</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          
                 <tr>
                   <td class="level">1</td>
                   <td>Asesino del Clan Eshin</td>
                   <td>habilidad de huir</td>
                 </tr>
             
-                      </tbody>
-                    </table>
+                        </tbody>
+                      </table>
 
-                    <p class="note">
-                      Si los Héroes matan a los Monstruos Especiales, podrán apropiarse de sus objetos mágicos. No podrán usar el Pergamino de Disformidad ni el Incensario de Plagas.
-                    </p>
-                  </section>
-                </div>
+                      <p class="note">
+                        Si los Héroes matan a los Monstruos Especiales, podrán apropiarse de sus objetos mágicos. No podrán usar el Pergamino de Disformidad ni el Incensario de Plagas.
+                      </p>
+                    </section>
+                  </div>
 
-                <!-- COLUMNA INTERNA DERECHA -->
-
-                <div class="right-column">
-                  <!-- DESPLIGUE -->
-                  <section class="section">
-                    <h2 class="section-title">
-                      Despliegue
-                    </h2>
-
-                    <p class="body">&bull; <em> -ver mapa 'El Laberinto Mágico'-</em>.</p><p class="body">&bull; <strong>Bola de Fuego x2</strong>: Posición en mapa. El jugador cuando llegue a algun corredor -leer nota de la misión Nro.I-.</p><p class="body">&bull; <strong>Asesino del Clan Eshin</strong>: Posición fuera de la visión de los héroes. Opcional en lugar de una <em>Bola de Fuego</em>. Bonificado con +1 HA al inicio de la fase de combate.</p><p class="body">&bull; <strong>Zombis Skaven</strong>: Posición en mapa. El jugador cuando dañe a alguno de estos -leer nota de la misión Nro.II-.</p>
-                  </section>
+                  <div class="right-column">
+                    <section class="section">
+                      <h2 class="section-title">
+                        Despliegue
+                      </h2>
+                      <p class="body">&bull; <em> -ver mapa 'El Laberinto Mágico'-</em>.</p><p class="body">&bull; <strong>Bola de Fuego x2</strong>: Posición en mapa. El jugador cuando llegue a algun corredor -leer nota de la misión Nro.I-.</p><p class="body">&bull; <strong>Asesino del Clan Eshin</strong>: Posición fuera de la visión de los héroes. Opcional en lugar de una <em>Bola de Fuego</em>. Bonificado con +1 HA al inicio de la fase de combate.</p><p class="body">&bull; <strong>Zombis Skaven</strong>: Posición en mapa. El jugador cuando dañe a alguno de estos -leer nota de la misión Nro.II-.</p>
+                    </section>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </article>
+        </article>
+      </div>
     </section>
   </body>
 </html>
-```

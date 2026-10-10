@@ -1,14 +1,17 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Advanced HeroQuest — Plantilla Tarot</title>
+    <title>{{frontCard.title}}</title>
+
+    <!-- Google Fonts: EB Garamond -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
       :root {
-        /* --- COLORES --- */
         --ink: #111;
         --gray: #d8d8d8;
         --paper: #fff;
@@ -17,11 +20,9 @@
         --table-row-alt: var(--gray);
         --table-cell-bg: #fff;
 
-        /* --- FUENTES --- */
-        --font-title: 'Times New Roman';
-        --font-body: 'Times New Roman';
+        --font-title: 'EB Garamond', serif;
+        --font-body: 'EB Garamond', serif;
 
-        /* --- TAMAÑOS DE LETRA --- */
         --size-title: 3.2mm;
         --size-back-title: 4mm;
         --size-subtitle: 2.25mm;
@@ -31,11 +32,10 @@
         --size-stat-label: 2.15mm;
         --size-stat-value: 1.85mm;
         --size-table-th: 2mm;
-        --size-table-td:2mm;
+        --size-table-td: 2mm;
         --size-note: 1.4mm;
         --size-icon: 4.2mm;
 
-        /* --- BORDES Y GROSORES --- */
         --border-card: 0.3mm;
         --border-corner: 0.8mm;
         --border-icon: 0.5mm;
@@ -43,11 +43,7 @@
         --border-section-title: 0.45mm;
         --border-stat: 0.3mm;
         --border-table: 0.25mm;
-      }
-
-      @page {
-        size: A4 portrait;
-        margin: 0;
+        --border-card-color: grey;
       }
 
       * {
@@ -64,42 +60,20 @@
       }
 
       .sheet {
-        width: 210mm;
-        height: 297mm;
         position: relative;
-        page-break-after: always;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         background: #fff;
       }
 
-      .sheet:last-child {
-        page-break-after: auto;
-      }
-
-      /* 120 mm ancho × 80 mm alto */
       .card {
-        width: 120mm;
-        height: 80mm;
         position: relative;
         overflow: hidden;
         background: var(--paper);
-
         background-image: url('../images/bg-pergamino-blanco-horizontal.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-
-        border: var(--border-card) solid gray;
+        border: var(--border-card) solid var(--border-card-color);
         padding: 3.5mm 3.5mm 1mm;
-      }
-
-      .card::before {
-        content: '';
-        position: absolute;
-        inset: 1.8mm;
-        pointer-events: none;
       }
 
       .corner {
@@ -146,23 +120,6 @@
         min-height: 0;
       }
 
-      .icon {
-        width: 7mm;
-        height: 7mm;
-        border: var(--border-icon) solid var(--ink);
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
-        font-family: var(--font-title);
-        font-weight: 900;
-        font-size: var(--size-icon);
-        flex: 0 0 auto;
-      }
-
-      /* =========================================================
-   TÍTULOS
-   ========================================================= */
-
       .header-row {
         display: flex;
         align-items: center;
@@ -192,10 +149,6 @@
         text-transform: uppercase;
         line-height: 1;
       }
-
-      /* =========================================================
-   CONTENIDO GENERAL
-   ========================================================= */
 
       .section-title {
         display: block;
@@ -227,30 +180,6 @@
         margin-top: 0.9mm;
       }
 
-      .stat-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2.5mm;
-        margin: 1.2mm 0 0;
-      }
-
-      .stat {
-        border-top: var(--border-stat) solid var(--ink);
-        padding-top: 0.7mm;
-      }
-
-      .stat-label {
-        font-family: var(--font-title);
-        font-weight: 900;
-        font-size: var(--size-stat-label);
-        text-transform: uppercase;
-      }
-
-      .stat-value {
-        font-size: var(--size-stat-value);
-        margin-top: 0.35mm;
-      }
-
       .special-table {
         width: 100%;
         border-collapse: collapse;
@@ -275,7 +204,7 @@
         vertical-align: top;
         border: var(--border-table) solid #222;
         background: var(--table-cell-bg);
-        font-size: var(--size-table-td) !important
+        font-size: var(--size-table-td) !important;
       }
 
       .special-table tbody tr:nth-child(even) td {
@@ -289,14 +218,6 @@
         width: 14%;
       }
 
-      .special-table th:nth-child(2) {
-        width: 47%;
-      }
-
-      .special-table th:nth-child(3) {
-        width: 39%;
-      }
-
       .illustration {
         width: 100%;
         height: 100%;
@@ -305,10 +226,7 @@
         mix-blend-mode: multiply;
       }
 
-      /* =========================================================
-   REVERSO
-   ========================================================= */
-
+      /* REVERSO */
       .back .card-content {
         justify-content: flex-start;
       }
@@ -354,27 +272,7 @@
         overflow: hidden;
       }
 
-      .back .illustration {
-        height: 100%;
-        width: 100%;
-      }
-
-      /* =========================================================
-   FRENTE
-   ========================================================= */
-
-      /*
-   Primera columna:
-   título vertical.
-
-   Segunda columna:
-   todo el contenido de la carta.
-*/
-
-      .front .card-content {
-        font-size: var(--size-stat-value);
-      }
-
+      /* FRENTE */
       .front-layout {
         display: grid;
         grid-template-columns: 12mm 1fr;
@@ -387,7 +285,6 @@
         position: relative;
         height: 100%;
         border-right: 0.35mm solid var(--ink);
-
         display: flex;
         align-items: center;
         justify-content: center;
@@ -399,7 +296,6 @@
       .front-title .title {
         margin: 0;
         padding: 0;
-
         font-family: var(--font-title);
         font-weight: 900;
         font-size: var(--size-title);
@@ -407,7 +303,6 @@
         letter-spacing: 0.15mm;
         text-transform: uppercase;
         white-space: nowrap;
-
         transform: rotate(-90deg);
       }
 
@@ -433,12 +328,9 @@
         min-height: 0;
       }
 
-      .front .left-column .section {
-        margin-bottom: 1.2mm;
-      }
-
+      .front .left-column .section,
       .front .right-column .section {
-        margin-bottom: 1.1mm;
+        margin-bottom: 1.2mm;
       }
 
       .front .special-table-wrap {
@@ -452,27 +344,6 @@
         margin-top: 0.7mm;
         font-style: italic;
       }
-
-      /* =========================================================
-   PANTALLA / IMPRESIÓN
-   ========================================================= */
-
-      @media screen {
-        .sheet {
-          margin: 8mm auto;
-        }
-      }
-
-      @media print {
-        html,
-        body {
-          background: #fff;
-        }
-
-        .sheet {
-          margin: 0;
-        }
-      }
     </style>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -484,120 +355,101 @@
   </head>
 
   <body>
-    <!-- =========================================================
-     PÁGINA A4 1 — REVERSO
-     ========================================================= -->
-
+    <!-- REVERSO -->
     <section class="sheet">
-      <article class="card back">
-        <div class="card-content">
-          <header class="back-title">
-            <div class="subtitle">&bull;{{ backCard.subtitle }}&bull;</div>
-            <h1 class="title">
-              {{ backCard.title }}
-            </h1>
-          </header>
+      <div class="print-matrix">
+        <article class="card back">
+          <div class="card-content">
+            <header class="back-title">
+              <div class="subtitle">&bull;{{ backCard.subtitle }}&bull;</div>
+              <h1 class="title">
+                {{ backCard.title }}
+              </h1>
+            </header>
 
-          <div class="back-body">
-            <div class="section story">
-              {{ backCard.loreParagraphs }}
-            </div>
+            <div class="back-body">
+              <div class="section story">
+                {{ backCard.loreParagraphs }}
+              </div>
 
-            <div class="illustration-wrap">
-              <img
-                class="illustration"
-                src="{{ backCard.loreImage }}"
-                alt="{{ backCard.loreImageAlt }}"
-              />
+              <div class="illustration-wrap">
+                <img
+                  class="illustration"
+                  src="{{ backCard.loreImage }}"
+                  alt="{{ backCard.loreImageAlt }}"
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </article>
+        </article>
+      </div>
     </section>
 
-    <!-- =========================================================
-     PÁGINA A4 2 — FRENTE
-     ========================================================= -->
-
+    <!-- FRENTE -->
     <section class="sheet">
-      <article class="card front">
-        <div class="card-content">
-          <div class="front-layout">
-            <!-- COLUMNA IZQUIERDA: TÍTULO VERTICAL -->
+      <div class="print-matrix">
+        <article class="card front">
+          <div class="card-content">
+            <div class="front-layout">
+              <div class="front-title">
+                <h1 class="title">
+                  {{ frontCard.title }}
+                </h1>
+              </div>
 
-            <div class="front-title">
-              <h1 class="title">
-                {{ frontCard.title }}
-              </h1>
-            </div>
+              <div class="front-main">
+                <div class="front-columns">
+                  <div class="left-column">
+                    <section class="section">
+                      <h2 class="section-title">
+                        {{ frontCard.objectiveTitle }}
+                      </h2>
+                      {{ frontCard.objectiveParagraphs }}
+                    </section>
 
-            <!-- COLUMNA DERECHA: CONTENIDO -->
+                    <section class="section">
+                      <h2 class="section-title">
+                        {{ frontCard.rewardTitle }}
+                      </h2>
+                      {{ frontCard.rewardParagraphs }}
+                    </section>
 
-            <div class="front-main">
-              <div class="front-columns">
-                <!-- COLUMNA INTERNA IZQUIERDA -->
+                    <section class="special-table-wrap">
+                      <h2 class="section-title">
+                        {{ frontCard.monstersTitle }}
+                      </h2>
 
-                <!-- OBJETIVO -->
-                <div class="left-column">
-                  <section class="section">
-                    <h2 class="section-title">
-                      {{ frontCard.objectiveTitle }}
-                    </h2>
+                      <table class="special-table">
+                        <thead>
+                          <tr>
+                            {{ frontCard.monstersTableHeaders }}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {{ frontCard.monstersTableRows }}
+                        </tbody>
+                      </table>
 
-                    {{ frontCard.objectiveParagraphs }}
-                  </section>
+                      <p class="note">
+                        {{ frontCard.monstersNote }}
+                      </p>
+                    </section>
+                  </div>
 
-                  <!-- RECOMPENSA -->
-                  <section class="section">
-                    <h2 class="section-title">
-                      {{ frontCard.rewardTitle }}
-                    </h2>
-
-                    {{ frontCard.rewardParagraphs }}
-                  </section>
-
-                  <!-- TABLA MONSTRUOS -->
-                  <section class="special-table-wrap">
-                    <h2 class="section-title">
-                      {{ frontCard.monstersTitle }}
-                    </h2>
-
-                    <table class="special-table">
-                      <thead>
-                        <tr>
-                          {{ frontCard.monstersTableHeaders }}
-                        </tr>
-                      </thead>
-
-                      <tbody>
-                        {{ frontCard.monstersTableRows }}
-                      </tbody>
-                    </table>
-
-                    <p class="note">
-                      {{ frontCard.monstersNote }}
-                    </p>
-                  </section>
-                </div>
-
-                <!-- COLUMNA INTERNA DERECHA -->
-
-                <div class="right-column">
-                  <!-- DESPLIGUE -->
-                  <section class="section">
-                    <h2 class="section-title">
-                      {{ frontCard.deploymentTitle }}
-                    </h2>
-
-                    {{ frontCard.deploymentParagraphs }}
-                  </section>
+                  <div class="right-column">
+                    <section class="section">
+                      <h2 class="section-title">
+                        {{ frontCard.deploymentTitle }}
+                      </h2>
+                      {{ frontCard.deploymentParagraphs }}
+                    </section>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </article>
+        </article>
+      </div>
     </section>
   </body>
 </html>
-```

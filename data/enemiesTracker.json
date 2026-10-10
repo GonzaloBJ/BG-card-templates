@@ -1,9 +1,10 @@
 {
   "meta": {
-    "watermarkBack": "ADVANCED HEROQUEST",
-    "watermarkFront": "AHQ",
-    "iconLeft": "☠",
-    "iconRight": "✦"
+    "cardSize": "tarot", 
+    "isLanscapeCard": false,
+    "twoSizedCard": true, 
+    "multipleCardPrintMatrix": "1x1", 
+    "paperSize":"letter"
   },
   "backCard": {
     "title": "Rastreador de Grupo Enemigo",

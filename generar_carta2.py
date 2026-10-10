@@ -18,30 +18,29 @@ def main():
     # ==========================================
     # CONFIGURACIÓN DE HOJA E IMPRESION
     # ==========================================
-
     card_size_list = {
         "tarot": {
-            "w":"80mm",
-            "h":"120mm"
-            },
+            "w": "80mm",
+            "h": "120mm"
+        },
         "standardPerfect": {
-            "w":"64mm",
-            "h":"89mm"
+            "w": "64mm",
+            "h": "89mm"
         },
         "miniEuro": {
-            "w":"44mm",
-            "h":"67mm"
+            "w": "44mm",
+            "h": "67mm"
         },
         "euro": {
-            "w":"59mm",
-            "h":"92mm"
+            "w": "59mm",
+            "h": "92mm"
         },
         "boardGameCard": {
-            "w":"56mm",
-            "h":"87mm"
+            "w": "56mm",
+            "h": "87mm"
         },
     }
- 
+
     # ==========================================
     # CONFIGURACIÓN DE CARTAS Y SELECCIÓN DESDE CLI
     # ==========================================
@@ -81,9 +80,13 @@ def main():
             "template": "template_enemies_tracker_card.html",
             "output": "carta_enemies_tracker.html"
         },
+        7: {
+            "json": "enemiesCard.json",
+            "template": "template_enemies_card.html",
+            "output": "cartas_enemigos.html"
+        },
     }
 
-    # Obtener el ID de la carta desde los argumentos de la consola (ej: python generar_carta.py 1)
     if len(sys.argv) < 2:
         print("Error: Debes proporcionar el ID de la carta.")
         print("Uso: python generar_carta.py <ID_CARTA>")
@@ -95,19 +98,16 @@ def main():
         print("Error: El ID de la carta debe ser un número entero.")
         return
 
-    # Validar que la carta seleccionada exista en la lista
     if selected_card not in card_list:
         print(f"Error: La carta con ID {selected_card} no existe en la lista de configuración.")
         return
 
     card_path = card_list[selected_card]
 
-    # Obtener los archivos correspondientes a la selección
     json_filename = os.path.join('data', card_path["json"])
     html_template_filename = os.path.join('templates', card_path["template"])
     html_output_filename = os.path.join('outputFiles', card_path["output"])
 
-    # Verificar que los archivos existan
     if not os.path.exists(json_filename):
         print(f"Error: No se encuentra el archivo JSON: {json_filename}")
         return
@@ -115,24 +115,32 @@ def main():
         print(f"Error: No se encuentra el archivo de plantilla: {html_template_filename}")
         return
 
-    # Cargar los datos del JSON seleccionado
     with open(json_filename, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
-    # Cargar la plantilla HTML correspondiente
     with open(html_template_filename, 'r', encoding='utf-8') as f:
         html_content = f.read()
 
     # ==========================================
-    # LECTURA DE ATRIBUTOS NUEVOS DEL JSON
+    # LECTURA DE ATRIBUTOS DESDE EL BLOQUE 'meta'
     # ==========================================
-    card_size = data.get("meta")["cardSize"]
-    selected_card_size = card_size_list[card_size]
+    meta = data.get("meta", {})
+    card_size = meta.get("cardSize", "miniEuro")
+    is_lanscape_card = meta.get("isLanscapeCard", "horizontal")
+    two_sided = meta.get("twoSizedCard", False)
+    matrix = meta.get("multipleCardPrintMatrix", "1x1")
+    paper_size = meta.get("paperSize", "letter")
 
-
-    two_sided = data.get("twoSizedCard", False)  # Booleano: True/False
-    matrix = data.get("multipleCardPrintMatrix", "1x1")  # Ejemplo: "2x4"
-    paper_size = data.get("paperSize", "A4")  # Ejemplo: "A4", "letter"
+    # Resolver dimensiones base según el tamaño de carta
+    base_dimensions = card_size_list.get(card_size, {"w": "44mm", "h": "67mm"})
+    
+    # Ajustar ancho y alto según la orientación (horizontal invierte las dimensiones vertical por defecto)
+    if is_lanscape_card:
+        card_w = base_dimensions["h"]
+        card_h = base_dimensions["w"]
+    else:
+        card_w = base_dimensions["w"]
+        card_h = base_dimensions["h"]
 
     # Procesar dimensiones de la matriz (columnas x filas)
     try:
@@ -147,17 +155,9 @@ def main():
         parrafos_historia = "".join([f'<p class="body">{p}</p>' for p in data['backCard']['loreParagraphs']])
         data['backCard']['loreParagraphs'] = parrafos_historia
 
-    if 'frontCard' in data and 'objectiveParagraphs' in data['frontCard']:
-        objectiveParagraphs = "".join([f'<p class="body">{p}</p>' for p in data['frontCard']['objectiveParagraphs']])
-        data['frontCard']['objectiveParagraphs'] = objectiveParagraphs
-
-    if 'frontCard' in data and 'rewardParagraphs' in data['frontCard']:
-        rewardParagraphs = "".join([f'<p class="body">{p}</p>' for p in data['frontCard']['rewardParagraphs']])
-        data['frontCard']['rewardParagraphs'] = rewardParagraphs
-
-    if 'frontCard' in data and 'deploymentParagraphs' in data['frontCard']:
-        deploymentParagraphs = "".join([f'<p class="body">{p}</p>' for p in data['frontCard']['deploymentParagraphs']])
-        data['frontCard']['deploymentParagraphs'] = deploymentParagraphs
+    for key in ['objectiveParagraphs', 'rewardParagraphs', 'deploymentParagraphs']:
+        if 'frontCard' in data and key in data['frontCard']:
+            data['frontCard'][key] = "".join([f'<p class="body">{p}</p>' for p in data['frontCard'][key]])
 
     if 'frontCard' in data and 'monstersTableHeaders' in data['frontCard']:
         headers_html = "".join([f'<th>{h}</th>' for h in data['frontCard']['monstersTableHeaders']])
@@ -174,7 +174,7 @@ def main():
                 </tr>
             """
         data['frontCard']['monstersTableRows'] = filas_html
-
+    
     if 'frontCard' in data and 'unitSlots' in data['frontCard']:
         ranuras_html = ""
         for i in range(data['frontCard']['unitSlots']):
@@ -201,7 +201,6 @@ def main():
     # ==========================================
     # INYECCIÓN DE ESTILOS DE IMPRESIÓN Y DISEÑO
     # ==========================================
-    # Generar estilos dinámicos basados en el JSON
     dynamic_styles = f"""
     <style>
         @page {{
@@ -213,6 +212,14 @@ def main():
             padding: 0;
             background: #fff;
         }}
+        .sheet {{
+            width: 100%;
+            min-height: 297mm;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            page-break-after: always;
+        }}
         .print-matrix {{
             display: grid;
             grid-template-columns: repeat({cols}, 1fr);
@@ -220,43 +227,32 @@ def main():
             gap: 4mm;
             justify-content: center;
             align-content: center;
-            page-break-after: always;
         }}
-        .card-wrapper {{
+        .card {{
+            width: {card_w};
+            height: {card_h};
             box-sizing: border-box;
-            /* Tamaños orientativos según el atributo cardSize */
-            width: {selected_card_size["w"]};
-            height: {selected_card_size["h"]};
-            overflow: hidden;
             position: relative;
-        }}
-        .page-break {{
-            page-break-after: always;
+            overflow: hidden;
         }}
     </style>
     """
 
-    # Insertar los estilos dinámicos antes de cerrar el </head> o al inicio del HTML
     if '</head>' in html_final:
         html_final = html_final.replace('</head>', f'{dynamic_styles}\n</head>')
     else:
         html_final = dynamic_styles + html_final
 
-    # Manejo de la segunda hoja (twoSizedCard) si está habilitada
     if two_sided:
-        # Nota: Aquí puedes estructurar cómo se añade la parte trasera si tu template lo requiere, 
-        # por ejemplo, asegurando que se imprima una página adicional con los datos de backCard.
         print("-> Carta configurada como doble cara (twoSizedCard: true).")
 
-    # Asegurar que el directorio de salida exista
     os.makedirs(os.path.dirname(html_output_filename), exist_ok=True)
 
-    # Guardar el archivo HTML resultante
     with open(html_output_filename, 'w', encoding='utf-8') as f:
         f.write(html_final)
 
     print(f"¡Éxito! Se ha generado la carta ID {selected_card} usando '{json_filename}'.")
-    print(f"Configuración aplicada -> Papel: {paper_size}, Tamaño carta: {card_size}, Matriz: {matrix}, Doble cara: {two_sided}")
+    print(f"Configuración aplicada -> Papel: {paper_size}, Tamaño: {card_size}, Orientación: {is_lanscape_card}, Matriz: {matrix}, Doble cara: {two_sided}")
     print(f"Archivo de salida creado: {html_output_filename}")
 
 if __name__ == '__main__':

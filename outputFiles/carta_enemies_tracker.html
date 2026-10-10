@@ -3,16 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Advanced HeroQuest — Carta de Seguimiento Vertical (Tarot)</title>
+    <title>Rastreador de Grupo Enemigo</title>
+
+    <!-- Google Fonts: EB Garamond -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
       :root {
         --ink: #111;
         --paper: #fff;
-        --font-title: 'Times New Roman', serif;
-        --font-body: 'Times New Roman', serif;
+        --font-title: 'EB Garamond', serif;
+        --font-body: 'EB Garamond', serif;
 
         --border-card: 0.3mm;
+        --border-card-color: grey;
 
         /* --- TAMAÑOS DE LETRA --- */
         --size-title: 3.2mm;
@@ -51,7 +57,7 @@
       }
 
       /* 80 mm ancho × 120 mm alto (Tamaño Tarot Vertical) */
-      .card {
+      /* .card {
         width: 80mm;
         height: 120mm;
         position: relative;
@@ -63,14 +69,23 @@
         background-position: center;
         background-repeat: no-repeat;
 
-        /* transform: rotate(90deg);
-        transform-origin: center center; */
-
         border: var(--border-card) solid var(--border-card-color);
         padding: 3.5mm 3.5mm 1mm;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+      } */
+
+      .card {
+        position: relative;
+        overflow: hidden;
+        background: var(--paper);
+        background-image: url('../images/bg-pergamino-blanco-vertical.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border: var(--border-card) solid var(--border-card-color);
+        padding: 3.5mm 3.5mm 1mm;
       }
 
       /* Esquinas decorativas estilizadas */
@@ -197,7 +212,43 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
-  </head>
+  
+    <style>
+        @page {
+            size: letter;
+            margin: 10mm;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background: #fff;
+        }
+        .sheet {
+            width: 100%;
+            min-height: 297mm;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            page-break-after: always;
+        }
+        .print-matrix {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            grid-template-rows: repeat(1, auto);
+            gap: 4mm;
+            justify-content: center;
+            align-content: center;
+        }
+        .card {
+            width: 80mm;
+            height: 120mm;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+    
+</head>
 
   <body>
     <section class="sheet">

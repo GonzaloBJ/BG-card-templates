@@ -1,7 +1,7 @@
 {
   "meta": {
-    "cardSize": "miniEuro", 
-    "cardOri": "horizontal",
+    "cardSize": "tarot", 
+    "isLanscapeCard": true,
     "twoSizedCard": true, 
     "multipleCardPrintMatrix": "1x1", 
     "paperSize":"letter"
@@ -39,7 +39,7 @@
       "&bull; <strong>Zombis Skaven</strong>: Posición en mapa. El jugador cuando dañe a alguno de estos -leer nota de la misión Nro.II-."
     ],
     "monstersTitle": "Monstruos especiales",
-    "monstersTableHeaders": ["Unidades", "Monstruo especial", "Objeto mágico/Equipamiento"],
+    "monstersTableHeaders": ["Unidades", "Monstruo especial", "Objetos"],
     "monstersTableRows": [
       {
         "level": "1",
