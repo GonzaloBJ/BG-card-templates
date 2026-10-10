@@ -86,7 +86,7 @@
         overflow: hidden;
         background: var(--paper);
 
-        background-image: url('../images/white-parchment-paper2.jpg');
+        background-image: url('../images/bg-pergamino-blanco-horizontal.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -481,7 +481,40 @@
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
       rel="stylesheet"
     />
-  </head>
+  
+    <style>
+        @page {
+            size: A4;
+            margin: 10mm;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background: #fff;
+        }
+        .print-matrix {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            grid-template-rows: repeat(1, auto);
+            gap: 4mm;
+            justify-content: center;
+            align-content: center;
+            page-break-after: always;
+        }
+        .card-wrapper {
+            box-sizing: border-box;
+            /* Tamaños orientativos según el atributo cardSize */
+            width: 44mm;
+            height: 67mm;
+            overflow: hidden;
+            position: relative;
+        }
+        .page-break {
+            page-break-after: always;
+        }
+    </style>
+    
+</head>
 
   <body>
     <!-- =========================================================
@@ -506,7 +539,7 @@
             <div class="illustration-wrap">
               <img
                 class="illustration"
-                src="../images/magicMazeLoreImage.png"
+                src="../images/quests/quest-broken-amulet-2.png"
                 alt="magicMazeLoreImage"
               />
             </div>

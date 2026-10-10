@@ -49,7 +49,7 @@ def main():
             "output": "carta_warlord_lair.html"
         },
         2: {
-            "json": "magicMaze.json",
+            "json": "brokenAmulet2.json",
             "template": "template_quest_card.html",
             "output": "carta_magic_maze.html"
         },
@@ -118,8 +118,8 @@ def main():
     # ==========================================
     # LECTURA DE ATRIBUTOS NUEVOS DEL JSON
     # ==========================================
-    card_size = data.get("cardSize", "tarot")  # Ejemplo: "tarot", "standard", etc.
-    selected_card_size = card_size_list[card_size.lower()]
+    card_size = data.get("meta")["cardSize"]
+    selected_card_size = card_size_list[card_size]
 
 
     two_sided = data.get("twoSizedCard", False)  # Booleano: True/False
