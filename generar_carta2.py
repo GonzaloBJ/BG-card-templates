@@ -24,14 +24,22 @@ def main():
             "w":"80mm",
             "h":"120mm"
             },
-        "standard": {
-            "w":"63mm",
-            "h":"88mm"
+        "standardPerfect": {
+            "w":"64mm",
+            "h":"89mm"
         },
         "miniEuro": {
             "w":"44mm",
             "h":"67mm"
-            }
+        },
+        "euro": {
+            "w":"59mm",
+            "h":"92mm"
+        },
+        "boardGameCard": {
+            "w":"56mm",
+            "h":"87mm"
+        },
     }
  
     # ==========================================
