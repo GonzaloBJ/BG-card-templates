@@ -1,10 +1,10 @@
 {
   "meta": {
-    "watermarkBack": "ADVANCED HEROQUEST",
-    "watermarkFront": "AHQ",
-    "adventureType": "Aventura en solitario",
-    "iconLeft": "☠",
-    "iconRight": "✦"
+    "cardSize": "tarot", 
+    "cardOri": "horizontal",
+    "twoSizedCard": true, 
+    "multipleCardPrintMatrix": "1x1", 
+    "paperSize":"letter"
   },
   "backCard": {
     "title": "El Laberinto Mágico",
