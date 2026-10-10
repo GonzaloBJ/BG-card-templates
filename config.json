@@ -25,12 +25,12 @@
     "cardTypeList": {
         "0": {
             "json": "tobarosBane.json",
-            "template": "template_quest_card.html",
+            "template": "template_quest_card_content.html",
             "output": "carta_tobaros_bane.html"
         },
         "1": {
             "json": "brokenAmulet1.json",
-            "template": "template_quest_card.html",
+            "template": "template_quest_card_content.html",
             "output": "carta_warlord_lair.html"
         },
         "2": {
@@ -40,17 +40,17 @@
         },
         "3": {
             "json": "plageTemple.json",
-            "template": "template_quest_card.html",
+            "template": "template_quest_card_content.html",
             "output": "carta_plage_temple.html"
         },
         "4": {
             "json": "ambarChamber.json",
-            "template": "template_quest_card.html",
+            "template": "template_quest_card_content.html",
             "output": "carta_ambar_chamber.html"
         },
         "5": {
             "json": "icePrison.json",
-            "template": "template_quest_card.html",
+            "template": "template_quest_card_content.html",
             "output": "carta_ice_prison.html"
         },
         "6": {

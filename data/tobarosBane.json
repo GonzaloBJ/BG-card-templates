@@ -7,7 +7,7 @@
     "paperSize":"letter"
   },
   "backCard": {
-    "title": "La Maldición de Tobaro",
+    "title": "El Azote de Tobaro",
     "loreTitle": "Historia",
     "loreParagraphs": [
       "La ciudad de Tobaro está bajo asedio. Los Padres de la Ciudad están desesperados y la comunidad entera está bajo el peligro de un inminente colapso. La razón de todos estos desastres es el reciente aumento del poder de un clan Skaven cercano, que actualmente tiene su gobierno en la ciudad.",
@@ -19,36 +19,34 @@
     "loreImageFallback": "https://placehold.co/900x700/png?text=Ilustraci%C3%B3n+de+Tobaro"
   },
   "frontCard": {
-    "title": "La Maldición de Tobaro",
-    "objectiveTitle": "Objetivo",
-    "objectiveText": "Matar a Camkerclaw el Hechicero Skaven, el cerebro que dirige los ataques Skaven a Tobaro, y destruir su guarida de la ciudad.",
-    "difficultyLabel": "Dificultad",
-    "difficultyValue": "☠ Media",
-    "rewardLabel": "Recompensa",
-    "rewardValue": "● Puntos de Destino",
-    "heroesTitle": "Los Héroes",
-    "heroesText": "El grupo está compuesto por cuatro Héroes, cuatro Hombres de Armas y un Sargento proporcionados gratuitamente por los Padres de la Ciudad.",
-    "questTitle": "La Gesta",
-    "questText": "Tras explorar tres niveles de mazmorra, los Héroes se enfrentarán a Camkerclaw y deberán matarlo. Si lo consiguen y vuelven a la superficie, ganarán la partida. Sólo pueden emprender una expedición para encontrarlo; si tienen éxito, reciben automáticamente 2 Puntos de Destino.",
-    "deploymentTitle": "El Despliegue",
+    "title": "El Azote de Tobaro",
+    "subtitle": "GESTA",
+    "objectiveTitle": "Objetivos",
+    "objectiveParagraphs": [
+      "&bull; Explorar el laberinto y encontrar el <em>Fragmento del Amuleto Roto</em>.",
+      "&bull; Regresar a la superficie."
+    ],
+    "rewardTitle": "Recompensas",
+    "rewardParagraphs": [
+      "&bull; +1 PD.",
+      "&bull; <em>2do Fragmento del Amuleto Roto</em>."
+    ],
+    "deploymentTitle": "Despliegue",
     "deploymentParagraphs": [
-      "La mazmorra empieza por tres niveles. Cada uno se genera aleatoriamente mediante las reglas normales. Si una escalera conduce hacia abajo en un corredor, en realidad lleva hacia la superficie.",
-      "Las escaleras que llevan al nivel inferior sólo podrán encontrarse en las primeras Habitaciones de Gesta de los niveles 1 y 2."
+      "&bull; <em> -ver mapa 'El Laberinto Mágico'-</em>.",
+      "&bull; <strong>Bola de Fuego x2</strong>: Posición en mapa. El jugador cuando llegue a algun corredor -leer nota de la misión Nro.I-.",
+      "&bull; <strong>Asesino del Clan Eshin</strong>: Posición fuera de la visión de los héroes. Opcional en lugar de una <em>Bola de Fuego</em>. Bonificado con +1 HA al inicio de la fase de combate.",
+      "&bull; <strong>Zombis Skaven</strong>: Posición en mapa. El jugador cuando dañe a alguno de estos -leer nota de la misión Nro.II-."
     ],
     "monstersTitle": "Monstruos especiales",
     "monstersTableHeaders": ["Unidades", "Monstruo especial", "Objetos"],
     "monstersTableRows": [
       {
-        "level": "Uno",
-        "monster": "Asesino<br>Monje de Plaga<br>Tejedor de Disformidad",
-        "item": "Pergamino de Disformidad"
-      },
-      {
-        "level": "Dos",
-        "monster": "Portador del Incensario de las Plagas<br>Señor de la Guerra<br>Hechicero",
-        "item": "Ira de las Plagas<br>Espada Rúnica<br>Anillo de Protección Mágico"
+        "level": "1",
+        "monster": "Asesino del Clan Eshin",
+        "item": "habilidad de huir"
       }
     ],
-    "monstersNote": "Si los Héroes matan a los Monstruos Especiales, podrán apropiarse de sus objetos mágicos. No podrán usar el Pergamino de Disformidad ni el Incensario de Plagas."
+    "monstersNote": ""
   }
 }
