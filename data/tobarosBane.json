@@ -11,7 +11,7 @@
     "subtitle": "GESTA",
     "loreParagraphs": [
       "La ciudad de Tobaro está bajo asedio. Los Padres de la Ciudad están desesperados y la comunidad entera está bajo el peligro de un inminente colapso. La razón de todos estos desastres es el reciente aumento del poder de un clan Skaven cercano, que actualmente tiene su gobierno en la ciudad.",
-      "Los Skaven han impuesto un involuntario toque de queda a los habitantes. Las criaturas se lanzan a miles desde las alcantarillas, con <em>Camkerclaw Darkheart</em> al frente.",
+      "Los Skaven han impuesto un involuntario toque de queda a los habitantes. Las criaturas se lanzan a miles desde las alcantarillas, con <em>Cankerclaw Darkheart</em> al frente.",
       "Los Padres de la Ciudad han recurrido a su última alternativa: pedir ayuda al exterior y ofrecer recompensas a cualquier Héroe que pueda ayudarles."
     ],
     "loreImage": "../images/quests/quest-tobaros-bane.png",
@@ -23,20 +23,16 @@
 "sections": {
     "objectiveTitle": "Objetivos",
     "objectiveParagraphs": [
-      "&bull; Explorar el laberinto y encontrar el <em>Fragmento del Amuleto Roto</em>.",
+      "&bull; Derrotar a <em>Cankerclaw</em>.",
       "&bull; Regresar a la superficie."
     ],
     "rewardTitle": "Recompensas",
     "rewardParagraphs": [
-      "&bull; +1 PD.",
-      "&bull; <em>2do Fragmento del Amuleto Roto</em>."
+      "&bull; +2 PD."
     ],
     "deploymentTitle": "Despliegue",
     "deploymentParagraphs": [
-      "&bull; <em> -ver mapa 'El Laberinto Mágico'-</em>.",
-      "&bull; <strong>Bola de Fuego x2</strong>: Posición en mapa. El jugador cuando llegue a algun corredor -leer nota de la misión Nro.I-.",
-      "&bull; <strong>Asesino del Clan Eshin</strong>: Posición fuera de la visión de los héroes. Opcional en lugar de una <em>Bola de Fuego</em>. Bonificado con +1 HA al inicio de la fase de combate.",
-      "&bull; <strong>Zombis Skaven</strong>: Posición en mapa. El jugador cuando dañe a alguno de estos -leer nota de la misión Nro.II-."
+      "&bull; <em> -generar mapa de 3 niveles, una habitación de gesta por nivel '-</em>."
     ],
     "monstersTitle": "Monstruos especiales",
     "monstersTableHeaders": ["Unidades", "Monstruo especial", "Objetos"],
@@ -44,7 +40,17 @@
       {
         "level": "1",
         "monster": "Asesino del Clan Eshin",
-        "item": "habilidad de huir"
+        "item": "-habilidad de huir-"
+      },
+       {
+        "level": "2",
+        "monster": "Monje de Plaga del Clan Mors, Tejedor de Disformidad",
+        "item": "Pergamino de Disformidad"
+      },
+       {
+        "level": "3",
+        "monster": "Portador del Incensario de las Plagas",
+        "item": "Iru de las Plagas"
       }
     ],
     "monstersNote": ""
