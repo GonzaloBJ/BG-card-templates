@@ -111,16 +111,16 @@ def main():
         data['backCard']['loreParagraphs'] = parrafos_historia
 
     for key in ['objectiveParagraphs', 'rewardParagraphs', 'deploymentParagraphs']:
-        if 'frontCard' in data and key in data['frontCard']:
-            data['frontCard'][key] = "".join([f'<p class="body">{p}</p>' for p in data['frontCard'][key]])
+        if 'frontCard' in data and key in data['frontCard']['sections']:
+            data['frontCard']['sections'][key] = "".join([f'<p class="body">{p}</p>' for p in data['frontCard']['sections'][key]])
 
-    if 'frontCard' in data and 'monstersTableHeaders' in data['frontCard']:
-        headers_html = "".join([f'<th>{h}</th>' for h in data['frontCard']['monstersTableHeaders']])
-        data['frontCard']['monstersTableHeaders'] = headers_html
+    if 'frontCard' in data and 'monstersTableHeaders' in data['frontCard']['sections']:
+        headers_html = "".join([f'<th>{h}</th>' for h in data['frontCard']['sections']['monstersTableHeaders']])
+        data['frontCard']['sections']['monstersTableHeaders'] = headers_html
 
-    if 'frontCard' in data and 'monstersTableRows' in data['frontCard']:
+    if 'frontCard' in data and 'monstersTableRows' in data['frontCard']['sections']:
         filas_html = ""
-        for row in data['frontCard']['monstersTableRows']:
+        for row in data['frontCard']['sections']['monstersTableRows']:
             filas_html += f"""
                 <tr>
                   <td class="level">{row.get('level', '')}</td>
@@ -128,11 +128,11 @@ def main():
                   <td>{row.get('item', '')}</td>
                 </tr>
             """
-        data['frontCard']['monstersTableRows'] = filas_html
+        data['frontCard']['sections']['monstersTableRows'] = filas_html
     
-    if 'frontCard' in data and 'unitSlots' in data['frontCard']:
+    if 'frontCard' in data and 'unitSlots' in data['frontCard']['sections']:
         ranuras_html = ""
-        for i in range(data['frontCard']['unitSlots']):
+        for i in range(data['frontCard']['sections']['unitSlots']):
             ranuras_html += f"""
                 <div class="row-header-cell">{i+1}</div>
                 <div class="track-cell"></div>
@@ -142,7 +142,7 @@ def main():
                 <div class="track-cell"></div>
                 <div class="track-cell"></div>
             """
-        data['frontCard']['unitSlotsRows'] = ranuras_html
+        data['frontCard']['sections']['unitSlotsRows'] = ranuras_html
 
     # ==========================================
     # REEMPLAZO DE VARIABLES EN EL HTML

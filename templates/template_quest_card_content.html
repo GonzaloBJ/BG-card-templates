@@ -12,36 +12,36 @@
             <div class="left-column">
             <section class="section">
                 <h2 class="section-title">
-                {{ frontCard.objectiveTitle }}
+                {{ frontCard.sections.objectiveTitle }}
                 </h2>
-                {{ frontCard.objectiveParagraphs }}
+                {{ frontCard.sections.objectiveParagraphs }}
             </section>
 
             <section class="section">
                 <h2 class="section-title">
-                {{ frontCard.rewardTitle }}
+                {{ frontCard.sections.rewardTitle }}
                 </h2>
-                {{ frontCard.rewardParagraphs }}
+                {{ frontCard.sections.rewardParagraphs }}
             </section>
 
             <section class="special-table-wrap">
                 <h2 class="section-title">
-                {{ frontCard.monstersTitle }}
+                {{ frontCard.sections.monstersTitle }}
                 </h2>
 
                 <table class="special-table">
                 <thead>
                     <tr>
-                    {{ frontCard.monstersTableHeaders }}
+                    {{ frontCard.sections.monstersTableHeaders }}
                     </tr>
                 </thead>
                 <tbody>
-                    {{ frontCard.monstersTableRows }}
+                    {{ frontCard.sections.monstersTableRows }}
                 </tbody>
                 </table>
 
                 <p class="note">
-                {{ frontCard.monstersNote }}
+                {{ frontCard.sections.monstersNote }}
                 </p>
             </section>
             </div>
@@ -49,9 +49,9 @@
             <div class="right-column">
             <section class="section">
                 <h2 class="section-title">
-                {{ frontCard.deploymentTitle }}
+                {{ frontCard.sections.deploymentTitle }}
                 </h2>
-                {{ frontCard.deploymentParagraphs }}
+                {{ frontCard.sections.deploymentParagraphs }}
             </section>
             </div>
         </div>
@@ -71,14 +71,14 @@
 
     <div class="back-body">
         <div class="section story">
-        {{ backCard.loreParagraphs }}
+        {{ backCard.sections.loreParagraphs }}
         </div>
 
         <div class="illustration-wrap">
         <img
             class="illustration"
-            src="{{ backCard.loreImage }}"
-            alt="{{ backCard.loreImageAlt }}"
+            src="{{ backCard.sections.loreImage }}"
+            alt="{{ backCard.sections.loreImageAlt }}"
         />
         </div>
     </div>
