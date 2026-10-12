@@ -76,41 +76,6 @@
         padding: 3.5mm 3.5mm 1mm;
       }
 
-      .corner {
-        position: absolute;
-        width: 5mm;
-        height: 5mm;
-        z-index: 3;
-      }
-
-      .corner.tl {
-        top: 1mm;
-        left: 1mm;
-        border-top: var(--border-corner) solid var(--ink);
-        border-left: var(--border-corner) solid var(--ink);
-      }
-
-      .corner.tr {
-        top: 1mm;
-        right: 1mm;
-        border-top: var(--border-corner) solid var(--ink);
-        border-right: var(--border-corner) solid var(--ink);
-      }
-
-      .corner.bl {
-        bottom: 1mm;
-        left: 1mm;
-        border-bottom: var(--border-corner) solid var(--ink);
-        border-left: var(--border-corner) solid var(--ink);
-      }
-
-      .corner.br {
-        bottom: 1mm;
-        right: 1mm;
-        border-bottom: var(--border-corner) solid var(--ink);
-        border-right: var(--border-corner) solid var(--ink);
-      }
-
       .card-content {
         position: relative;
         z-index: 2;
@@ -184,7 +149,7 @@
         width: 100%;
         border-collapse: collapse;
         font-size: var(--size-table-td);
-        line-height: 1.16;
+        line-height: 1.1;
         margin-top: 0.7mm;
         table-layout: fixed;
       }
@@ -194,16 +159,14 @@
         color: var(--table-header-color);
         font-family: var(--font-title);
         font-size: var(--size-table-th);
-        text-transform: uppercase;
         padding: 0.8mm 0.7mm;
-        border: var(--border-table) solid #111;
       }
 
       .special-table td {
-        padding: 0.7mm 0.7mm;
+        padding: 0.5mm 0.5mm;
         vertical-align: top;
-        border: var(--border-table) solid #222;
-        background: var(--table-cell-bg);
+        font-family: var(--font-title);
+        font-weight: 900;
         font-size: var(--size-table-td) !important;
       }
 
@@ -215,7 +178,6 @@
         text-align: center;
         font-family: var(--font-title);
         font-weight: 900;
-        width: 14%;
       }
 
       .illustration {

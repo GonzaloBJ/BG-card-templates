@@ -106,9 +106,9 @@ def main():
     # ==========================================
     # PROCESAMIENTO DE ESTRUCTURAS COMPLEJAS
     # ==========================================
-    if 'backCard' in data and 'loreParagraphs' in data['backCard']:
-        parrafos_historia = "".join([f'<p class="body">{p}</p>' for p in data['backCard']['loreParagraphs']])
-        data['backCard']['loreParagraphs'] = parrafos_historia
+    if 'backCard' in data and 'loreParagraphs' in data['backCard']['sections']:
+        parrafos_historia = "".join([f'<p class="body">{p}</p>' for p in data['backCard']['sections']['loreParagraphs']])
+        data['backCard']['sections']['loreParagraphs'] = parrafos_historia
 
     for key in ['objectiveParagraphs', 'rewardParagraphs', 'deploymentParagraphs']:
         if 'frontCard' in data and key in data['frontCard']['sections']:
