@@ -9,18 +9,19 @@
   "backCard": {
     "title": "La Guarida del Señor de la Guerra",
     "subtitle": "El Amuleto Roto - I ACTO",
+"sections": {
     "loreTitle": "Historia",
     "loreParagraphs": [
       "En las profundidades de las <em>Montañas Grises</em>, un <em>Skaven Señor de la Guerra</em> del <em>Clan Rictus</em> planea una campaña para, literalmente, minar el subsuelo de la cercana ciudad de <em>Pavarron</em>. Es en su guarida donde se encuentra el <em>1er Fragmento del Amuleto Roto</em>.",
       "En las paredes de esta mazmorra podeís ver colgados horribles trofeos que conmemoran pasadas victorias: escudos rotos yllenos de sangre que pertenecieron a enemogos derrotados: cabelleras y calaveras: armas melladas y oxidadas de una docena de razas diferentes y, grabada sobre las puertas y las losas del suelo, se puede ver la runa de tres brazos, simbolo del <em>Clan Rictus</em>."
     ],
-    "loreImage": "../images/quests/quest-broken-amulet-1.png",
-    "loreImageAlt": "warlordLairLoreImage",
-    "loreImageFallback": "https://placehold.co/900x700/png?text=Ilustraci%C3%B3n+de+Tobaro"
+    "loreImage": "../images/quests/quest-broken-amulet-1.png"
+}
   },
   "frontCard": {
     "title": "La Guarida del Señor de la Guerra",
     "subtitle": "El Amuleto Roto - I ACTO",
+"sections":{
     "objectiveTitle": "Objetivos",
     "objectiveParagraphs": [
       "&bull; Explorar el laberinto y encontrar el <em>Fragmento del Amuleto Roto</em>.",
@@ -49,4 +50,5 @@
     ],
     "monstersNote": "Si los Héroes matan a los Monstruos Especiales, podrán apropiarse de sus objetos mágicos. No podrán usar el Pergamino de Disformidad ni el Incensario de Plagas."
   }
+}
 }
