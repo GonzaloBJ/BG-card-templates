@@ -62,6 +62,11 @@
             "json": "enemiesCard.json",
             "template": "template_enemies_card.html",
             "output": "cartas_enemigos.html"
+        },
+        "8": {
+            "json": "enemies/skavenWarrior.json",
+            "template": "template_enemy_card_content.html",
+            "output": "cartas_SKAVEN_TEST.html"
         }
     }
 }

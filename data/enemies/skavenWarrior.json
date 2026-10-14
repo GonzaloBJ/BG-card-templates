@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "cardSize": "miniEuro",
+    "isLanscapeCard": true,
+    "twoSizedCard": true,
+    "multipleCardPrintMatrix": "1x1",
+    "paperSize": "letter"
+  },
+  "backCard": {
+    "title": "Skaven",
+    "subtitle": "Guerrero",
+    "sections": {}
+  },
+  "frontCard": {
+    "title": "Skaven",
+    "subtitle": "Guerrero",
+    "sections": {
+      "enemyImage": "/images/enemies/skaven-warrior.png",
+      "stats": {
+        "ha": 1,
+        "hp": 2,
+        "f": 3,
+        "d": 4,
+        "v": 5,
+        "b": 6,
+        "i": 7,
+        "h": 8,
+        "vp": 9
+      },
+      "meleeRolls": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "meleeDices": 3,
+      "equipment": [
+        "Espada Corta",
+        "Cota de Cuero"
+      ]
+    }
+  }
+}
