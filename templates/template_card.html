@@ -306,6 +306,37 @@
         margin-top: 0.7mm;
         font-style: italic;
       }
+
+      .track-table {
+        display: grid;
+        grid-template-columns: 7mm repeat(6, 8mm); /* Columna de números (7mm) + 6 columnas de atributos de 8mm cada una */
+        gap: 0.5mm;
+        /* background: rgba(255, 255, 255, 0.85); */
+        padding: 1mm;
+        border: 0.25mm solid var(--ink);
+      }
+
+      .track-cell {
+        width: 8mm;
+        height: 8mm;
+        border: var(--border-card) solid var(--border-card-color);
+        background: var(--track-cell-bg-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3.2mm;
+      }
+
+      .track-header-cell {
+        width: 8mm;
+        height: 8mm;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-title);
+        font-weight: 900;
+        font-size: 3mm;
+      }
     </style>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
