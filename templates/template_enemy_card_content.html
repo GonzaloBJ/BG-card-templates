@@ -4,8 +4,8 @@
       <div class="card-title">{{frontCard.title}}</div>
       <div class="card-subtitle">{{frontCard.subtitle}}</div>
     </div>
-    <div class="card-img-container">
-      <span class="card-img-placeholder">[ Miniatura ]</span>
+    <div class="illustration-wrap" style="width: 30%; height: 100%;">
+      <img class="illustration" src="{{ frontCard.image }}" />
     </div>
   </div>
   <div class="card-right">
@@ -20,14 +20,14 @@
       <div class="stat-cell stat-header">H</div>
       <div class="stat-cell stat-header">VP</div>
       
-      <div class="stat-cell stat-value">{{frontCard.stats.HA}}</div>
-      <div class="stat-cell stat-value">{{frontCard.stats.HP}}</div>
-      <div class="stat-cell stat-value">{{frontCard.stats.F}}</div>
-      <div class="stat-cell stat-value">{{frontCard.stats.D}}</div>
-      <div class="stat-cell stat-value">{{frontCard.stats.V}}</div>
-      <div class="stat-cell stat-value">{{frontCard.stats.B}}</div>
-      <div class="stat-cell stat-value">{{frontCard.stats.H}}</div>
-      <div class="stat-cell stat-value">{{frontCard.stats.VP}}</div>
+      <div class="stat-cell stat-value">{{frontCard.sections.stats.HA}}</div>
+      <div class="stat-cell stat-value">{{frontCard.sections.stats.HP}}</div>
+      <div class="stat-cell stat-value">{{frontCard.sections.stats.F}}</div>
+      <div class="stat-cell stat-value">{{frontCard.sections.stats.D}}</div>
+      <div class="stat-cell stat-value">{{frontCard.sections.stats.V}}</div>
+      <div class="stat-cell stat-value">{{frontCard.sections.stats.B}}</div>
+      <div class="stat-cell stat-value">{{frontCard.sections.stats.H}}</div>
+      <div class="stat-cell stat-value">{{frontCard.sections.stats.VP}}</div>
     </div>
 
     <!-- Combate Cuerpo a Cuerpo -->

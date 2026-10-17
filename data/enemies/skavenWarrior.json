@@ -9,8 +9,9 @@
   "frontCard": {
     "title": "Guerrero Skaven",
     "subtitle": "Infantería",
-    "image": "../images/skaven.png",
-    "stats": {
+    "image": "../images/enemies/skavenWarrior.png",
+    "sections": {
+      "stats": {
       "HA": 6,
       "HP": 5,
       "F": 5,
@@ -20,7 +21,6 @@
       "H": 3,
       "VP": 1
     },
-    "sections": {
       "meleeCombat": {
         "rolls": [2, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10],
         "damage": 3
