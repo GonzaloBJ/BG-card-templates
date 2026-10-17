@@ -1,14 +1,14 @@
 {
   "meta": {
-    "cardSize": "tarot",
+    "cardSize": "miniEuro",
     "isLandscapeCard": true,
     "twoSidedCard": false,
     "multipleCardPrintMatrix": "1x1",
     "paperSize": "A4"
   },
   "frontCard": {
-    "title": "Guerrero Skaven",
-    "subtitle": "Infantería",
+    "title": "Skaven",
+    "subtitle": "Guerrero",
     "image": "../images/enemies/skavenWarrior.png",
     "sections": {
       "stats": {

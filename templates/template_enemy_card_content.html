@@ -1,47 +1,98 @@
-<article class="card">
-  <div class="card-left">
-    <div class="card-header">
-      <div class="card-title">{{frontCard.title}}</div>
-      <div class="card-subtitle">{{frontCard.subtitle}}</div>
-    </div>
-    <div class="illustration-wrap" style="width: 30%; height: 100%;">
-      <img class="illustration" src="{{ frontCard.image }}" />
-    </div>
-  </div>
-  <div class="card-right">
-    <!-- Tabla de Atributos -->
-    <div class="stats-table">
-      <div class="stat-cell stat-header">HA</div>
-      <div class="stat-cell stat-header">HP</div>
-      <div class="stat-cell stat-header">F</div>
-      <div class="stat-cell stat-header">D</div>
-      <div class="stat-cell stat-header">V</div>
-      <div class="stat-cell stat-header">B</div>
-      <div class="stat-cell stat-header">H</div>
-      <div class="stat-cell stat-header">VP</div>
-      
-      <div class="stat-cell stat-value">{{frontCard.sections.stats.HA}}</div>
-      <div class="stat-cell stat-value">{{frontCard.sections.stats.HP}}</div>
-      <div class="stat-cell stat-value">{{frontCard.sections.stats.F}}</div>
-      <div class="stat-cell stat-value">{{frontCard.sections.stats.D}}</div>
-      <div class="stat-cell stat-value">{{frontCard.sections.stats.V}}</div>
-      <div class="stat-cell stat-value">{{frontCard.sections.stats.B}}</div>
-      <div class="stat-cell stat-value">{{frontCard.sections.stats.H}}</div>
-      <div class="stat-cell stat-value">{{frontCard.sections.stats.VP}}</div>
-    </div>
+<article class="card front">
+  <div class="card-content">
+    <div class="front-layout" style=" grid-template-columns: 1fr !important;">
+      <!-- <div class="front-title" style="border-right: none"></div> -->
 
-    <!-- Combate Cuerpo a Cuerpo -->
-    <div class="section-block">
-      <div class="section-title">Combate Cuerpo a Cuerpo</div>
-      {{frontCard.sections.meleeCombatHtml}}
-    </div>
+      <div class="front-main">
+        <div class="front-columns">
+          <div class="left-column">
+            <section class="section">
+              <div class="card-title">{{ frontCard.title }}</div>
+              <div class="card-subtitle">{{ frontCard.subtitle }}</div>
+            </section>
 
-    <!-- Equipo / Notas -->
-    <div class="section-block" style="flex-grow:1;">
-      <div class="section-title">Equipo / Notas</div>
-      <div class="equipment-content">
-        {{frontCard.sections.equipment}}
+            <div class="illustration-wrap" style="height: 50%">
+              <img class="illustration" src="{{ frontCard.image }}" />
+            </div>
+          </div>
+
+          <div class="right-column">
+            <section class="section">
+              <!-- Tabla de Atributos -->
+              <div class="stats-table">
+                <div class="stat-cell stat-header">HA</div>
+                <div class="stat-cell stat-header">HP</div>
+                <div class="stat-cell stat-header">F</div>
+                <div class="stat-cell stat-header">D</div>
+                <div class="stat-cell stat-header">V</div>
+                <div class="stat-cell stat-header">B</div>
+                <div class="stat-cell stat-header">H</div>
+                <div class="stat-cell stat-header">VP</div>
+
+                <div class="stat-cell stat-value">
+                  {{ frontCard.sections.stats.HA }}
+                </div>
+                <div class="stat-cell stat-value">
+                  {{ frontCard.sections.stats.HP }}
+                </div>
+                <div class="stat-cell stat-value">
+                  {{ frontCard.sections.stats.F }}
+                </div>
+                <div class="stat-cell stat-value">
+                  {{ frontCard.sections.stats.D }}
+                </div>
+                <div class="stat-cell stat-value">
+                  {{ frontCard.sections.stats.V }}
+                </div>
+                <div class="stat-cell stat-value">
+                  {{ frontCard.sections.stats.B }}
+                </div>
+                <div class="stat-cell stat-value">
+                  {{ frontCard.sections.stats.H }}
+                </div>
+                <div class="stat-cell stat-value">
+                  {{ frontCard.sections.stats.VP }}
+                </div>
+              </div>
+            </section>
+
+            <section class="section">
+              <!-- Combate Cuerpo a Cuerpo -->
+              <div class="section-block">
+                <div class="section-title">Combate Cuerpo a Cuerpo</div>
+                {{ frontCard.sections.meleeCombatHtml }}
+              </div>
+            </section>
+
+            <section class="section">
+              <!-- Equipo / Notas -->
+              <div class="section-block" style="flex-grow: 1">
+                <div class="section-title">Equipo / Notas</div>
+                <div class="equipment-content">
+                  {{ frontCard.sections.equipment }}
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </article>
+<!-- {{ TWO_SIDED }}
+<article class="card back">
+    <div class="card-content">
+        <header class="back-title">
+            <div class="subtitle">&bull;{{ backCard.subtitle }}&bull;</div>
+            <h1 class="title">
+                {{ backCard.title }}
+            </h1>
+        </header>
+
+        <div class="back-body">
+            <div class="section story">
+                {{ backCard.sections.loreParagraphs }}
+            </div>
+        </div>
+    </div>
+</article> -->
