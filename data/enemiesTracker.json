@@ -1,7 +1,7 @@
 {
   "meta": {
     "cardSize": "tarot", 
-    "isLanscapeCard": false,
+    "isLandscapeCard": false,
     "twoSizedCard": true, 
     "multipleCardPrintMatrix": "1x1", 
     "paperSize":"letter"
