@@ -67,30 +67,37 @@ def main():
     # ==========================================
     meta = data.get("meta", {})
     card_size = meta.get("cardSize", "tarot")
-    is_lanscape_card = meta.get("isLanscapeCard", "horizontal")
+    is_landscape_card = meta.get("isLandscapeCard", "horizontal")
     two_sided = meta.get("twoSizedCard", False)
     matrix = meta.get("multipleCardPrintMatrix", "1x1")
     paper_size = meta.get("paperSize", "letter")
     
-    front_content, back_content = quest_content.split('{{ TWO_SIDED }}')
+    # Inyección de plantilla frontal y trasera
+    if '{{ TWO_SIDED }}' in quest_content:
+        front_content, back_content = quest_content.split('{{ TWO_SIDED }}')
+    else:
+        front_content, back_content = quest_content, ""
+
     html_content = html_content.replace('{{ FRONTCARD }}', front_content)
-    
+
     back_card_content = data.get("backCard", {})
-    if back_card_content != {} and two_sided:
+    if back_card_content and two_sided and back_content.strip():
         back_card_section = f"""
             <section class="sheet">
                 <div class="print-matrix">
                     {back_content}
                 </div>
-            </section>'
+            </section>
         """
         html_content = html_content.replace('{{ BACKCARD }}', back_card_section)
+    else:
+        html_content = html_content.replace('{{ BACKCARD }}', '')
         
     # Resolver dimensiones base según el tamaño de carta
     base_dimensions = CONFIG.get('cardSizeList').get(card_size, {"w": "44mm", "h": "67mm"})
     
     # Ajustar ancho y alto según la orientación (horizontal invierte las dimensiones vertical por defecto)
-    if is_lanscape_card:
+    if is_landscape_card:
         card_w = base_dimensions["h"]
         card_h = base_dimensions["w"]
     else:
@@ -109,18 +116,20 @@ def main():
     if 'backCard' in data and 'loreParagraphs' in data['backCard']['sections']:
         parrafos_historia = "".join([f'<p class="body">{p}</p>' for p in data['backCard']['sections']['loreParagraphs']])
         data['backCard']['sections']['loreParagraphs'] = parrafos_historia
+        
+    front_sections = data['frontCard']['sections']
 
     for key in ['objectiveParagraphs', 'rewardParagraphs', 'deploymentParagraphs']:
-        if 'frontCard' in data and key in data['frontCard']['sections']:
-            data['frontCard']['sections'][key] = "".join([f'<p class="body">{p}</p>' for p in data['frontCard']['sections'][key]])
+        if 'frontCard' in data and key in front_sections:
+            front_sections[key] = "".join([f'<p class="body">{p}</p>' for p in front_sections[key]])
 
-    if 'frontCard' in data and 'monstersTableHeaders' in data['frontCard']['sections']:
-        headers_html = "".join([f'<th>{h}</th>' for h in data['frontCard']['sections']['monstersTableHeaders']])
-        data['frontCard']['sections']['monstersTableHeaders'] = headers_html
+    if 'frontCard' in data and 'monstersTableHeaders' in front_sections:
+        headers_html = "".join([f'<th>{h}</th>' for h in front_sections['monstersTableHeaders']])
+        front_sections['monstersTableHeaders'] = headers_html
 
-    if 'frontCard' in data and 'monstersTableRows' in data['frontCard']['sections']:
+    if 'frontCard' in data and 'monstersTableRows' in front_sections:
         filas_html = ""
-        for row in data['frontCard']['sections']['monstersTableRows']:
+        for row in front_sections['monstersTableRows']:
             filas_html += f"""
                 <tr>
                   <td class="level">{row.get('level', '')}</td>
@@ -128,11 +137,11 @@ def main():
                   <td>{row.get('item', '')}</td>
                 </tr>
             """
-        data['frontCard']['sections']['monstersTableRows'] = filas_html
+        front_sections['monstersTableRows'] = filas_html
     
-    if 'frontCard' in data and 'unitSlots' in data['frontCard']['sections']:
+    if 'frontCard' in data and 'unitSlots' in front_sections:
         ranuras_html = ""
-        for i in range(data['frontCard']['sections']['unitSlots']):
+        for i in range(front_sections['unitSlots']):
             ranuras_html += f"""
                 <div class="row-header-cell">{i+1}</div>
                 <div class="track-cell"></div>
@@ -142,7 +151,38 @@ def main():
                 <div class="track-cell"></div>
                 <div class="track-cell"></div>
             """
-        data['frontCard']['sections']['unitSlotsRows'] = ranuras_html
+        front_sections['unitSlotsRows'] = ranuras_html
+        
+        
+     # 1. Procesamiento de Parráfos/Líneas de Equipo o Notas
+    if 'equipment' in front_sections and isinstance(front_sections['equipment'], list):
+        front_sections['equipment'] = "<br>".join(front_sections['equipment'])
+
+    # 2. Procesamiento de Filas de Combate Cuerpo a Cuerpo (Melee Grid)
+    if 'meleeCombat' in front_sections and isinstance(front_sections['meleeCombat'], dict):
+        melee = front_sections['meleeCombat']
+        rolls = melee.get('rolls', [])
+        damage = melee.get('damage', '')
+        
+        rolls_html = "".join([f'<div class="cg-cell">{r}</div>' for r in rolls])
+        
+        melee_grid_html = f"""
+        <div class="combat-grid">
+            <div class="cg-cell cg-header" style="font-size:0.8mm;">HA</div>
+            <div class="cg-cell cg-header">1</div><div class="cg-cell cg-header">2</div>
+            <div class="cg-cell cg-header">3</div><div class="cg-cell cg-header">4</div>
+            <div class="cg-cell cg-header">5</div><div class="cg-cell cg-header">6</div>
+            <div class="cg-cell cg-header">7</div><div class="cg-cell cg-header">8</div>
+            <div class="cg-cell cg-header">9</div><div class="cg-cell cg-header">10</div>
+            <div class="cg-cell cg-header">11</div><div class="cg-cell cg-header">12</div>
+            <div class="cg-cell cg-header" style="font-size:0.7mm;">D. Daño</div>
+            
+            <div class="cg-cell cg-header" style="font-size:0.7mm;">Tirada</div>
+            {rolls_html}
+            <div class="cg-cell" style="font-weight:700;">{damage}</div>
+        </div>
+        """
+        front_sections['meleeCombatHtml'] = melee_grid_html
 
     # ==========================================
     # REEMPLAZO DE VARIABLES EN EL HTML
@@ -208,7 +248,7 @@ def main():
         f.write(html_final)
 
     print(f"¡Éxito! Se ha generado la carta ID {selected_card} usando '{json_filename}'.")
-    print(f"Configuración aplicada -> Papel: {paper_size}, Tamaño: {card_size}, Orientación: {is_lanscape_card}, Matriz: {matrix}, Doble cara: {two_sided}")
+    print(f"Configuración aplicada -> Papel: {paper_size}, Tamaño: {card_size}, Orientación: {is_landscape_card}, Matriz: {matrix}, Doble cara: {two_sided}")
     print(f"Archivo de salida creado: {html_output_filename}")
 
 if __name__ == '__main__':

@@ -1,93 +1,46 @@
-<article class="card front">
-  <div class="card-content">
-    <div class="front-layout">
-
-      <div class="front-main">
-        <div class="front-columns">
-          <div class="left-column" style="background-color: blue; width: 35mm">
-            <section class="section">
-              <h2 class="title">
-                {{ frontCard.title }}
-              </h2>
-              <div class="subtitle">&bull;{{ frontCard.subtitle }}&bull;</div>
-            </section>
-
-            <section class="section">
-              <div class="illustration-wrap">
-                <img class="illustration" src="{{ frontCard.sections.enemyImage }}" />
-              </div>
-            </section>
-
-          </div>
-
-          <div class="right-column" style="background-color: red; width: 75mm">
-            <section class="section">
-              <div class="track-table" style="grid-template-columns: 7mm repeat(9, 8mm) !important;">
-                <div class="track-header-cell">HA</div>
-                <div class="track-header-cell">HP</div>
-                <div class="track-header-cell">F</div>
-                <div class="track-header-cell">D</div>
-                <div class="track-header-cell">V</div>
-                <div class="track-header-cell">B</div>
-                <div class="track-header-cell">I</div>
-                <div class="track-header-cell">H</div>
-                <div class="track-header-cell">VP</div>
-
-                <div class="track-cell">{{ frontCard.sections.stats.ha }}</div>
-                <div class="track-cell">{{ frontCard.sections.stats.hp }}</div>
-                <div class="track-cell">{{ frontCard.sections.stats.f }}</div>
-                <div class="track-cell">{{ frontCard.sections.stats.d }}</div>
-                <div class="track-cell">{{ frontCard.sections.stats.v }}</div>
-                <div class="track-cell">{{ frontCard.sections.stats.b }}</div>
-                <div class="track-cell">{{ frontCard.sections.stats.i }}</div>
-                <div class="track-cell">{{ frontCard.sections.stats.h }}</div>
-                <div class="track-cell">{{ frontCard.sections.stats.vp }}</div>
-              </div>
-            </section>
-
-            <!-- <section class="special-table-wrap">
-              <h2 class="section-title">
-                {{ frontCard.sections.monstersTitle }}
-              </h2>
-
-              <table class="special-table">
-                <thead>
-                  <tr>
-                    {{ frontCard.sections.monstersTableHeaders }}
-                  </tr>
-                </thead>
-                <tbody>
-                  {{ frontCard.sections.monstersTableRows }}
-                </tbody>
-              </table>
-
-              <p class="note">
-                {{ frontCard.sections.monstersNote }}
-              </p>
-            </section> -->
-          </div>
-        </div>
-      </div>
+<article class="card">
+  <div class="card-left">
+    <div class="card-header">
+      <div class="card-title">{{frontCard.title}}</div>
+      <div class="card-subtitle">{{frontCard.subtitle}}</div>
+    </div>
+    <div class="card-img-container">
+      <span class="card-img-placeholder">[ Miniatura ]</span>
     </div>
   </div>
-</article>
-{{ TWO_SIDED }}
-<article class="card back">
-  <div class="card-content">
-    <header class="back-title">
-      <div class="subtitle">&bull;{{ backCard.subtitle }}&bull;</div>
-      <h1 class="title">
-        {{ backCard.title }}
-      </h1>
-    </header>
+  <div class="card-right">
+    <!-- Tabla de Atributos -->
+    <div class="stats-table">
+      <div class="stat-cell stat-header">HA</div>
+      <div class="stat-cell stat-header">HP</div>
+      <div class="stat-cell stat-header">F</div>
+      <div class="stat-cell stat-header">D</div>
+      <div class="stat-cell stat-header">V</div>
+      <div class="stat-cell stat-header">B</div>
+      <div class="stat-cell stat-header">H</div>
+      <div class="stat-cell stat-header">VP</div>
+      
+      <div class="stat-cell stat-value">{{frontCard.stats.HA}}</div>
+      <div class="stat-cell stat-value">{{frontCard.stats.HP}}</div>
+      <div class="stat-cell stat-value">{{frontCard.stats.F}}</div>
+      <div class="stat-cell stat-value">{{frontCard.stats.D}}</div>
+      <div class="stat-cell stat-value">{{frontCard.stats.V}}</div>
+      <div class="stat-cell stat-value">{{frontCard.stats.B}}</div>
+      <div class="stat-cell stat-value">{{frontCard.stats.H}}</div>
+      <div class="stat-cell stat-value">{{frontCard.stats.VP}}</div>
+    </div>
 
-    <div class="back-body">
-      <div class="section story">
-        {{ backCard.sections.loreParagraphs }}
-      </div>
+    <!-- Combate Cuerpo a Cuerpo -->
+    <div class="section-block">
+      <div class="section-title">Combate Cuerpo a Cuerpo</div>
+      {{frontCard.sections.meleeCombatHtml}}
+    </div>
 
-      <div class="illustration-wrap">
-        <img class="illustration" src="{{ backCard.sections.loreImage }}" />
+    <!-- Equipo / Notas -->
+    <div class="section-block" style="flex-grow:1;">
+      <div class="section-title">Equipo / Notas</div>
+      <div class="equipment-content">
+        {{frontCard.sections.equipment}}
       </div>
     </div>
   </div>

@@ -15,7 +15,7 @@
         --ink: #111;
         --gray: #d8d8d8;
         --paper: #fff;
-        --table-header-bg: #C68E0C;
+        --table-header-bg: black;
         --table-header-color: #fff;
         --table-row-alt: var(--gray);
         --table-cell-bg: #fff;
@@ -336,6 +336,104 @@
         font-family: var(--font-title);
         font-weight: 900;
         font-size: 3mm;
+      }
+
+
+      
+      /* Tabla superior de Atributos (HA, HP, F, D, V, B, H, VP) */
+      .stats-table {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        border: 0.2mm solid var(--ink);
+        background: rgba(255, 255, 255, 0.85);
+      }
+
+      .stat-cell {
+        border-right: 0.15mm solid var(--ink);
+        border-bottom: 0.15mm solid var(--ink);
+        text-align: center;
+        padding: 0.2mm 0;
+      }
+
+      .stat-cell:last-child {
+        border-right: none;
+      }
+
+      .stat-header {
+        font-family: var(--font-title);
+        font-size: 1.1mm;
+        font-weight: 700;
+        background: #e6dcbe;
+      }
+
+      .stat-value {
+        font-size: 1.4mm;
+        font-weight: 700;
+        height: 2.8mm;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Bloques estilo Advanced HeroQuest (Combate Cuerpo a Cuerpo, Distancia, Equipo) */
+      .section-block {
+        border: 0.2mm solid var(--ink);
+        background: rgba(255, 255, 255, 0.8);
+        padding: 0.4mm 0.6mm;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4mm;
+      }
+
+      .section-title {
+        font-family: var(--font-title);
+        font-size: 1.1mm;
+        font-weight: 700;
+        text-align: center;
+        text-transform: uppercase;
+        border-bottom: 0.15mm solid var(--ink);
+        padding-bottom: 0.2mm;
+        letter-spacing: 0.05mm;
+      }
+
+      /* Mini celdas numeradas estilo tabla de combate de la referencia */
+      .combat-grid {
+        display: grid;
+        grid-template-columns: 10mm repeat(12, 1fr) 9mm;
+        border: 0.15mm solid var(--ink);
+        background: #fff;
+        text-align: center;
+      }
+
+      .combat-grid-dist {
+        display: grid;
+        grid-template-columns: 10mm repeat(5, 1fr) 9mm 9mm;
+        border: 0.15mm solid var(--ink);
+        background: #fff;
+        text-align: center;
+      }
+
+      .cg-cell {
+        border-right: 0.1mm solid var(--ink);
+        border-bottom: 0.1mm solid var(--ink);
+        font-size: 0.9mm;
+        padding: 0.2mm 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cg-header {
+        font-family: var(--font-title);
+        font-size: 0.9mm;
+        font-weight: 700;
+        background: #f0e6cc;
+      }
+
+      .equipment-content {
+        font-size: 1.1mm;
+        line-height: 1.1;
+        padding: 0.2mm;
       }
     </style>
 

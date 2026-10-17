@@ -1,50 +1,34 @@
 {
   "meta": {
     "cardSize": "tarot",
-    "isLanscapeCard": true,
-    "twoSizedCard": true,
+    "isLandscapeCard": true,
+    "twoSidedCard": false,
     "multipleCardPrintMatrix": "1x1",
-    "paperSize": "letter"
-  },
-  "backCard": {
-    "title": "Skaven",
-    "subtitle": "Guerrero",
-    "sections": {}
+    "paperSize": "A4"
   },
   "frontCard": {
-    "title": "Skaven",
-    "subtitle": "Guerrero",
+    "title": "Guerrero Skaven",
+    "subtitle": "Infantería",
+    "image": "../images/skaven.png",
+    "stats": {
+      "HA": 6,
+      "HP": 5,
+      "F": 5,
+      "D": 7,
+      "V": 10,
+      "B": 6,
+      "H": 3,
+      "VP": 1
+    },
     "sections": {
-      "enemyImage": "/images/enemies/skaven-warrior.png",
-      "stats": {
-        "ha": 1,
-        "hp": 2,
-        "f": 3,
-        "d": 4,
-        "v": 5,
-        "b": 6,
-        "i": 7,
-        "h": 8,
-        "vp": 9
+      "meleeCombat": {
+        "rolls": [2, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10],
+        "damage": 3
       },
-      "meleeRolls": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12
-      ],
-      "meleeDices": 3,
       "equipment": [
-        "Espada Corta",
-        "Cota de Cuero"
+        "Cota de Cuero",
+        "Escudo",
+        "Espada"
       ]
     }
   }
