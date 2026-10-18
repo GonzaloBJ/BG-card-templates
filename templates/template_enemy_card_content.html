@@ -1,14 +1,37 @@
 <article class="card front">
   <div class="card-content">
-    <div class="front-layout" style=" grid-template-columns: 1fr !important;">
-      <!-- <div class="front-title" style="border-right: none"></div> -->
+    <div class="front-layout" style="grid-template-columns: 1fr !important">
+      <style>
+        .front .front-columns {
+          gap: 0 !important;
+        }
 
+        .section-block {
+          padding: 0 !important;
+        }
+
+        .section-title,
+        .equipment-content,
+        .cg-cell,
+        .stat-cell {
+          font-size: 2mm !important;
+        }
+
+        .subtitle {
+          text-align: center !important;
+          width: auto !important;;
+        }
+
+        .cg-cell {
+          border-bottom: none !important;
+        }
+      </style>
       <div class="front-main">
         <div class="front-columns">
           <div class="left-column">
             <section class="section">
-              <div class="card-title">{{ frontCard.title }}</div>
-              <div class="card-subtitle">{{ frontCard.subtitle }}</div>
+              <div class="title">{{ frontCard.title }}</div>
+              <div class="subtitle">{{ frontCard.subtitle }}</div>
             </section>
 
             <div class="illustration-wrap" style="height: 50%">
@@ -19,13 +42,14 @@
           <div class="right-column">
             <section class="section">
               <!-- Tabla de Atributos -->
-              <div class="stats-table">
+              <div class="stats-table" style="font-size: 2mm !important">
                 <div class="stat-cell stat-header">HA</div>
                 <div class="stat-cell stat-header">HP</div>
                 <div class="stat-cell stat-header">F</div>
                 <div class="stat-cell stat-header">D</div>
                 <div class="stat-cell stat-header">V</div>
                 <div class="stat-cell stat-header">B</div>
+                <div class="stat-cell stat-header">I</div>
                 <div class="stat-cell stat-header">H</div>
                 <div class="stat-cell stat-header">VP</div>
 
@@ -48,6 +72,9 @@
                   {{ frontCard.sections.stats.B }}
                 </div>
                 <div class="stat-cell stat-value">
+                  {{ frontCard.sections.stats.I }}
+                </div>
+                <div class="stat-cell stat-value">
                   {{ frontCard.sections.stats.H }}
                 </div>
                 <div class="stat-cell stat-value">
@@ -67,7 +94,7 @@
             <section class="section">
               <!-- Equipo / Notas -->
               <div class="section-block" style="flex-grow: 1">
-                <div class="section-title" style="font-size: 2mm !important;">Equipo / Notas</div>
+                <div class="section-title">Equipo / Notas</div>
                 <div class="equipment-content">
                   {{ frontCard.sections.equipment }}
                 </div>

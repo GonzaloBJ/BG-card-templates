@@ -168,16 +168,16 @@ def main():
         
         melee_grid_html = f"""
         <div class="combat-grid">
-            <div class="cg-cell cg-header" style="font-size:0.8mm;">HA</div>
+            <div class="cg-cell cg-header">HA</div>
             <div class="cg-cell cg-header">1</div><div class="cg-cell cg-header">2</div>
             <div class="cg-cell cg-header">3</div><div class="cg-cell cg-header">4</div>
             <div class="cg-cell cg-header">5</div><div class="cg-cell cg-header">6</div>
             <div class="cg-cell cg-header">7</div><div class="cg-cell cg-header">8</div>
             <div class="cg-cell cg-header">9</div><div class="cg-cell cg-header">10</div>
             <div class="cg-cell cg-header">11</div><div class="cg-cell cg-header">12</div>
-            <div class="cg-cell cg-header" style="font-size:0.7mm;">D. Daño</div>
+            <div class="cg-cell cg-header">D. Daño</div>
             
-            <div class="cg-cell cg-header" style="font-size:0.7mm;">Tirada</div>
+            <div class="cg-cell cg-header">Tirada</div>
             {rolls_html}
             <div class="cg-cell" style="font-weight:700;">{damage}</div>
         </div>
