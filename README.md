@@ -1,40 +1,47 @@
-Aquí tienes una propuesta completa para el archivo README.md, redactada de forma clara y profesional. Se incluyen marcadores -TODO- en las secciones donde se requiere información específica sobre el proyecto o archivos externos.
+# Generador de Cartas HTML
 
-Generador de Cartas HTML
-Este script de Python permite transformar datos estructurados en formato JSON y plantillas HTML/CSS en archivos HTML finales listos para imprimir o visualizar. Está diseñado para procesar cartas individuales o juegos de cartas con soporte para configuraciones dinámicas de impresión (tamaño de papel, orientación, matrices de impresión y caras).
+Este script de Python permite transformar datos estructurados en formato JSON y plantillas HTML/CSS en archivos HTML listos para imprimir o visualizar. Está diseñado para procesar cartas individuales o juegos de cartas con soporte para configuraciones dinámicas de impresión (tamaño de papel, orientación, matrices de impresión y caras).
 
-🚀 Características
-Sustitución de variables: Reemplaza dinámicamente marcadores del tipo {{ ruta.anidada }} en las plantillas.
+---
 
-Soporte para doble cara: Permite generar cartas de una cara o de dos caras (frontCard y backCard).
+## 🚀 Características
+- **Sustitución de variables:** Reemplaza dinámicamente marcadores del tipo `{{ ruta.anidada }}` en las plantillas.
+- **Soporte para doble cara:** Permite generar cartas de una cara o de dos caras ( `frontCard` y `backCard` ).
+- **Ajustes dinámicos de impresión:** Configura estilos de CSS `@page` y retículas ( `grid` ) según el tamaño de papel, tamaño de carta, orientación (horizontal/vertical) y matriz de impresión (ej. `3x2` ).
+- **Generación de componentes HTML:** Transformación automática de listas y estructuras complejas (párrafos, tablas de monstruos, ranuras de seguimiento de unidades, listas de equipo y grillas de combate).
 
-Ajustes dinámicos de impresión: Configura estilos de CSS @page y retículas (grid) según el tamaño de papel, tamaño de carta, orientación (horizontal/vertical) y matriz de impresión (ej. 3x2).
+---
 
-Generación de componentes HTML: Transformación automática de listas y estructuras complejas (párrafos, tablas de monstruos, ranuras de seguimiento de unidades, listas de equipo y grillas de combate).
+## 📁 Estructura del Proyecto
 
-📁 Estructura del Proyecto
-Plaintext
-.
-├── generar_carta.py        # Script principal de generación
-├── config.json             # Configuración general de tipos de carta y dimensiones
-├── data/                   # Archivos JSON con los datos específicos de cada carta
-│   └── -TODO- (ej. carta_01.json)
-├── templates/              # Plantillas HTML
-│   ├── template_card.html  # Estructura base de la página HTML
-│   └── -TODO- (ej. plantilla_mision.html)
-└── outputFiles/            # Carpeta donde se guardan los archivos HTML generados
-⚙️ Requisitos Previos
-Python 3.7 o superior.
+```text
+  .
+  ├── generar_carta.py        # Script principal de generación
+  ├── config.json             # Configuración general de tipos de carta y dimensiones
+  ├── data/                   # Archivos JSON con los datos específicos de cada carta
+  │   └── -TODO- (ej. carta_01.json)
+  ├── templates/              # Plantillas HTML
+  │   ├── template_card.html  # Estructura base de la página HTML
+  │   └── -TODO- (ej. plantilla_mision.html)
+  └── outputFiles/            # Carpeta donde se guardan los archivos HTML generados
+```
 
-No se requieren librerías de terceros (utiliza módulos estándar de Python: json, re, sys, copy, pathlib).
+---
 
-🛠️ Configuración
-1. Archivo config.json
-El archivo config.json debe ubicarse en la raíz y contener las secciones cardTypeList y cardSizeList.
+## ⚙️ Requisitos Previos
 
-Ejemplo de estructura de config.json:
+- **Python 3.7** o superior.
+- No se requieren librerías de terceros (utiliza módulos estándar de Python: ` json `, ` re `, ` sys `, ` copy `, ` pathlib `).
 
-JSON
+---
+
+## 🛠️ Configuración
+
+### 1. Archivo ` config.json `
+El archivo ` config.json ` debe ubicarse en la raíz y contener las secciones ` cardTypeList ` y ` cardSizeList `.
+
+**Ejemplo de estructura de ` config.json `:**
+```json
 {
   "cardTypeList": {
     "1": {
@@ -44,15 +51,28 @@ JSON
     }
   },
   "cardSizeList": {
-    "tarot": { "w": "70mm", "h": "120mm" },
-    "standard": { "w": "63mm", "h": "88mm" },
-    "-TODO-": { "w": "-TODO-", "h": "-TODO-" }
+    "tarot": {
+      "w": "70mm",
+      "h": "120mm"
+    },
+    "standard": {
+      "w": "63mm",
+      "h": "88mm"
+    },
+    "-TODO-": {
+      "w": "-TODO-",
+      "h": "-TODO-"
+    }
   }
 }
-📄 Estructura de los Datos de Entrada (JSON)
-Cada archivo en data/ debe contener un bloque meta y los datos de las caras de la carta:
+```
+                    
+---
 
-JSON
+## 📄 Estructura de los Datos de Entrada (JSON)
+Cada archivo en ` data/ ` debe contener un bloque ` meta ` y los datos de las caras de la carta:
+
+```json
 {
   "meta": {
     "paperSize": "letter",
@@ -64,17 +84,48 @@ JSON
   "frontCard": {
     "title": "-TODO-",
     "sections": {
-      "objectiveParagraphs": ["Párrafo 1", "Párrafo 2"],
-      "rewardParagraphs": ["Recompensa..."],
-      "deploymentParagraphs": ["Despliegue..."],
-      "monstersTableHeaders": ["Nivel", "Monstruo", "Objeto"],
+      "objectiveParagraphs": [
+        "Párrafo 1",
+        "Párrafo 2"
+      ],
+      "rewardParagraphs": [
+        "Recompensa..."
+      ],
+      "deploymentParagraphs": [
+        "Despliegue..."
+      ],
+      "monstersTableHeaders": [
+        "Nivel",
+        "Monstruo",
+        "Objeto"
+      ],
       "monstersTableRows": [
-        { "level": "1", "monster": "Trasgo", "item": "Espada corta" }
+        {
+          "level": "1",
+          "monster": "Trasgo",
+          "item": "Espada corta"
+        }
       ],
       "unitSlots": 3,
-      "equipment": ["Casco", "Escudo"],
+      "equipment": [
+        "Casco",
+        "Escudo"
+      ],
       "meleeCombat": {
-        "rolls": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 12],
+        "rolls": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          12
+        ],
         "damage": "1D6"
       }
     }
@@ -82,36 +133,51 @@ JSON
   "backCard": {
     "title": "-TODO-",
     "sections": {
-      "loreParagraphs": ["Historia de fondo..."]
+      "loreParagraphs": [
+        "Historia de fondo..."
+      ]
     }
   }
 }
-🖥️ Uso del Script
-Para generar una carta, ejecuta el script pasando como argumento el ID numérico de la carta definido en config.json:
+```
 
-Bash
+---
+
+## 🖥️ Uso del Script
+
+Para generar una carta, ejecuta el script pasando como argumento el **ID numérico** de la carta definido en ` config.json `:
+
+` ` `bash
 python generar_carta.py <ID_CARTA>
-Ejemplo:
-Bash
+` ` `
+
+### Ejemplo:
+` ` `bash
 python generar_carta.py 1
-Salida esperada:
-Plaintext
+` ` `
+
+### Salida esperada:
+` ` `text
 ¡Éxito! Se ha generado la carta ID 1.
 Archivo JSON: .../data/carta_mision_01.json
 Configuración aplicada -> Papel: letter, Tamaño: tarot, Orientación: horizontal, Matriz: 3x2, Doble cara: True
 Archivo de salida: .../outputFiles/carta_mision_01.html
-📌 Marcadores Especiales en Plantillas
-En las plantillas HTML dentro de templates/, puedes usar:
+` ` `
 
-{{ FRONTCARD }}: Punto donde se insertará el contenido del anverso.
+---
 
-{{ TWO_SIDED }}: Delimitador dentro de la plantilla específica para separar la sección frontal de la trasera.
+## 📌 Marcadores Especiales en Plantillas
 
-{{ BACKCARD }}: Punto donde se insertará el reverso de la carta (si twoSizedCard es true).
+En las plantillas HTML dentro de ` templates/ `, puedes usar:
 
-{{ ruta.anidada }}: Sustitución dinámica de propiedades de la carta (ej. {{ frontCard.title }}).
+- **` {{ FRONTCARD }} `**: Punto donde se insertará el contenido del anverso.
+- **` {{ TWO_SIDED }} `**: Delimitador dentro de la plantilla específica para separar la sección frontal de la trasera.
+- **` {{ BACKCARD }} `**: Punto donde se insertará el reverso de la carta (si ` twoSizedCard ` es ` true `).
+- **` {{ ruta.anidada }} `**: Sustitución dinámica de propiedades de la carta (ej. ` {{ frontCard.title }}`).
 
-📝 Notas Adicionales y Mejoras Pendientes
--TODO- (Añade aquí cualquier nota sobre fuentes de tipografía usadas, librerías CSS externas o instrucciones específicas para imprimir el HTML)
+---
 
--TODO- (Añade aquí detalles adicionales sobre el proyecto general o juego de mesa asociado)
+## 📝 Notas Adicionales y Mejoras Pendientes
+
+- -TODO- *(Añade aquí cualquier nota sobre fuentes de tipografía usadas, librerías CSS externas o instrucciones específicas para imprimir el HTML)*
+- -TODO- *(Añade aquí detalles adicionales sobre el proyecto general o juego de mesa asociado)*
