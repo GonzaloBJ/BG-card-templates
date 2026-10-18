@@ -156,7 +156,7 @@ def main():
         
      # 1. Procesamiento de Parráfos/Líneas de Equipo o Notas
     if 'equipment' in front_sections and isinstance(front_sections['equipment'], list):
-        front_sections['equipment'] = "<br>".join(front_sections['equipment'])
+        front_sections['equipment'] = "<br>".join(f"&bull; {equipment}" for equipment in front_sections['equipment'])
 
     # 2. Procesamiento de Filas de Combate Cuerpo a Cuerpo (Melee Grid)
     if 'meleeCombat' in front_sections and isinstance(front_sections['meleeCombat'], dict):
@@ -168,7 +168,7 @@ def main():
         
         melee_grid_html = f"""
         <div class="combat-grid">
-            <div class="cg-cell cg-header">HA</div>
+            <div class="cg-cell cg-header">HA del Blanco</div>
             <div class="cg-cell cg-header">1</div><div class="cg-cell cg-header">2</div>
             <div class="cg-cell cg-header">3</div><div class="cg-cell cg-header">4</div>
             <div class="cg-cell cg-header">5</div><div class="cg-cell cg-header">6</div>
@@ -177,7 +177,7 @@ def main():
             <div class="cg-cell cg-header">11</div><div class="cg-cell cg-header">12</div>
             <div class="cg-cell cg-header">D. Daño</div>
             
-            <div class="cg-cell cg-header">Tirada</div>
+            <div class="cg-cell cg-header">Tirada para Impactar</div>
             {rolls_html}
             <div class="cg-cell" style="font-weight:700;">{damage}</div>
         </div>
