@@ -13,7 +13,9 @@
   "frontCard": {
     "title": "Rastreador de Grupo Enemigo",
     "subtitle": "6 unidades",
-    "enemySlot": "RANURA DE ENEMIGO",
-    "unitSlots": 8
+    "sections":{
+      "enemySlot": "RANURA DE ENEMIGO",
+      "unitSlots": 8
+    }
   }
 }
