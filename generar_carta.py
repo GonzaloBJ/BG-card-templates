@@ -156,7 +156,10 @@ def main():
         
      # 1. Procesamiento de Parráfos/Líneas de Equipo o Notas
     if 'equipment' in front_sections and isinstance(front_sections['equipment'], list):
-        front_sections['equipment'] = "<br>".join(f"&bull; {equipment}" for equipment in front_sections['equipment'])
+        front_sections['equipment'] = " &nbsp; ".join(
+            f"&bull; {equipment}"
+            for equipment in front_sections['equipment']
+        )
 
     # 2. Procesamiento de Filas de Combate Cuerpo a Cuerpo (Melee Grid)
     if 'meleeCombat' in front_sections and isinstance(front_sections['meleeCombat'], dict):
