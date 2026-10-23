@@ -70,6 +70,8 @@
           letter-spacing: 0.2mm;
           line-height: 1.2;
         }
+
+        
       </style>
       <div class="front-main">
         <div class="card-content">
@@ -77,17 +79,21 @@
           <div class="slot-cutout">
             <span class="slot-cutout-text">{{ frontCard.sections.enemySlot }}</span>
           </div>
+          <br>
           <div class="title">{{ frontCard.title }}</div>
+          <br>
           <!-- CUADRÍCULA DE TRACKEO (Atributos en columnas, Filas numeradas 1 a 6, Celdas de 8x8mm) -->
           <div class="track-table">
             <!-- Fila de Cabecera: Iconos de Atributos -->
             <div class="corner-empty"></div>
-            <div class="track-header-cell">❤️</div>
-            <div class="track-header-cell">🛡️</div>
-            <div class="track-header-cell">⚔️</div>
-            <div class="track-header-cell">👤</div>
-            <div class="track-header-cell">💀</div>
-            <div class="track-header-cell">⭐</div>
+            <div class="track-header-cell">HA</div>
+            <div class="track-header-cell">HP</div>
+            <div class="track-header-cell">F</div>
+            <div class="track-header-cell">D</div>
+            <div class="track-header-cell">V</div>
+            <div class="track-header-cell">B</div>
+            <div class="track-header-cell">I</div>
+            <div class="track-header-cell">H</div>
 
             <!-- Filas de slots -->
             {{ frontCard.sections.unitSlotsRows }}

@@ -116,12 +116,12 @@ def generar_filas_monstruos(rows):
     )
 
 
-def generar_ranuras_unidades(quantity):
+def generar_ranuras_unidades(quantity, stat_slots):
     """Genera las filas de seguimiento de unidades."""
     return "".join(
         f"""
         <div class="row-header-cell">{number}</div>
-        {"<div class='track-cell'></div>" * 6}
+        {"<div class='track-cell'></div>" * stat_slots}
         """
         for number in range(1, quantity + 1)
     )
@@ -197,7 +197,7 @@ def transformar_secciones(data):
 
     if "unitSlots" in front:
         front["unitSlotsRows"] = generar_ranuras_unidades(
-            front["unitSlots"]
+            front["unitSlots"], front["statSlots"]
         )
 
     if "equipment" in front:
@@ -251,7 +251,7 @@ def obtener_matriz(matrix):
         return 1, 1
 
 
-def generar_estilos(meta, config):
+def generar_estilos(meta, config, data):
     """Construye los estilos dinámicos de impresión."""
     card_w, card_h = obtener_dimensiones(config, meta)
     
@@ -262,6 +262,8 @@ def generar_estilos(meta, config):
     )
 
     paper_size = meta.get("paperSize", "letter")
+        
+    stat_slots = data.get("frontCard", {}).get("sections", {}).get("statSlots", 1)
 
     return f"""
     <style>
@@ -302,6 +304,10 @@ def generar_estilos(meta, config):
             box-sizing: border-box;
             position: relative;
             overflow: hidden;
+        }}
+        
+        .track-table {{
+            grid-template-columns: 7mm repeat({stat_slots}, 8mm) !important;
         }}
     </style>
     """
@@ -372,7 +378,7 @@ def generar_html(entradas):
 
     html = reemplazar_variables(html, data)
 
-    styles = generar_estilos(meta, config)
+    styles = generar_estilos(meta, config, data)
 
     return insertar_estilos(html, styles)
 

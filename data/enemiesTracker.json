@@ -15,7 +15,8 @@
     "subtitle": "6 unidades",
     "sections":{
       "enemySlot": "RANURA DE ENEMIGO",
-      "unitSlots": 8
+      "unitSlots": 8,
+      "statSlots": 8
     }
   }
 }
