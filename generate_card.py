@@ -285,6 +285,8 @@ def generar_estilos(meta, config, data):
             align-items: center;
             justify-content: center;
             page-break-after: always;
+            position: relative;
+            background: #fff;
         }}
 
         .print-matrix {{
