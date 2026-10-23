@@ -218,20 +218,11 @@ def transformar_secciones(data):
 def obtener_dimensiones(config, meta):
     """Calcula el ancho y alto de la carta según su orientación."""
     card_size = meta.get("cardSize", "tarot")
-    orientation = meta.get("isLandscapeCard", "horizontal")
+    is_landscape = meta.get("isLandscapeCard", True)
 
     dimensions = config.get("cardSizeList", {}).get(
         card_size,
         DEFAULT_CARD_SIZE,
-    )
-
-    # Admite tanto booleanos como las cadenas horizontal/vertical.
-    is_landscape = (
-        orientation is True
-        or (
-            isinstance(orientation, str)
-            and orientation.lower() == "horizontal"
-        )
     )
 
     if is_landscape:
@@ -239,6 +230,15 @@ def obtener_dimensiones(config, meta):
 
     return dimensions["w"], dimensions["h"]
 
+def obtener_bg(config, meta):
+    is_landscape = meta.get("isLandscapeCard", True)
+    
+    bg_vertical = config.get("backgroundImageList").get("oldPaperWhiteVertical", "")
+    bg_horizontal = config.get("backgroundImageList").get("oldPaperWhiteHorizontal", "")
+    
+    background_image_by_orientation = bg_horizontal if is_landscape else bg_vertical
+    
+    return background_image_by_orientation 
 
 def obtener_matriz(matrix):
     """Convierte '3x2' en (3, 2), usando (1, 1) si es inválido."""
@@ -254,6 +254,8 @@ def obtener_matriz(matrix):
 def generar_estilos(meta, config):
     """Construye los estilos dinámicos de impresión."""
     card_w, card_h = obtener_dimensiones(config, meta)
+    
+    bg_by_orientation = obtener_bg(config, meta)
 
     cols, rows = obtener_matriz(
         meta.get("multipleCardPrintMatrix", "1x1")
@@ -296,6 +298,7 @@ def generar_estilos(meta, config):
         .card {{
             width: {card_w};
             height: {card_h};
+            background-image: url('{bg_by_orientation}');
             box-sizing: border-box;
             position: relative;
             overflow: hidden;

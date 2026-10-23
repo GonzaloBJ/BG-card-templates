@@ -22,6 +22,10 @@
             "h": "87mm"
         }
     },
+    "backgroundImageList": {
+        "oldPaperWhiteVertical": "../images/bg-pergamino-blanco-vertical.jpg",
+        "oldPaperWhiteHorizontal": "../images/bg-pergamino-blanco-horizontal.jpg"
+    },
     "cardTypeList": {
         "0": {
             "json": "tobarosBane.json",
