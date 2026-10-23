@@ -3,7 +3,7 @@
     "cardSize": "miniEuro",
     "isLandscapeCard": true,
     "twoSidedCard": false,
-    "multipleCardPrintMatrix": "1x1",
+    "multipleCardPrintMatrix": "2x2",
     "paperSize": "A4"
   },
   "frontCard": {
