@@ -76,6 +76,11 @@
             "json": "enemiesList.json",
             "template": "template_enemy_card_content.html",
             "output": "cartas_ENEMIES_LIST_TEST.html"
-        }
+        },
+        "10": {
+            "json": "questsList.json",
+            "template": "template_quest_card_content.html",
+            "output": "cartas_QUEST_LIST_TEST.html"
+        } 
     }
 }

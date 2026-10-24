@@ -290,7 +290,9 @@ def generar_estilos(meta, config, data):
             margin: 10mm;
         }}
 
-        body {{
+        html, body {{
+            width: 100%;
+            height: 100%;
             margin: 0;
             padding: 0;
             background: #fff;
@@ -298,7 +300,7 @@ def generar_estilos(meta, config, data):
 
         .sheet {{
             width: 100%;
-            min-height: 297mm;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -306,13 +308,14 @@ def generar_estilos(meta, config, data):
             break-after: page;
             position: relative;
             background: #fff;
+            box-sizing: border-box;
         }}
 
         .print-matrix {{
             display: grid;
-            grid-template-columns: repeat({cols}, 1fr);
+            grid-template-columns: repeat({cols}, {card_w});
             grid-template-rows: repeat({rows}, auto);
-            background-color: transparent;
+            background-color: white;
             gap: 4mm;
             justify-content: center;
             align-content: center;
@@ -333,8 +336,8 @@ def generar_estilos(meta, config, data):
             box-sizing: border-box;
             position: relative;
             overflow: hidden;
-            outline: 0.2mm dashed #888; /* Línea segmentada */
-            outline-offset: 2mm;        /* Ubicada a 2mm exactos (en el medio del gap de 4mm) */
+            outline: 0.2mm dashed #888;
+            outline-offset: 2mm;
         }}
         
         .track-table {{
