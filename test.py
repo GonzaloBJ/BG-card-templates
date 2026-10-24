@@ -333,6 +333,8 @@ def generar_estilos(meta, config, data):
             box-sizing: border-box;
             position: relative;
             overflow: hidden;
+            outline: 0.2mm dashed #888; /* Línea segmentada */
+            outline-offset: 2mm;        /* Ubicada a 2mm exactos (en el medio del gap de 4mm) */
         }}
         
         .track-table {{
