@@ -312,7 +312,7 @@ def generar_estilos(meta, config, data):
             display: grid;
             grid-template-columns: repeat({cols}, 1fr);
             grid-template-rows: repeat({rows}, auto);
-            background-color: black;
+            background-color: transparent;
             gap: 4mm;
             justify-content: center;
             align-content: center;
