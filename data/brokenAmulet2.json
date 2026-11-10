@@ -1,54 +1,58 @@
 {
   "meta": {
-    "cardSize": "tarot", 
+    "cardSize": "tarot",
     "isLandscapeCard": true,
-    "twoSizedCard": true, 
-    "multipleCardPrintMatrix": "1x1", 
-    "paperSize":"letter"
+    "twoSizedCard": true,
+    "multipleCardPrintMatrix": "1x1",
+    "paperSize": "letter"
   },
   "backCard": {
     "title": "El Laberinto Mágico",
     "subtitle": "El Amuleto Roto - II ACTO",
-"sections":{
-    "loreTitle": "Historia",
-    "loreParagraphs": [
-      "El laberinto mágico que se encuentra en las profundidaes de esta mazmorra fue construido por <em>Gragoth Daemonmaster</em>, un poderoso <em>Hechicero del Caos</em> con el fin de porteger la segunda parte del <em>Amuleto Roto</em>. <em>Gragoth</em> pidió ayuda a los <em>Asesinos del Clan Eshin</em>, cuyos querreros custodian el fragmento del Amuleto.",
-      "Pintado con sangre en la entrada de la mazmorra podeis ver un simbolo del <em>Clan Eshin</em>, el Clan de los Asessinos. En el aire flota el aroma del terror. Y ¿ese sonido que oyes es el de una puerta chirriando al cerrardose, o son los gemidos de una lejana tormenta?"
-    ],
-    "loreImage": "../images/quests/quest-broken-amulet-2.png"
-}
+    "sections": {
+      "loreTitle": "Historia",
+      "loreParagraphs": [
+        "El laberinto mágico que se encuentra en las profundidaes de esta mazmorra fue construido por <em>Gragoth Daemonmaster</em>, un poderoso <em>Hechicero del Caos</em> con el fin de porteger la segunda parte del <em>Amuleto Roto</em>. <em>Gragoth</em> pidió ayuda a los <em>Asesinos del Clan Eshin</em>, cuyos querreros custodian el fragmento del Amuleto.",
+        "Pintado con sangre en la entrada de la mazmorra podeis ver un simbolo del <em>Clan Eshin</em>, el Clan de los Asessinos. En el aire flota el aroma del terror. Y ¿ese sonido que oyes es el de una puerta chirriando al cerrardose, o son los gemidos de una lejana tormenta?"
+      ],
+      "loreImage": "../images/quests/quest-broken-amulet-2.png"
+    }
   },
   "frontCard": {
     "title": "El Laberinto Mágico",
     "subtitle": "El Amuleto Roto - II ACTO",
-"sections": {
-    "objectiveTitle": "Objetivos",
-    "objectiveParagraphs": [
-      "&bull; Explorar el laberinto y encontrar el <em>Fragmento del Amuleto Roto</em>.",
-      "&bull; Regresar a la superficie."
-    ],
-    "rewardTitle": "Recompensas",
-    "rewardParagraphs": [
-      "&bull; +1 PD.",
-      "&bull; <em>2do Fragmento del Amuleto Roto</em>."
-    ],
-    "deploymentTitle": "Despliegue",
-    "deploymentParagraphs": [
-      "&bull; <em> -ver mapa 'El Laberinto Mágico'-</em>.",
-      "&bull; <strong>Bola de Fuego x2</strong>: Posición en mapa. El jugador cuando llegue a algun corredor -leer nota de la misión Nro.I-.",
-      "&bull; <strong>Asesino del Clan Eshin</strong>: Posición fuera de la visión de los héroes. Opcional en lugar de una <em>Bola de Fuego</em>. Bonificado con +1 HA al inicio de la fase de combate.",
-      "&bull; <strong>Zombis Skaven</strong>: Posición en mapa. El jugador cuando dañe a alguno de estos -leer nota de la misión Nro.II-."
-    ],
-    "monstersTitle": "Monstruos especiales",
-    "monstersTableHeaders": ["Unidades", "Monstruo especial", "Objetos"],
-    "monstersTableRows": [
-      {
-        "level": "1",
-        "monster": "Asesino del Clan Eshin",
-        "item": "habilidad de huir"
-      }
-    ],
-    "monstersNote": ""
+    "sections": {
+      "objectiveTitle": "Objetivos",
+      "objectiveParagraphs": [
+        "&bull; Explorar el laberinto y encontrar el <em>Fragmento del Amuleto Roto</em>.",
+        "&bull; Regresar a la superficie."
+      ],
+      "rewardTitle": "Recompensas",
+      "rewardParagraphs": [
+        "&bull; +1 PD.",
+        "&bull; <em>2do Fragmento del Amuleto Roto</em>."
+      ],
+      "deploymentTitle": "Despliegue",
+      "deploymentParagraphs": [
+        "&bull; <em> -ver mapa 'El Laberinto Mágico'-</em>.",
+        "&bull; <strong>Bola de Fuego x2</strong>: Posición en mapa. El jugador cuando llegue a algun corredor -leer nota de la misión Nro.I-.",
+        "&bull; <strong>Asesino del Clan Eshin</strong>: Posición fuera de la visión de los héroes. Opcional en lugar de una <em>Bola de Fuego</em>. Bonificado con +1 HA al inicio de la fase de combate.",
+        "&bull; <strong>Zombis Skaven</strong>: Posición en mapa. El jugador cuando dañe a alguno de estos -leer nota de la misión Nro.II-."
+      ],
+      "monstersTitle": "Monstruos especiales",
+      "monstersTableHeaders": [
+        "Unidades",
+        "Monstruo especial",
+        "Objetos"
+      ],
+      "monstersTableRows": [
+        {
+          "level": "1",
+          "monster": "Asesino del Clan Eshin",
+          "item": "habilidad de huir"
+        }
+      ],
+      "monstersNote": ""
+    }
   }
-}
 }

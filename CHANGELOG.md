@@ -18,10 +18,14 @@ Fixed (Corrección de errores)
 Security (Mejoras de seguridad)
 
 ## [1.0.1] - 2026-11-10
-### Agregado
+### Added
 - changelog para trackear cambios.
+
+### Fixed
+- carta quest en listado con reverso en 2da hoja.
+- formato de json de datos alineados.
 
 
 ## [1.0.0] 
-### Agregado
+### Added
 - Lanzamiento inicial de la aplicación con panel de control básico.

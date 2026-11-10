@@ -6,18 +6,44 @@
         "multipleCardPrintMatrix": "2x4",
         "paperSize": "letter"
     },
-    "backCard": {
-        "title": "El Azote de Tobaro",
-        "subtitle": "GESTA",
-        "sections": {
-            "loreParagraphs": [
-                "La ciudad de Tobaro está bajo asedio. Los Padres de la Ciudad están desesperados y la comunidad entera está bajo el peligro de un inminente colapso. La razón de todos estos desastres es el reciente aumento del poder de un clan Skaven cercano, que actualmente tiene su gobierno en la ciudad.",
-                "Los Skaven han impuesto un involuntario toque de queda a los habitantes. Las criaturas se lanzan a miles desde las alcantarillas, con <em>Cankerclaw Darkheart</em> al frente.",
-                "Los Padres de la Ciudad han recurrido a su última alternativa: pedir ayuda al exterior y ofrecer recompensas a cualquier Héroe que pueda ayudarles."
-            ],
-            "loreImage": "../images/quests/quest-tobaros-bane.png"
+    "backCard": [
+        {
+            "title": "El Azote de Tobaro",
+            "subtitle": "GESTA",
+            "sections": {
+                "loreParagraphs": [
+                    "La ciudad de Tobaro está bajo asedio. Los Padres de la Ciudad están desesperados y la comunidad entera está bajo el peligro de un inminente colapso. La razón de todos estos desastres es el reciente aumento del poder de un clan Skaven cercano, que actualmente tiene su gobierno en la ciudad.",
+                    "Los Skaven han impuesto un involuntario toque de queda a los habitantes. Las criaturas se lanzan a miles desde las alcantarillas, con <em>Cankerclaw Darkheart</em> al frente.",
+                    "Los Padres de la Ciudad han recurrido a su última alternativa: pedir ayuda al exterior y ofrecer recompensas a cualquier Héroe que pueda ayudarles."
+                ],
+                "loreImage": "../images/quests/quest-tobaros-bane.png"
+            }
+        },
+        {
+            "title": "La Guarida del Señor de la Guerra",
+            "subtitle": "El Amuleto Roto - I ACTO",
+            "sections": {
+                "loreTitle": "Historia",
+                "loreParagraphs": [
+                    "En las profundidades de las <em>Montañas Grises</em>, un <em>Skaven Señor de la Guerra</em> del <em>Clan Rictus</em> planea una campaña para, literalmente, minar el subsuelo de la cercana ciudad de <em>Pavarron</em>. Es en su guarida donde se encuentra el <em>1er Fragmento del Amuleto Roto</em>.",
+                    "En las paredes de esta mazmorra podeís ver colgados horribles trofeos que conmemoran pasadas victorias: escudos rotos yllenos de sangre que pertenecieron a enemogos derrotados: cabelleras y calaveras: armas melladas y oxidadas de una docena de razas diferentes y, grabada sobre las puertas y las losas del suelo, se puede ver la runa de tres brazos, simbolo del <em>Clan Rictus</em>."
+                ],
+                "loreImage": "../images/quests/quest-broken-amulet-1.png"
+            }
+        },
+        {
+            "title": "El Laberinto Mágico",
+            "subtitle": "El Amuleto Roto - II ACTO",
+            "sections": {
+                "loreTitle": "Historia",
+                "loreParagraphs": [
+                    "El laberinto mágico que se encuentra en las profundidaes de esta mazmorra fue construido por <em>Gragoth Daemonmaster</em>, un poderoso <em>Hechicero del Caos</em> con el fin de porteger la segunda parte del <em>Amuleto Roto</em>. <em>Gragoth</em> pidió ayuda a los <em>Asesinos del Clan Eshin</em>, cuyos querreros custodian el fragmento del Amuleto.",
+                    "Pintado con sangre en la entrada de la mazmorra podeis ver un simbolo del <em>Clan Eshin</em>, el Clan de los Asessinos. En el aire flota el aroma del terror. Y ¿ese sonido que oyes es el de una puerta chirriando al cerrardose, o son los gemidos de una lejana tormenta?"
+                ],
+                "loreImage": "../images/quests/quest-broken-amulet-2.png"
+            }
         }
-    },
+    ],
     "frontCard": [
         {
             "title": "El Azote de Tobaro",

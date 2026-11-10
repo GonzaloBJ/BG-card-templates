@@ -1,10 +1,10 @@
 {
   "meta": {
-    "cardSize": "tarot", 
+    "cardSize": "tarot",
     "isLandscapeCard": false,
-    "twoSizedCard": true, 
-    "multipleCardPrintMatrix": "1x1", 
-    "paperSize":"letter"
+    "twoSizedCard": true,
+    "multipleCardPrintMatrix": "1x1",
+    "paperSize": "letter"
   },
   "backCard": {
     "title": "Rastreador de Grupo Enemigo",
@@ -13,7 +13,7 @@
   "frontCard": {
     "title": "Rastreador de Grupo Enemigo",
     "subtitle": "6 unidades",
-    "sections":{
+    "sections": {
       "enemySlot": "RANURA DE ENEMIGO",
       "unitSlots": 8,
       "statSlots": 8
