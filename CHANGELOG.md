@@ -24,7 +24,11 @@ Security (Mejoras de seguridad)
 ### Fixed
 - carta quest en listado con reverso en 2da hoja.
 - formato de json de datos alineados.
+- two sided corregido en json y script.
 
+### Removed
+- test.py pasa a ser el nuevo generare_card.py.
+- se remueven templates sin uso.
 
 ## [1.0.0] 
 ### Added

@@ -2,7 +2,7 @@
     "meta": {
         "cardSize": "tarot",
         "isLandscapeCard": true,
-        "twoSizedCard": true,
+        "twoSidedCard": true,
         "multipleCardPrintMatrix": "2x4",
         "paperSize": "letter"
     },

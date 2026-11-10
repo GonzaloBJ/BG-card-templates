@@ -1,5 +1,5 @@
-
 import json
+import math
 import re
 import sys
 from copy import deepcopy
@@ -162,7 +162,6 @@ def generar_combate_cuerpo_a_cuerpo(melee):
     </div>
     """
 
-
 # ============================================================
 # PROCESAMIENTO DE DATOS DE LAS CARTAS
 # ============================================================
@@ -174,40 +173,58 @@ def transformar_secciones(data):
     """
     result = deepcopy(data)
 
-    front = result.get("frontCard", {}).get("sections", {})
-    back = result.get("backCard", {}).get("sections", {})
+    front_cards = result.get("frontCard", [])
+    if isinstance(front_cards, dict):
+        front_cards = [front_cards]
 
-    for key in ("loreParagraphs",):
-        if key in back:
-            back[key] = unir_parrafos(back[key])
+    back_cards = result.get("backCard", [])
+    if isinstance(back_cards, dict):
+        back_cards = [back_cards]
+        
+    if len(back_cards) == 1 and len(front_cards) > 1:
+        back_cards = [back_cards[0].copy() for _ in range(len(front_cards))]
+        
+    transformed_fronts = []
+    for front in front_cards:
+        sections = front.get("sections", {})
+        for key in PARAGRAPH_SECTIONS:
+            if key in sections:
+                sections[key] = unir_parrafos(sections[key])
 
-    for key in PARAGRAPH_SECTIONS:
-        if key in front:
-            front[key] = unir_parrafos(front[key])
+        if "monstersTableHeaders" in sections:
+            sections["monstersTableHeaders"] = generar_encabezados(
+                sections["monstersTableHeaders"]
+            )
 
-    if "monstersTableHeaders" in front:
-        front["monstersTableHeaders"] = generar_encabezados(
-            front["monstersTableHeaders"]
-        )
+        if "monstersTableRows" in sections:
+            sections["monstersTableRows"] = generar_filas_monstruos(
+                sections["monstersTableRows"]
+            )
 
-    if "monstersTableRows" in front:
-        front["monstersTableRows"] = generar_filas_monstruos(
-            front["monstersTableRows"]
-        )
+        if "unitSlots" in sections:
+            sections["unitSlotsRows"] = generar_ranuras_unidades(
+                sections["unitSlots"], sections["statSlots"]
+            )
 
-    if "unitSlots" in front:
-        front["unitSlotsRows"] = generar_ranuras_unidades(
-            front["unitSlots"], front["statSlots"]
-        )
+        if "equipment" in sections:
+            sections["equipment"] = generar_equipo(sections["equipment"])
 
-    if "equipment" in front:
-        front["equipment"] = generar_equipo(front["equipment"])
+        if isinstance(sections.get("meleeCombat"), dict):
+            sections["meleeCombatHtml"] = generar_combate_cuerpo_a_cuerpo(
+                sections["meleeCombat"]
+            )
+        transformed_fronts.append(front)
 
-    if isinstance(front.get("meleeCombat"), dict):
-        front["meleeCombatHtml"] = generar_combate_cuerpo_a_cuerpo(
-            front["meleeCombat"]
-        )
+    transformed_backs = []
+    for back in back_cards:
+        sections = back.get("sections", {})
+        for key in ("loreParagraphs",):
+            if key in sections:
+                sections[key] = unir_parrafos(sections[key])
+        transformed_backs.append(back)
 
+    result["frontCard"] = transformed_fronts
+    result["backCard"] = transformed_backs
     return result
 
 
@@ -263,7 +280,10 @@ def generar_estilos(meta, config, data):
 
     paper_size = meta.get("paperSize", "letter")
         
-    stat_slots = data.get("frontCard", {}).get("sections", {}).get("statSlots", 1)
+    front_cards = data.get("frontCard", [])
+    stat_slots = 1
+    if front_cards and isinstance(front_cards, list):
+        stat_slots = front_cards[0].get("sections", {}).get("statSlots", 1)
 
     return f"""
     <style>
@@ -272,7 +292,9 @@ def generar_estilos(meta, config, data):
             margin: 10mm;
         }}
 
-        body {{
+        html, body {{
+            width: 100%;
+            height: 100%;
             margin: 0;
             padding: 0;
             background: #fff;
@@ -280,23 +302,33 @@ def generar_estilos(meta, config, data):
 
         .sheet {{
             width: 100%;
-            min-height: 297mm;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             page-break-after: always;
+            break-after: page;
             position: relative;
             background: #fff;
+            box-sizing: border-box;
         }}
 
         .print-matrix {{
             display: grid;
-            grid-template-columns: repeat({cols}, 1fr);
+            grid-template-columns: repeat({cols}, {card_w});
             grid-template-rows: repeat({rows}, auto);
-            background-color: black;
+            background-color: white;
             gap: 4mm;
             justify-content: center;
             align-content: center;
+        }}
+
+        .print-matrix.back-matrix {{
+            direction: rtl;
+        }}
+
+        .print-matrix.back-matrix .card {{
+            direction: ltr;
         }}
 
         .card {{
@@ -306,6 +338,8 @@ def generar_estilos(meta, config, data):
             box-sizing: border-box;
             position: relative;
             overflow: hidden;
+            outline: 0.2mm dashed #888;
+            outline-offset: 2mm;
         }}
         
         .track-table {{
@@ -319,32 +353,6 @@ def generar_estilos(meta, config, data):
 # GENERACIÓN DEL HTML
 # ============================================================
 
-def insertar_caras(html, quest_template, data, meta):
-    """Inserta el anverso y, si corresponde, el reverso."""
-    if "{{ TWO_SIDED }}" in quest_template:
-        front, back = quest_template.split("{{ TWO_SIDED }}", 1)
-    else:
-        front, back = quest_template, ""
-
-    html = html.replace("{{ FRONTCARD }}", front)
-
-    back_data = data.get("backCard", {})
-    two_sided = meta.get("twoSizedCard", False)
-
-    if back_data and two_sided and back.strip():
-        back_html = f"""
-        <section class="sheet">
-            <div class="print-matrix">
-                {back}
-            </div>
-        </section>
-        """
-    else:
-        back_html = ""
-
-    return html.replace("{{ BACKCARD }}", back_html)
-
-
 def reemplazar_variables(html, data):
     """Resuelve los marcadores {{ ruta.anidada }} del HTML."""
     def reemplazar(match):
@@ -353,6 +361,77 @@ def reemplazar_variables(html, data):
         return str(value)
 
     return VARIABLE_PATTERN.sub(reemplazar, html)
+
+
+def insertar_caras(html, quest_template, data, meta):
+    """Inserta las cartas (frentes y reversos) organizadas en páginas según la matriz."""
+    if "{{ TWO_SIDED }}" in quest_template:
+        front_template, back_template = quest_template.split("{{ TWO_SIDED }}", 1)
+    else:
+        front_template, back_template = quest_template, ""
+
+    cols, rows = obtener_matriz(meta.get("multipleCardPrintMatrix", "1x1"))
+    cards_per_page = cols * rows
+
+    front_cards = data.get("frontCard", [])
+    if isinstance(front_cards, dict):
+        front_cards = [front_cards]
+
+    back_cards = data.get("backCard", [])
+    if isinstance(back_cards, dict):
+        back_cards = [back_cards]
+
+    two_sided = meta.get("twoSidedCard", False)
+
+    rendered_fronts = []
+    for card in front_cards:
+        single_data = deepcopy(data)
+        single_data["frontCard"] = card
+        rendered_fronts.append(reemplazar_variables(front_template, single_data))
+
+    rendered_backs = []
+    if two_sided and back_template.strip():
+        for card in back_cards:
+            single_data = deepcopy(data)
+            single_data["backCard"] = card
+            rendered_backs.append(reemplazar_variables(back_template, single_data))
+        while len(rendered_backs) < len(rendered_fronts):
+            rendered_backs.append("")
+
+    front_sheets = []
+    back_sheets = []
+
+    total_cards = len(rendered_fronts)
+    total_pages = math.ceil(total_cards / cards_per_page) if total_cards > 0 else 1
+
+    for page_idx in range(total_pages):
+        start = page_idx * cards_per_page
+        end = start + cards_per_page
+
+        page_fronts = rendered_fronts[start:end]
+        front_grid_html = "\n".join(page_fronts)
+        front_sheets.append(f"""
+        <section class="sheet">
+            <div class="print-matrix">
+                {front_grid_html}
+            </div>
+        </section>
+        """)
+
+        if two_sided and rendered_backs:
+            page_backs = rendered_backs[start:end]
+            back_grid_html = "\n".join(page_backs)
+            back_sheets.append(f"""
+            <section class="sheet">
+                <div class="print-matrix back-matrix">
+                    {back_grid_html}
+                </div>
+            </section>
+            """)
+
+    html = html.replace("{{ FRONTCARD }}", "".join(front_sheets))
+    html = html.replace("{{ BACKCARD }}", "".join(back_sheets))
+    return html
 
 
 def insertar_estilos(html, styles):
@@ -377,8 +456,6 @@ def generar_html(entradas):
         data,
         meta,
     )
-
-    html = reemplazar_variables(html, data)
 
     styles = generar_estilos(meta, config, data)
 
@@ -429,7 +506,7 @@ def main():
             f"Tamaño: {meta.get('cardSize', 'tarot')}, "
             f"Orientación: {meta.get('isLandscapeCard', 'horizontal')}, "
             f"Matriz: {meta.get('multipleCardPrintMatrix', '1x1')}, "
-            f"Doble cara: {meta.get('twoSizedCard', False)}"
+            f"Doble cara: {meta.get('twoSidedCard', False)}"
         )
         print(f"Archivo de salida: {entradas['output_path']}")
 

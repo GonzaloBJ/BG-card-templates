@@ -2,10 +2,15 @@
   "meta": {
     "cardSize": "miniEuro",
     "isLandscapeCard": true,
-    "twoSidedCard": false,
+    "twoSidedCard": true,
     "multipleCardPrintMatrix": "2x2",
     "paperSize": "A4"
   },
+  "backCard": [
+    {
+      "image": "../images/enemies-back.png"
+    }
+  ],
   "frontCard": [
     {
       "title": "Skaven",

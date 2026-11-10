@@ -7,6 +7,12 @@
           grid-template-columns: 0.50fr 1fr !important;
         }
 
+        .back .illustration-wrap {
+          width: 60% !important;
+          height: 60% !important;
+          overflow: unset !important;
+        }
+
         .illustration {
           width: 120% !important;
           height: 120% !important;
@@ -42,6 +48,10 @@
         .right-column > .section:last-child {
           margin-top: auto !important;
           margin-bottom: 0 !important;
+        }
+
+        .back .back-body {
+          display: block !important;
         }
       </style>
       <div class="front-main">
@@ -120,4 +130,14 @@
       </div>
     </div>
   </div>
+</article>
+{{ TWO_SIDED }}
+<article class="card back">
+    <div class="card-content">
+        <div class="back-body">
+            <div class="illustration-wrap">
+                <img class="illustration" src="{{ backCard.image }}" />
+            </div>
+        </div>
+    </div>
 </article>
