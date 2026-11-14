@@ -17,6 +17,10 @@ Fixed (Corrección de errores)
 
 Security (Mejoras de seguridad)
 
+## [1.0.2] - 2026-11-14
+### Added
+- lista de magias ok con magia inicial.
+
 ## [1.0.1] - 2026-11-10
 ### Added
 - changelog para trackear cambios.

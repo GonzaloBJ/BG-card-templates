@@ -1,0 +1,84 @@
+{
+    "meta": {
+        "cardSize": "miniEuro",
+        "isLandscapeCard": false,
+        "twoSidedCard": true,
+        "multipleCardPrintMatrix": "4x4",
+        "paperSize": "letter"
+    },
+    "backCard": [
+        {
+            "title": "Conjuro Brillante",
+            "subtitle": "Magia",
+            "image": "../images/brightMagic.png"
+        }
+    ],
+    "frontCard": [
+        {
+            "title": "Armadura de Dragón",
+            "subtitle": "Conjuro Brillante",
+            "sections": {
+                "components": [
+                    "Polvo de Dragón Rojo"
+                ],
+                "description": "Tras lanzar al aire el polvo, las gesticulaciones del hechicero hacen que este se solidifique en un caparazón de relucionetes escamas rojizas alrededor del blanco del hechizo.",
+                "effects": [
+                    "&bull; Este conjuro puede ser invocado sobre cualquier miniatura en la <em>Zona Mortal</em> del Mago.",
+                    "&bull; Debera añadirse un <strong>+1</strong> a la <strong>Dureza</strong> de dicah miniatura hasta el siguiente <em>Turno de Exploración</em>."
+                ],
+                "level": 0,
+                "cost": 0
+            }
+        },
+        {
+            "title": "Llamas de Muerte",
+            "subtitle": "Conjuro Brillante",
+            "sections": {
+                "components": [
+                    "Polvo de Fuego"
+                ],
+                "description": "El hechicero proyecta una chisporreante bola de fuego hacia el enemigo, que queda engullido en un torbellino de llamas blancas. Con este ojo el hechicero puede ver secciones de la mazmorra que no hayan sido aún exploradas.",
+                "effects": [
+                    "&bull; Sitúa un marcador de bola de fuego en cualquier área en un radio de 12 casillas dentro de la <em>Linea de Visión</em> del hechicero que ha invocado el conjuro (como si se tratase un ataque a distancia).",
+                    "&bull; Cualquier miniatura amiga o nemeiga que se encuentre donde es colocado el marcador es alcanzada automáticamente.",
+                    "&bull; Deberá efectuarse una <em>Tirada de Heridas</em> de <strong>5 dados</strong> para determinar los daños que sufren las víctimas de este conjuro."
+                ],
+                "level": 0,
+                "cost": 0
+            }
+        },
+        {
+            "title": "El Tercer Ojo",
+            "subtitle": "Conjuro Brillante",
+            "sections": {
+                "components": [
+                    "Llave de plata"
+                ],
+                "description": "Derramando tan solo un poco de sangre, se abre un ojo en la frente del hechicero, un ojo sin blanco ni iris, que refulge con una brillante luz verduzca.",
+                "effects": [
+                    "&bull; El hechicero debe elegir cualquier área que no haya sido aún explorada (tras una puerta, o al otro lado de un cruce, por ejemplo) y el <strong>DJ</strong> deberá generar el área elegida de la mazmorra mediante el procedimiento normal.",
+                    "&bull; Si hay algún monstruo, éste no sbrá en ningún momento que está siendo espiado.",
+                    "&bull; Si Posteriormente los Héroes penetran en un área que haya sido explorada mediante este conjuro, tendrán un <strong>+3</strong> en la <em>Tirada de Sorpresa</em> efectuada por el lider."
+                ],
+                "level": 0,
+                "cost": 0
+            }
+        },
+        {
+            "title": "Las Llamas del Fenix",
+            "subtitle": "Conjuro Brillante",
+            "sections": {
+                "components": [
+                    "Pluma de Fenix"
+                ],
+                "description": "El hechicero coloca sus manos sobre las heridas abiertas de un camarada caído y hace que su dolor se transmita a su cuerpo, para ser consumido por la fuerza de su magia.",
+                "effects": [
+                    "&bull; Mediante este conjuro, el hechicero puede cuerar cualquier <em>Herida</em> sifrida por cualquier miniatura, incluido él mismo.",
+                    "&bull; No puede haber nadie más que el camarada herido, en la <em>Zona Mortal</em> del hechicero cuando invoque este conjuro."
+                ],
+                "level": 0,
+                "cost": 0
+            }
+        }
+    ]
+}
