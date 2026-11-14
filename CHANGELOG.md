@@ -21,6 +21,9 @@ Security (Mejoras de seguridad)
 ### Added
 - lista de magias ok con magia inicial.
 
+### Changed
+- imagen de reverso de carta de enemigos.
+
 ## [1.0.1] - 2026-11-10
 ### Added
 - changelog para trackear cambios.
