@@ -79,6 +79,22 @@
                 "level": 0,
                 "cost": 0
             }
+        },
+        {
+            "title": "La Llave Brillante",
+            "subtitle": "Conjuro Brillante",
+            "sections": {
+                "components": [
+                    "Llave de Plata"
+                ],
+                "description": "El hechicero cierra su puño con fuertemente y este aparecerá envuelto en un halo de luz caliente. Tras ello el hechicero abrirá su mano, lo que le costará un enorme esfuerzo, como si la tuviera dentro de una roca. Cuando la haya abierto, el hechicero habrá creado una puerta allí donde antes no había ninguna.",
+                "effects": [
+                    "&bull; El jugador que controle al hechicero puede colocar una puerta en cualquier pared de la sección en la que se encuentre en hechicero.",
+                    "&bull; Si la puerta conduce a un área no explorada de la mazmorra y los héroes deciden abrirla, primero deberá tirarse un dado. Con un <em>4 o menos</em>, sólo hay roca sólida al otro lado. Con un <em>resultado mayor</em>, deberá generarse un área de mazmorra tras la puerta según el procedimiento normal."
+                ],
+                "level": 1,
+                "cost": 1
+            }
         }
     ]
 }
