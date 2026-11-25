@@ -69,7 +69,7 @@
             "subtitle": "Conjuro Brillante",
             "sections": {
                 "components": [
-                    "Pluma de Fenix"
+                    "Pluma de Fénix"
                 ],
                 "description": "El hechicero coloca sus manos sobre las heridas abiertas de un camarada caído y hace que su dolor se transmita a su cuerpo, para ser consumido por la fuerza de su magia.",
                 "effects": [
@@ -91,6 +91,55 @@
                 "effects": [
                     "&bull; El jugador que controle al hechicero puede colocar una puerta en cualquier pared de la sección en la que se encuentre en hechicero.",
                     "&bull; Si la puerta conduce a un área no explorada de la mazmorra y los héroes deciden abrirla, primero deberá tirarse un dado. Con un <em>4 o menos</em>, sólo hay roca sólida al otro lado. Con un <em>resultado mayor</em>, deberá generarse un área de mazmorra tras la puerta según el procedimiento normal."
+                ],
+                "level": 1,
+                "cost": 1
+            }
+        },
+        {
+            "title": "El Poder del Fénix",
+            "subtitle": "Conjuro Brillante",
+            "sections": {
+                "components": [
+                    "Pluma de Fénix",
+                    "Diente de Dragón"
+                ],
+                "description": "Desde lo más profundo de tu ser, el hechicero lanza un grito que se extiende por el vacío eterno y que sólo puede ser oído por el alma de un camarada caído, devolviéndola de nuevo al cuerpo que antes abandonara. De esta forma el hechicero puede resucitar a un personaje muerto.",
+                "effects": [
+                    "&bull; Este conjúro sólo se puede lanzar en el turno siguiente a la muerte del personaje.",
+                    "&bull; Si el hechicero supera un <em>Chequeo de Inteligencia</em>, este personaje vuelve a la vida con todas sus características a plena potencia. Si el chequeo fracasa, el alma del héroe muerto será a su vez condenada a una agónica destrucción."
+                ],
+                "level": 1,
+                "cost": 1
+            }
+        },
+        {
+            "title": "Mano Ardiente de Destrucción",
+            "subtitle": "Conjuro Brillante",
+            "sections": {
+                "components": [
+                    "Polvo de Dragón Rojo"
+                ],
+                "description": "Este conjuro transforma las manos del hechicero, que empiezan a arder con una intensa llama mágica, una terrible energía que no consume carne, aunque si parece ennegrecerla durante el tiempo en que transcurre el conjuro.",
+                "effects": [
+                    "&bull; Si en cualquier <em>>Turno de Combate</em> posterior el hechicero consigue impactar a un enemigo en combate, ese enemigo pierde automáticamente tantas <em>Heridas</em> como aparezcan en una tirada de <strong>1D12</strong>. No tires dados de daño de forma normal.",
+                    "&bull; El efecto del conjuro concluye cuando se inicie el siguiente <em>Turno de Exploración</em>."
+                ],
+                "level": 1,
+                "cost": 1
+            }
+        },
+        {
+            "title": "Aire Inmovil",
+            "subtitle": "Conjuro Brillante",
+            "sections": {
+                "components": [
+                    "Pluma de Fénix"
+                ],
+                "description": "Las complicadas palabras y gestos que componen este conjuro se deben pronunciar rápidamente, como si se estuviera coriendo para vencer algún destino desesperado. Pero la invocación también exige interrumpirse bruscamente en un momento crítico y por un instante el hechicero quedará como congelado, e incluso su corazón se detendrá cuando la energía mágica fluya a través de sus manos.",
+                "effects": [
+                    "&bull; Luego, durante <strong>1 turno</strong>, ning[un enemigo en la sección de mazmorra que decida el hechicero podrá moverse ni atacar.",
+                    "&bull; El hechicero debe poder trazar una <em>Línea de Visión</em> sin obstrucciones hasta la sección de mazmorra seleccionada para poder invocar este conjuro."
                 ],
                 "level": 1,
                 "cost": 1
