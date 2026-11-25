@@ -17,14 +17,21 @@ Fixed (Corrección de errores)
 
 Security (Mejoras de seguridad)
 
-## [1.0.2] - 2026-11-14
+# [0.0.3] - 2026-11-24
+### Added
+- template basico para items/spells.
+
+### Changed
+- lista de magias actualizada.
+
+## [0.0.2] - 2026-11-14
 ### Added
 - lista de magias ok con magia inicial.
 
 ### Changed
 - imagen de reverso de carta de enemigos.
 
-## [1.0.1] - 2026-11-10
+## [0.0.1] - 2026-11-10
 ### Added
 - changelog para trackear cambios.
 
@@ -37,6 +44,6 @@ Security (Mejoras de seguridad)
 - test.py pasa a ser el nuevo generare_card.py.
 - se remueven templates sin uso.
 
-## [1.0.0] 
+## [0.0.0] 
 ### Added
 - Lanzamiento inicial de la aplicación con panel de control básico.

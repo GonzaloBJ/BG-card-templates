@@ -27,25 +27,25 @@
         "oldPaperWhiteHorizontal": "../images/bg-pergamino-blanco-horizontal.jpg"
     },
     "cardTypeList": {
+        "1": {
+            "json": "spellList.json",
+            "template": "template_item_card_content.html",
+            "output": "cartas_SPELL_LIST.html"
+        },
         "6": {
             "json": "enemiesTracker.json",
             "template": "template_enemies_tracker_card.html",
-            "output": "carta_enemies_tracker.html"
-        },
-        "7": {
-            "json": "enemiesCard.json",
-            "template": "template_enemies_card.html",
-            "output": "cartas_enemigos.html"
+            "output": "cartas_ENEMIES_TRACKER.html"
         },
         "9": {
             "json": "enemiesList.json",
             "template": "template_enemy_card_content.html",
-            "output": "cartas_ENEMIES_LIST_TEST.html"
+            "output": "cartas_ENEMIES_LIST.html"
         },
         "10": {
             "json": "questsList.json",
             "template": "template_quest_card_content.html",
-            "output": "cartas_QUEST_LIST_TEST.html"
+            "output": "cartas_QUEST_LIST.html"
         } 
     }
 }

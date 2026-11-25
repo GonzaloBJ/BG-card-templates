@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>card matrix - item</title>
+
+    <!-- Google Fonts: EB Garamond & Cinzel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --ink: #111;
+        --gray: #d8d8d8;
+        --paper: #fff;
+
+        --font-title: 'Cinzel', 'EB Garamond', serif;
+        --font-body: 'EB Garamond', serif;
+
+        --size-category: 2.4mm;
+        --size-title: 4.5mm;
+        --size-subtitle: 2.35mm;
+        --size-body: 3.15mm;
+
+        --border-card: 0.3mm;
+        --border-card-color: grey;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      @page {
+        size: A4;
+        margin: 10mm;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background: #fff;
+        color: var(--ink);
+        font-family: var(--font-body);
+      }
+
+      .sheet {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        page-break-after: always;
+        break-after: page;
+        position: relative;
+        background: #fff;
+      }
+
+      .print-matrix {
+        display: grid;
+        grid-template-columns: repeat(2, 64mm);
+        grid-template-rows: repeat(2, auto);
+        background-color: white;
+        gap: 4mm;
+        justify-content: center;
+        align-content: center;
+      }
+
+      .card {
+        width: 64mm;
+        height: 89mm;
+        position: relative;
+        overflow: hidden;
+        background-color: var(--paper);
+        background-image: url('../images/bg-pergamino-blanco-vertical.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border: var(--border-card) solid var(--border-card-color);
+        outline: 0.2mm dashed #888;
+        outline-offset: 2mm;
+        /* Márgenes laterales amplios para respetar los bordes rasgados del pergamino */
+        padding: 3.5mm 7mm 5mm;
+      }
+
+      .card-content {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 0;
+      }
+
+      /* CABECERA DE ÍTEM */
+      .item-header {
+        text-align: center;
+        width: 100%;
+      }
+
+      .item-category {
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: var(--size-category);
+        letter-spacing: 0.25mm;
+        text-transform: uppercase;
+        line-height: 1;
+        padding-bottom: 1.2mm;
+        border-bottom: 0.3mm solid var(--ink);
+        margin-bottom: 1.4mm;
+      }
+
+      .item-title {
+        font-family: var(--font-title);
+        font-weight: 800;
+        font-size: var(--size-title);
+        line-height: 1.02;
+        letter-spacing: 0.15mm;
+        text-transform: uppercase;
+        margin: 0;
+        /* Simula las letras iniciales ligeramente más grandes (estilo versalitas) */
+        font-variant: small-caps;
+      }
+
+      .item-subtitle {
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: var(--size-subtitle);
+        letter-spacing: 0.22mm;
+        text-transform: uppercase;
+        line-height: 1.1;
+        margin-top: 1mm;
+      }
+
+      /* ILUSTRACIÓN CENTRAL */
+      .item-illustration-wrap {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5mm 0;
+      }
+
+      .item-illustration {
+        max-width: 92%;
+        max-height: 100%;
+        object-fit: contain;
+        display: block;
+        mix-blend-mode: multiply;
+      }
+
+      /* PIE DE EFECTO + ICONO DE GIRAR / AGOTAR */
+      .item-footer {
+        display: flex;
+        align-items: flex-start;
+        gap: 2.2mm;
+        padding-top: 0.5mm;
+      }
+
+      .exhaust-badge {
+        flex-shrink: 0;
+        width: 4.6mm;
+        height: 7.2mm;
+        background: var(--ink);
+        color: var(--paper);
+        border-radius: 0.6mm;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0.4mm;
+      }
+
+      .exhaust-badge svg {
+        width: 3.4mm;
+        height: 4.5mm;
+        fill: currentColor;
+      }
+
+      .item-description {
+        font-family: var(--font-body);
+        font-size: var(--size-body);
+        font-weight: 500;
+        line-height: 1.18;
+        text-align: left;
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="sheet">
+      <div class="print-matrix">
+        <!-- CARTA 1 (Ejemplo replicado de la imagen) -->
+        <article class="card item-card">
+          <div class="card-content">
+            <header class="item-header">
+              <div class="item-category">Equipment</div>
+              <h1 class="item-title">Shield of the<br />Manticore</h1>
+              <div class="item-subtitle">&bull; Edmark Valoran &bull;</div>
+            </header>
+
+            <div class="item-illustration-wrap">
+              <img
+                class="item-illustration"
+                src="../images/items/shieldOfTheManticore.png"
+                alt="Shield of the Manticore"
+              />
+            </div>
+
+            <footer class="item-footer">
+              <!-- Icono vectorial de carta girada / agotar (opcional si el ítem no lo requiere) -->
+              <div class="exhaust-badge" title="Exhaust">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M14 5v4.06C9.61 9.56 6.5 13.15 6.5 17.5c0 .84.13 1.65.36 2.41.15.49.84.45.93-.05.62-3.32 3.16-5.73 6.21-5.85V18l7-6.5L14 5z"
+                  />
+                </svg>
+              </div>
+              <p class="item-description">
+                Use this before making a save roll for this hero. Block 1 hit
+                scored by that attack.
+              </p>
+            </footer>
+          </div>
+        </article>
+
+        <!-- CARTA 2 (Ejemplo traducido al español para tu juego) -->
+        <article class="card item-card">
+          <div class="card-content">
+            <header class="item-header">
+              <div class="item-category">Equipo</div>
+              <h1 class="item-title">Escudo de la<br />Mantícora</h1>
+              <div class="item-subtitle">&bull; Edmark Valoran &bull;</div>
+            </header>
+
+            <div class="item-illustration-wrap">
+              <img
+                class="item-illustration"
+                src="../images/items/shieldOfTheManticore.png"
+                alt="Escudo de la Mantícora"
+              />
+            </div>
+
+            <footer class="item-footer">
+              <div class="exhaust-badge" title="Agotar">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M14 5v4.06C9.61 9.56 6.5 13.15 6.5 17.5c0 .84.13 1.65.36 2.41.15.49.84.45.93-.05.62-3.32 3.16-5.73 6.21-5.85V18l7-6.5L14 5z"
+                  />
+                </svg>
+              </div>
+              <p class="item-description">
+                Úsalo antes de realizar una tirada de salvación para este héroe.
+                Bloquea 1 impacto obtenido por ese ataque.
+              </p>
+            </footer>
+          </div>
+        </article>
+      </div>
+    </section>
+  </body>
+</html>
